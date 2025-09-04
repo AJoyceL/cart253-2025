@@ -1,5 +1,8 @@
 # cart253-2025
 
+My parter for this challenge is Émile Bédard:
+his repository link is: https://github.com/EmileBedard/cart253.git
+his game website is: https://emilebedard.github.io/cart253/topics/version_control/version_control_workflow
 
 
 HELP I DON'T KNOW WHAT I'M DOING
