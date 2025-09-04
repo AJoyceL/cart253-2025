@@ -47,4 +47,5 @@ HELP I DON'T KNOW WHAT I'M DOING
 
 
 
-<img width="600" height="416" alt="image" src="https://github.com/user-attachments/assets/6665a62d-7296-45bb-9632-657e63829678" />
+<img width="600" height="416" alt="image" src="https://github.com/user-attachments/assets/6665a62d-7296-45bb-9632-657e63829678" /> <img width="650" height="400" alt="image" src="https://github.com/user-attachments/assets/eafb67c2-6cf8-4443-87e0-83bed55a0408" />
+
