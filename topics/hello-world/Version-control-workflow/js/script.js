@@ -42,7 +42,7 @@ function draw() {
         // No line around the levels
         noStroke();
         // Set the fill colour to our shade (RGB)
-        fill(shade, shade, 0);
+        fill(shade, 200, 100);
         // Draw rectangles from the centre
         rectMode(CENTER);
         // Draw the rectangle in the centre of the canvas
@@ -60,6 +60,6 @@ function draw() {
     // Make it red (RGB)
     fill(255, 0, 0);
     // Draw a 100x100 circle at the mouse position
-    ellipse(mouseX, mouseY, 100, 100);
+    ellipse(mouseX, mouseY, 70, 70);
     pop();
 }
