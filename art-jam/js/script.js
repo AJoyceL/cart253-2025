@@ -1,18 +1,16 @@
 /**
- * Title of Project
- * Author Name
+ * Art Jam: Sefl Portrait
+ * Joyce Angelina Lam
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
  */
 
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * Creates the canvas
 */
 function setup() {
-
+    createCanvas(400, 480);
 }
 
 
