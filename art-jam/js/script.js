@@ -10,13 +10,14 @@
  * Creates the canvas
 */
 function setup() {
-    createCanvas(400, 480);
+    createCanvas(600, 900);
 }
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * Function to draw the self portrait
 */
 function draw() {
-
+    // Lavender blue background
+    background(191, 179, 255);
 }
