@@ -14,6 +14,7 @@ const creature = {
     y: 200,
     // Size
     size: 200,
+
     // Fill
     fill: "#000000", // Starts out bored
     // Possible fills for the creature that show its mood
@@ -48,9 +49,23 @@ function draw() {
  * Responds to user input
  */
 function checkInput() {
-    // We'll need to figure this out
-}
+    // check if the mouse button is pressed
+    if (mouseIsPressed) {
+        //if it is, the creature becomes happy
+        creature.fill = creature.fills.happy;
+    }
 
+    else if (keyIsPressed) {
+        //if it is, the cewture becomes angry
+        creature.fill = creature.fills.angry;
+    }
+
+    // check if the mouse is not pressed and no keys are pressesd, the creatrure is bored
+    else {
+        creature.fill = creature.fills.bored;
+    }
+}
+//
 /**
  * Draws the creature
  */
