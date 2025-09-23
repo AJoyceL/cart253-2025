@@ -32,6 +32,9 @@ function draw() {
 
     drawFace();
     drawHair();
+    drawEyes();
+    drawPupils();
+    drawGlasses();
 }
 
 // Draw the face
@@ -71,5 +74,33 @@ function drawHair() {
     vertex(550, 100);
     vertex(500, 50);
     endShape(CLOSE);
+    pop();
+}
+
+// Draw the eyes
+function drawEyes() {
+    push();
+    noStroke();
+    ellipse(400, 400, 100, 50);
+    fill(255, 255, 255);
+    pop();
+}
+
+// Draw the pupils
+function drawPupils() {
+    push();
+    fill(50, 20, 20);
+    noStroke();
+    ellipse(400, 400, 25, 25);
+    pop();
+}
+
+// Draw the glasses
+function drawGlasses() {
+    push();
+    noFill();
+    stroke(192, 192, 192);
+    strokeWeight(5);
+    ellipse(400, 400, 150, 150);
     pop();
 }
