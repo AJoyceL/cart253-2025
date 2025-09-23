@@ -1,6 +1,6 @@
 /**
  * Death by Boredom
- * Pippin Barr
+ * Joyce Angelina Lam
  * 
  * A creature that can die of boredom...
  */
@@ -25,7 +25,13 @@ const creature = {
         happy: "#33cc33", // Green
         angry: "#cc3333", // Red
         dead: "#777777" // Grey
-    }
+    },
+    // Is the creature alive?
+    alive: true,
+    // How bored is it? 
+    boredomLevel: 0,
+    // How bored can the creature gert before it dies?
+    deathByBoredomThreshold: 500,
 };
 
 /**
@@ -53,6 +59,11 @@ function draw() {
  * Creature is happy if being massaged and otherwise bored
  */
 function checkInput() {
+    // Check if the creature uis dead, and if so, don't check for any input
+    if(!creature.alive){
+        return;
+    }
+
     // Calculate the distance between the cursor and the creature
     // and put it into a "distance" variable (using const again since
     // we won't change this again later!)
@@ -73,6 +84,13 @@ function checkInput() {
     else {
         // Otherwise the creature is bored
         creature.fill = creature.fills.bored;
+        creature.boredomLevel+= 1;
+        //Creature gets a little bit more bored
+        if(creature.boredomLevel > creature.deathByBoredomThreshold){
+            //Creature dies of boredom
+            creature.fill = creature.fills.dead;
+            creature.alive = false;
+        }
     }
 }
 
