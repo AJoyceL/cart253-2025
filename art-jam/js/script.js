@@ -31,8 +31,10 @@ function draw() {
     background(191, 179, 255);
 
     drawFace();
+    drawHair();
 }
 
+// Draw the face
 function drawFace() {
     push();
     fill(255, 204, 153);
@@ -49,7 +51,25 @@ function drawFace() {
     vertex(600, 900);
     vertex(500, 800);
     endShape(CLOSE);
-    pop();
+    pop(); 
+}
 
-   
+// Draw the hair
+function drawHair() {
+    push();
+    fill(50, 50, 50);
+    noStroke();
+
+    //Vertex declaratiuons in counter-clockwise order
+    beginShape();
+    vertex(400, 70);
+    vertex(370, 100);
+    vertex(250, 300);
+    vertex(475, 500);
+    vertex(450, 800);
+    vertex(575, 850);
+    vertex(550, 100);
+    vertex(500, 50);
+    endShape(CLOSE);
+    pop();
 }
