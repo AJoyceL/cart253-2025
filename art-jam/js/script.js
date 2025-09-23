@@ -3,6 +3,12 @@
  * Joyce Angelina Lam
  * 
  * Taking inspiration from the works of Pablo Picasso and cubism/abstract to create a self portrait.
+ * 
+ * TO DO LIST:
+ * - use variables to  make the eyes blink repeatedly and slowly over time
+ * - use mouseX and mouseY to make the pupils follow the mouse
+ * - use a conditional to change the colour of something when the mouse is pressed
+ * - look up a p5 function I've never used
  */
 
 "use strict";
