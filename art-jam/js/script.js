@@ -6,7 +6,9 @@
  * 
  * TO DO LIST:
  * - use mouseX and mouseY to make the pupils follow the mouse
- * - use a conditional to change the colour of something when the mouse is pressed
+ * within a certain limit. ie the inside of the eye
+ * - use a conditional to change the colour of something when
+ * the mouse is pressed or make it so that the blinking never stops
  * - look up a p5 function I've never used
  */
 
