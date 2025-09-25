@@ -14,6 +14,21 @@
 
 "use strict";
 
+//Variables for the background
+let sky = {
+    //fill : base colour of the background
+    fill: "#cc99ff",
+
+    fills: {
+        //a dark navy colour
+        left: "#191966",
+
+        //a saffron yellow
+        right: "#ffff33",
+    }
+
+};
+
 //Variables for the eyes
 let eye = {
     x: 400,
@@ -28,13 +43,13 @@ let blink = {
     maxH: 50,
     minH: 25,
     growing: false,
-}
+};
 
 //Variables for the pupil
 let pupil = {
     w: 25,
     h: 25,
-}
+};
 
 /**
  * Creates the canvas
@@ -50,7 +65,10 @@ function setup() {
 */
 function draw() {
     // Lavender blue background
-    background(191, 179, 255);
+    background(sky.fill);
+
+    //Function for the conditionals
+    checkInput();
 
     //Base functions to draw the portrait
     drawFace();
@@ -65,6 +83,28 @@ function draw() {
 
     //Limit the  pupil movement to within the eye
     //Ask Phil or Pippin later
+}
+
+function checkInput() {
+    //Changing the background colour when mouseX is < 350 or > 450
+    //Took the base script from the Creature Loves Massage conditionals exercise
+    const mouseIsMoving = (mouseX != 0 || mouseY != 0)
+
+    if(mouseIsMoving) {
+        if(mouseX < 350) {
+            background(sky.fills.left);
+        }
+        else if (mouseX > 450) {
+            background(sky.fills.right);
+        }
+        else{
+            background(sky.fill);  //When MouseX is between 350 and 450
+        }
+    }
+
+    else {
+        background(sky.fill); //The default background colour
+    }  
 }
 
 // Draw the face
