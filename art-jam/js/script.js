@@ -5,7 +5,6 @@
  * Taking inspiration from the works of Pablo Picasso and cubism/abstract to create a self portrait.
  * 
  * TO DO LIST:
- * - use variables to  make the eyes blink repeatedly and slowly over time
  * - use mouseX and mouseY to make the pupils follow the mouse
  * - use a conditional to change the colour of something when the mouse is pressed
  * - look up a p5 function I've never used
@@ -13,13 +12,21 @@
 
 "use strict";
 
-// // Variables for the face
-// let face = {
-//     x: 300,
-//     y: 450,
-//     width: 200,
-//     height: 300,
-// };
+//Variables for the eyes
+let eye = {
+    x: 400,
+    y: 400,
+    w: 100,
+    h: 50,
+};
+
+// Variables for blinking
+let blink = {
+    speed: 0.1,
+    maxH: 50,
+    minH: 25,
+    growing: false,
+}
 
 /**
  * Creates the canvas
@@ -36,11 +43,16 @@ function draw() {
     // Lavender blue background
     background(191, 179, 255);
 
+    //Base functions to draw the portrait
     drawFace();
     drawHair();
     drawEyes();
     drawPupils();
     drawGlasses();
+
+    // Make the eyes blink
+    eye.h -= blink.speed;
+    eye.h = constrain(eye.h, blink.minH, blink.maxH);
 }
 
 // Draw the face
@@ -87,7 +99,7 @@ function drawHair() {
 function drawEyes() {
     push();
     noStroke();
-    ellipse(400, 400, 100, 50);
+    ellipse(eye.x, eye.y, eye.w, eye.h);
     fill(255, 255, 255);
     pop();
 }
