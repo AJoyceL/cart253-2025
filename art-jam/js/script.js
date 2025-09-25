@@ -28,11 +28,18 @@ let blink = {
     growing: false,
 }
 
+//Variables for the pupil
+let pupil = {
+    w: 25,
+    h: 25,
+}
+
 /**
  * Creates the canvas
 */
 function setup() {
     createCanvas(600, 900);
+    noCursor();
 }
 
 
@@ -53,6 +60,9 @@ function draw() {
     // Make the eyes blink
     eye.h -= blink.speed;
     eye.h = constrain(eye.h, blink.minH, blink.maxH);
+
+    //Limit the  pupil movement to within the eye
+    //Ask Phil or Pippin later
 }
 
 // Draw the face
@@ -109,7 +119,7 @@ function drawPupils() {
     push();
     fill(50, 20, 20);
     noStroke();
-    ellipse(400, 400, 25, 25);
+    ellipse(mouseX, mouseY, pupil.w, pupil.h);
     pop();
 }
 
@@ -122,3 +132,43 @@ function drawGlasses() {
     ellipse(400, 400, 150, 150);
     pop();
 }
+
+
+//Example found on ChatGPT
+// let eyeX = 200;
+// let eyeY = 200;
+// let eyeRadius = 50;
+// let pupilRadius = 10;
+// let maxOffset = 20;
+
+// function setup() {
+//   createCanvas(400, 400);
+// }
+
+// function draw() {
+//   background(220);
+
+//   // Draw eye (white part)
+//   fill(255);
+//   stroke(0);
+//   ellipse(eyeX, eyeY, eyeRadius * 2);
+
+//   // Vector from eye center to mouse
+//   let dx = mouseX - eyeX;
+//   let dy = mouseY - eyeY;
+
+//   // Limit movement to maxOffset
+//   let dist = sqrt(dx * dx + dy * dy);
+//   if (dist > maxOffset) {
+//     dx = (dx / dist) * maxOffset;
+//     dy = (dy / dist) * maxOffset;
+//   }
+
+//   let pupilX = eyeX + dx;
+//   let pupilY = eyeY + dy;
+
+//   // Draw pupil
+//   fill(0);
+//   noStroke();
+//   ellipse(pupilX, pupilY, pupilRadius * 2);
+// }
