@@ -4,17 +4,15 @@
  * 
  * Taking inspiration from the works of Pablo Picasso and cubism/abstract to create a self portrait.
  * 
- * TO DO LIST:
- * - use mouseX and mouseY to make the pupils follow the mouse
- * within a certain limit. ie the inside of the eye
- * USE MAPS IN P5.JS
- * 
- * - look up a p5 function I've never used
+ * Features:
+ * - Background colour changes when mouseX is < 375 or > 425, the default colour is lavender at 400
+ * - Pupil that follows the mouse using map() within the eye using constrain()
+ * - Eye that blink using conditionals and looping
  */
 
 "use strict";
 
-//Variables for the background
+//Object for the background
 let sky = {
     //fill : base colour of the background
     fill: "#cc99ff",
@@ -28,7 +26,7 @@ let sky = {
     }
 };
 
-//Variables for the eyes
+//Object for the eyes
 let eye = {
     x: 400,
     y: 400,
@@ -36,15 +34,15 @@ let eye = {
     h: 50,
 };
 
-// Variables for blinking
+//Object for blinking
 let blink = {
     speed: 0.1,
     maxH: 50,
-    minH: 20,
+    minH: 25,
     growing: false,
 };
 
-//Variables for the pupil
+//Object for the pupil
 let pupil = {
     w: 25,
     h: 25,
@@ -56,7 +54,6 @@ let pupil = {
 */
 function setup() {
     createCanvas(600, 900);
-    noCursor();
 }
 
 
@@ -82,14 +79,13 @@ function draw() {
     eye.h = constrain(eye.h, blink.minH, blink.maxH);
 
     //Loop the blinking
-    if (eye.h === 20){
+    if (eye.h === 25){
         eye.h = 50;
     }
-
-    //Limit the  pupil movement to within the eye
-    //Ask Phil or Pippin later
 }
 
+// Function to check the mouseX position and change the background colour
+// when the mouseX is < 350 or > 450
 function checkPupil() {
     //Changing the background colour when mouseX is < 350 or > 450
     //Took the base script from the Creature Loves Massage conditionals exercise
@@ -161,12 +157,24 @@ function drawEyes() {
     pop();
 }
 
-// Draw the pupils
+// Draw the pupil + make it follow the mouse using map()
 function drawPupils() {
     push();
     fill(50, 20, 20);
     noStroke();
-    ellipse(mouseX, mouseY, pupil.w, pupil.h);
+
+    //Map the pupil position to follow the mouse
+    let maxOffsetX = (eye.w - pupil.w) / 2;
+    let maxOffsetY = (eye.h - pupil.h) / 2;
+
+    let offsetX = map(mouseX, 0, width, -maxOffsetX, maxOffsetX);
+    let offsetY = map(mouseY, 0, height, -maxOffsetY, maxOffsetY);
+    
+    //Constrain the offsets to stay within the eye
+    offsetX = constrain(offsetX, -maxOffsetX, maxOffsetX);
+    offsetY = constrain(offsetY, -maxOffsetY, maxOffsetY);
+
+    ellipse(eye.x + offsetX, eye.y + offsetY, pupil.w, pupil.h);
     pop();
 }
 
@@ -179,43 +187,3 @@ function drawGlasses() {
     ellipse(400, 400, 150, 150);
     pop();
 }
-
-
-//Example found on ChatGPT
-// let eyeX = 200;
-// let eyeY = 200;
-// let eyeRadius = 50;
-// let pupilRadius = 10;
-// let maxOffset = 20;
-
-// function setup() {
-//   createCanvas(400, 400);
-// }
-
-// function draw() {
-//   background(220);
-
-//   // Draw eye (white part)
-//   fill(255);
-//   stroke(0);
-//   ellipse(eyeX, eyeY, eyeRadius * 2);
-
-//   // Vector from eye center to mouse
-//   let dx = mouseX - eyeX;
-//   let dy = mouseY - eyeY;
-
-//   // Limit movement to maxOffset
-//   let dist = sqrt(dx * dx + dy * dy);
-//   if (dist > maxOffset) {
-//     dx = (dx / dist) * maxOffset;
-//     dy = (dy / dist) * maxOffset;
-//   }
-
-//   let pupilX = eyeX + dx;
-//   let pupilY = eyeY + dy;
-
-//   // Draw pupil
-//   fill(0);
-//   noStroke();
-//   ellipse(pupilX, pupilY, pupilRadius * 2);
-// }
