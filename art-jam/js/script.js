@@ -112,7 +112,7 @@ function checkPupil() {
     }  
 }
 
-// Draw the face
+// Draw the face --used vertex()
 function drawFace() {
     push();
     fill(255, 204, 153);
@@ -132,7 +132,7 @@ function drawFace() {
     pop(); 
 }
 
-// Draw the hair
+// Draw the hair -- used vertex()
 function drawHair() {
     push();
     fill(50, 50, 50);
