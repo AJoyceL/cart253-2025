@@ -39,7 +39,7 @@ let eye = {
 let blink = {
     speed: 0.1,
     maxH: 50,
-    minH: 25,
+    minH: 20,
     growing: false,
 };
 
@@ -66,7 +66,7 @@ function draw() {
     background(sky.fill);
 
     //Function for the conditionals
-    checkInput();
+    checkPupil();
 
     //Base functions to draw the portrait
     drawFace();
@@ -79,11 +79,18 @@ function draw() {
     eye.h -= blink.speed;
     eye.h = constrain(eye.h, blink.minH, blink.maxH);
 
+    //Loop the blinking
+    if (eye.h === 20){
+        eye.h = 50;
+    }
+
+
+
     //Limit the  pupil movement to within the eye
     //Ask Phil or Pippin later
 }
 
-function checkInput() {
+function checkPupil() {
     //Changing the background colour when mouseX is < 350 or > 450
     //Took the base script from the Creature Loves Massage conditionals exercise
     const mouseIsMoving = (mouseX != 0 || mouseY != 0)
