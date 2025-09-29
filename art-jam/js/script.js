@@ -7,6 +7,8 @@
  * TO DO LIST:
  * - use mouseX and mouseY to make the pupils follow the mouse
  * within a certain limit. ie the inside of the eye
+ * USE MAPS IN P5.JS
+ * 
  * - look up a p5 function I've never used
  */
 
@@ -24,7 +26,6 @@ let sky = {
         //a saffron yellow
         right: "#ffff33",
     }
-
 };
 
 //Variables for the eyes
@@ -48,6 +49,7 @@ let pupil = {
     w: 25,
     h: 25,
 };
+
 
 /**
  * Creates the canvas
@@ -84,8 +86,6 @@ function draw() {
         eye.h = 50;
     }
 
-
-
     //Limit the  pupil movement to within the eye
     //Ask Phil or Pippin later
 }
@@ -96,10 +96,10 @@ function checkPupil() {
     const mouseIsMoving = (mouseX != 0 || mouseY != 0)
 
     if(mouseIsMoving) {
-        if(mouseX < 350) {
+        if(mouseX < 375) {
             background(sky.fills.left);
         }
-        else if (mouseX > 450) {
+        else if (mouseX > 425) {
             background(sky.fills.right);
         }
         else{
