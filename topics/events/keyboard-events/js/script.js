@@ -21,6 +21,12 @@ const ball = {
         white: "#ffffff",
         red: "#ff0000",
         blue: "#0000ff"
+    },
+    
+    // keys to control the colour
+    keys: {
+        redKey: 82,
+        blueKey: 66
     }
 }
 
@@ -43,4 +49,26 @@ function draw() {
     fill(ball.fill);
     ellipse(ball.x, ball.y, ball.size);
     pop();
+}
+
+/** When a key is pressed change the color of the ball
+ * use javascript key codes to determine which key was pressed
+ * R = 82
+ * B = 66
+ * 
+ * contrrols the ball's colour
+ */
+function keyPressed(event) {
+    if (event.keyCode === ball.keys.redKey) {
+        ball.fill = ball.fills.red
+    }
+    else if (event.keyCode === ball.keys.blueKey) {
+        ball.fill = ball.fills.blue
+    }
+}
+
+function keyReleased(event) {
+    if(event.keyCode === ball.keys.redKey || event.key === ball.keys.blueKey) {
+        ball.fill = ball.fills.white
+    }
 }
