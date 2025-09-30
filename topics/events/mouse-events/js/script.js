@@ -45,3 +45,29 @@ function draw() {
     ellipse(ball.x, ball.y, ball.size);
     pop();
 }
+
+/** 
+ * Strat the ball moving right when the mouse is pressed
+ */
+function mousePressed() {
+    ball.velocity.x = ball.speed;
+}
+
+/** 
+ * Stop the ball when the mouse is released
+ */
+ function mouseReleased() {
+    ball.velocity.x = 0;
+}
+
+/** 
+ * Resizes tje ball when the mouse wheel is moved
+ */
+function mouseWheel() {
+    if (event.delta > 0) {
+        ball.size += 2;
+    }
+    else {
+        ball.size -= 2;
+    }
+}
