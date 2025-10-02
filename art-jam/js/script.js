@@ -12,11 +12,12 @@
 
 "use strict";
 
-//Object for the background
+//Object for the background/sky
 let sky = {
-    //fill : base colour of the background
+    //fill : base colour of the background/sky
     fill: "#cc99ff",
 
+    //fills: colours triggered by the mouseX
     fills: {
         //a dark navy colour
         left: "#191966",
@@ -39,7 +40,6 @@ let blink = {
     speed: 0.2,
     maxH: 50,
     minH: 25,
-    growing: false,
 };
 
 //Object for the pupil
@@ -58,7 +58,7 @@ function setup() {
 
 
 /**
- * Function to draw the self portrait
+ * Function to draw the self portrait + make the eye blink
 */
 function draw() {
     // Lavender blue background
@@ -74,7 +74,7 @@ function draw() {
     drawPupils();
     drawGlasses();
 
-    // Make the eyes blink
+    // Make the eye blink
     eye.h -= blink.speed;
     eye.h = constrain(eye.h, blink.minH, blink.maxH);
 
