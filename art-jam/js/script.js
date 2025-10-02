@@ -36,7 +36,7 @@ let eye = {
 
 //Object for blinking
 let blink = {
-    speed: 0.1,
+    speed: 0.2,
     maxH: 50,
     minH: 25,
     growing: false,
@@ -92,10 +92,10 @@ function checkPupil() {
     const mouseIsMoving = (mouseX != 0 || mouseY != 0)
 
     if(mouseIsMoving) {
-        if(mouseX < 375) {
+        if(mouseX < 300) {
             background(sky.fills.left);
         }
-        else if (mouseX > 425) {
+        else if (mouseX > 475) {
             background(sky.fills.right);
         }
         else{
