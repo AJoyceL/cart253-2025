@@ -31,3 +31,4 @@ https://github.com/cameliapitsilis-lgtm/cart253/tree/main/art-jam
     - everything it typed into a single functions, so I find it a bit confusing and clustered, but her script is so clean that I can find everyhting I need with a quick scroll or getting lost.
     - I like that she made the background change from ngiht tot day with a timer. 
     - interactiveness easy to understand.
+    - The pupils aren't the only thing movable(interacttion), but the white of the eyes also follow the mouse around the screen.
