@@ -1,9 +1,9 @@
 /**
- * Title of Project
- * Author Name
+ * Mod Jam
+ * Joyce Angelina Lam
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * So far I am unusure of the project's main objective, 
+ * but I'll wait for Pippin's explenation.
  */
 
 "use strict";

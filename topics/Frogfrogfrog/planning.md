@@ -6,6 +6,11 @@ The initial idea:
 
 > Frog eating flies
 
+## New stuff to add
+
+- Score
+    use text() to display the score
+
 ## Experience design
 
 The experience:

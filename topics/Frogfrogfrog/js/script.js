@@ -14,6 +14,9 @@
  */
 
 "use strict";
+// Score
+let score = 0;
+let flyScoreAmount = 1;
 
 // Our frog
 const frog = {
@@ -61,6 +64,7 @@ function draw() {
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
+    drawScore();
 }
 
 /**
@@ -169,8 +173,20 @@ function checkTongueFlyOverlap() {
         resetFly();
         // Bring back the tongue
         frog.tongue.state = "inbound";
+        //increase score
+        score = score + flyScoreAmount;
     }
 }
+
+// scores
+function drawScore(){
+    push();
+    textSize(100);
+    textAlign(CENTER, CENTER);
+    text(score, 50, 50);
+    pop();
+}
+
 
 /**
  * Launch the tongue on click (if it's not launched yet)
