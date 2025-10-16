@@ -63,6 +63,8 @@ const fly = {
     speed: 3
 };
 
+let state = "title screen"; // Can be: title screen, game screen
+
 /**
  * Creates the canvas and initializes the fly
  */
@@ -73,7 +75,28 @@ function setup() {
     resetFly();
 }
 
+/** 
+ * Draws the title screen or game screen based on the state
+ */
 function draw() {
+    if (state === "title screen") {
+        titleScreen();
+    }
+    else if (state === "game screen") {
+        gameScreen();
+    }
+}    
+
+//Start game when a key is pressed
+function keyPressed() {
+    if (state === "title screen" && (key === ' ' || keyCode === 32)) {
+    state = "game screen";}
+}
+
+/** 
+ * Draws the game screen
+ */
+function gameScreen(){
     background("#87ceeb");
     moveFly();
     drawFly();
@@ -85,8 +108,35 @@ function draw() {
 }
 
 /**
- * 
+ * Function to diplay a title screen
+ * with instructions to start the game
+ * => found example on CodePal
  */
+function titleScreen() {
+    push();
+    textAlign(CENTER, CENTER);
+    textSize(50);
+    textStyle(BOLD);
+    textFont("Monospace");
+    fill("#b9def3ff");
+    background("#04053dff");
+    text("Catch The flies", width / 2, height / 2 - 100);
+
+    textSize(20);
+    textStyle(NORMAL);
+    textFont("Monacospace");
+    text("Catch the flies by pressing the spacebar to launch your tongue!", width / 2, height / 2);
+    text("Make sure to catch as many as you can before the timer runs out!", width / 2, height / 2 + 25);
+    text("But only the black ones! The red ones are poisonous!", width / 2, height / 2 + 50);
+    text("Move your frog by pressing your left and right arrow!", width / 2, height / 2 + 75);
+    text("Good luck on your first hunt, little froggie!", width / 2, height / 2 + 125);
+
+    textSize(25);
+    textStyle(BOLD);
+    textFont("Monospace");
+    text("Press spacebar to start", width / 2, height / 2 + 150);
+    pop();
+}
 
 /**
  * Moves the fly according to its speed
