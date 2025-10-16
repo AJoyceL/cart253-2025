@@ -7,8 +7,6 @@
  * TO DO:
  * - GAME OVER SCREEN: timer runs out and didn't catch enough flies
  * 
- * - WIN SCREEN: congratulations for completing all levels
- * 
  * - TIMER: countdown timer for limiting the game time
  * 
  *  - SCORING SYSTEM: points deducted for hitting enemies
