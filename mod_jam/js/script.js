@@ -11,10 +11,10 @@
  * 
  * - TIMER: countdown timer for limiting the game time
  * 
- *  - SCORING SYSTEM: points for catching flies, points deducted for hitting enemies
+ *  - SCORING SYSTEM: points deducted for hitting enemies
  * > ENEMIES: flies that deduct points when hit
  * 
- * - NEW MOVEMENT: frog moves by keyboard (WASD or arrow keys) + flies moves randomly (look up different movement types)
+ * - NEW MOVEMENT: flies moves randomly (look up different movement types)
  * 
  * - NEW AUDIO/VISUAL EFFECTS: new sound effects for catching flies, hitting enemies, launching tongue, background music
  * 
@@ -29,6 +29,11 @@
  */
 
 "use strict";
+
+/** 
+ * GLOBAL VARIABLES 
+*/
+
 // Score
 let score = 0;
 let flyScoreAmount = 1;
@@ -61,11 +66,57 @@ const fly = {
     speed: 3
 };
 
+// The current state of the game
 let state = "title screen"; // Can be: title screen, game screen
 
-/**
- * Creates the canvas and initializes the fly
- */
+
+
+/** 
+ * AUDIO FILES 
+ * 
+ * titleMusic from https://freesound.org/people/Mrthenoronha/sounds/523725/
+ *  game screen music from https://freesound.org/people/Mrthenoronha/sounds/512161/
+ *  frog croak fromhttps://freesound.org/people/TheKingOfGeeks360/sounds/744309/
+ *  tongue slurp from https://freesound.org/people/Stroopwafels112/sounds/560597/
+*/
+let titleMusic;
+let gameMusic;
+let frogCroak;
+let tongueSlurp;
+let winMusic;
+
+// Preload function to load audio files before the program starts
+function preload() {
+    // Load the sound files
+
+    //load title music and set volume
+    titleMusic = loadSound("assets/sounds/titleScreen.wav");
+    titleMusic.setVolume(0.5); // lower title music (50%)
+
+    //load game music and set volume
+    gameMusic = loadSound("assets/sounds/gameScreen.wav");
+    gameMusic.setVolume(0.3); // lower game music (40%)
+
+    //load frog croak sound and set volume
+    frogCroak = loadSound("assets/sounds/frogCroak.wav");
+    frogCroak.setVolume(1.5); // increase croak sound (150%)
+
+    //load tongue slurping sound and set volume
+    tongueSlurp = loadSound("assets/sounds/tongueSlurp.wav");
+    tongueSlurp.setVolume(0.5); // lower slurp sound (50%)
+
+    //load win music and set volume
+    winMusic = loadSound("assets/sounds/winScreen.wav");
+    winMusic.setVolume(0.5); // lower win music (50%)
+}
+
+
+
+/** 
+ * MAIN PROGRAM    
+*/
+
+// Creates the canvas and initializes the fly
 function setup() {
     createCanvas(640, 480);
 
@@ -73,9 +124,7 @@ function setup() {
     resetFly();
 }
 
-/** 
- * Draws the title screen or game screen based on the state
- */
+// Draws the title screen or game screen based on the state
 function draw() {
     // Check the state and draw the correct screen
     if (state === "title screen") {
@@ -98,41 +147,28 @@ function draw() {
             frogCroak.play();
         }
     }
+    // Draw the win screen
+    else if (state === "win screen") {
+        winScreen();
+        if (gameMusic && gameMusic.isPlaying()) {
+            gameMusic.stop();
+        }
+        if (winMusic && !winMusic.isPlaying()) {
+            winMusic.play();
+        }
+    }
 }    
 
 
+
 /**
- * Audio files used:
- * - titleMusic from https://freesound.org/people/Mrthenoronha/sounds/523725/
- * - game screen music from https://freesound.org/people/Mrthenoronha/sounds/512161/
- */
-let titleMusic;
-let gameMusic;
-let frogCroak;
-let tongueSlurp;
+ *  INPUT FUNCTIONS
+ * 
+ * - keyPressed()
+ * - keyIsDown()
+*/
 
-function preload() {
-    // Load the sound files
-
-    //load title music and set volume
-    titleMusic = loadSound("assets/sounds/titleScreen.wav");
-    titleMusic.setVolume(0.5); // lower title music (50%)
-
-    //load game music and set volume
-    gameMusic = loadSound("assets/sounds/gameScreen.wav");
-    gameMusic.setVolume(0.3); // lower game music (40%)
-
-    //load frog croak sound and set volume
-    frogCroak = loadSound("assets/sounds/frogCroak.wav");
-    frogCroak.setVolume(1.5); // increase croak sound (150%)
-
-    //load tongue slurping sound and set volume
-    tongueSlurp = loadSound("assets/sounds/tongueSlurp.wav");
-    tongueSlurp.setVolume(0.5); // lower slurp sound (50%)
-}
-
-
-//Start game when a key is pressed
+// Start game when a key is pressed
 function keyPressed() {
     // If the spacebar is pressed, start the game
     if (state === "title screen" && (key === ' ' || keyCode === 32)) {
@@ -147,27 +183,23 @@ function keyPressed() {
         }
         return false; // prevent default browser scrolling on space
     }
+
+    if (state === "win screen" && (key === ' ' || keyCode === 32)) {
+        state = "title screen";
+        score = 0; // reset score
+    }
 }
 
-/** 
- * Draws the game screen
- */
-function gameScreen(){
-    background("#87ceeb");
-    moveFly();
-    drawFly();
-    moveFrog();
-    moveTongue();
-    drawFrog();
-    checkTongueFlyOverlap();
-    drawScore();
-}
+
+
+
 
 /**
- * Function to diplay a title screen
- * with instructions to start the game
- * => found example on CodePal
- */
+ * TITLE SCREEN FUNCTIONS
+ * 
+ * - titleScreen() + introduction text
+ * found example on CodePal
+*/
 function titleScreen() {
     push();
     textAlign(CENTER, CENTER);
@@ -195,12 +227,56 @@ function titleScreen() {
 }
 
 
-/** GAME SCREEN FUNCTIONS   */
 
 /**
- * Moves the fly according to its speed
- * Resets the fly if it gets all the way to the right
- */
+ * WIN SCREEN FUNCTIONS
+ * 
+ * (to be implemented)
+*/
+ function winScreen() {
+    push();
+    textAlign(CENTER, CENTER);
+    textSize(50);
+    textStyle(BOLD);
+    textFont("Monospace");
+    fill("#b9def3ff");
+    background("#04053dff");
+    text("Congratulations!", width / 2, height / 2 - 100);
+
+    textSize(20);
+    textStyle(NORMAL);
+    textFont("Monacospace");
+    text("You caught enough flies to win the game!", width / 2, height / 2);
+    text("You are now full!", width / 2, height / 2 + 25);
+    text("See you next time you feed!", width / 2, height / 2 + 50);
+
+    textSize(25);
+    textStyle(BOLD);
+    textFont("Monospace");
+    text("Press spacebar to play again", width / 2, height / 2 + 150);
+    pop();
+}
+
+
+
+/** 
+ * GAME SCREEN FUNCTIONS   
+*/
+
+// Draws the game screen
+function gameScreen(){
+    background("#87ceeb");
+    moveFly();
+    drawFly();
+    moveFrog();
+    moveTongue();
+    drawFrog();
+    checkTongueFlyOverlap();
+    drawScore();
+}
+
+// Moves the fly according to its speed
+// Resets the fly if it gets all the way to the right
 function moveFly() {
     // Move the fly
     fly.x += fly.speed;
@@ -210,9 +286,7 @@ function moveFly() {
     }
 }
 
-/**
- * Draws the fly as a black circle
- */
+// Draws the fly as a black circle
 function drawFly() {
     push();
     noStroke();
@@ -221,17 +295,13 @@ function drawFly() {
     pop();
 }
 
-/**
- * Resets the fly to the left with a random y
- */
+ // Resets the fly to the left with a random y
 function resetFly() {
     fly.x = 0;
     fly.y = random(0, 300);
 }
 
-/**
- * Moves the frog to the keyIsDown(left and right) position on x
- */
+// Moves the frog to the keyIsDown(left and right) position on x
 function moveFrog() {
     if (keyIsDown(LEFT_ARROW) || keyCode === (65)) {
         frog.body.x -= 10;
@@ -243,9 +313,7 @@ function moveFrog() {
     frog.body.x = constrain(frog.body.x, 0 + frog.body.size / 2, width - frog.body.size / 2);
 }
 
-/**
- * Handles moving the tongue based on its state
- */
+// Handles moving the tongue based on its state
 function moveTongue() {
     // Tongue matches the frog's x
     frog.tongue.x = frog.body.x;
@@ -271,9 +339,7 @@ function moveTongue() {
     }
 }
 
-/**
- * Displays the tongue (tip and line connection) and the frog (body)
- */
+// Displays the tongue (tip and line connection) and the frog (body)
 function drawFrog() {
     // Draw the tongue tip
     push();
@@ -297,9 +363,7 @@ function drawFrog() {
     pop();
 }
 
-/**
- * Handles the tongue overlapping the fly
- */
+// Handles the tongue overlapping the fly
 function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
     const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
@@ -313,6 +377,10 @@ function checkTongueFlyOverlap() {
         //increase score
         score = score + flyScoreAmount;
     }
+    // Check for win condition
+    if (score >= 1) {
+        state = "win screen";
+    }
 }
 
 // scores
@@ -323,13 +391,3 @@ function drawScore(){
     text(score, 50, 50);
     pop();
 }
-
-
-/**
- * Launch the tongue on click (if it's not launched yet)
- */
-// function mousePressed() {
-//     if (frog.tongue.state === "idle") {
-//         frog.tongue.state = "outbound";
-//     }
-// }
