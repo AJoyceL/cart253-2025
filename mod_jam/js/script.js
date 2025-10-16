@@ -76,6 +76,7 @@ let state = "title screen"; // Can be: title screen, game screen
  *  game screen music from https://freesound.org/people/Mrthenoronha/sounds/512161/
  *  frog croak fromhttps://freesound.org/people/TheKingOfGeeks360/sounds/744309/
  *  tongue slurp from https://freesound.org/people/Stroopwafels112/sounds/560597/
+ * win music from https://freesound.org/people/Mrthenoronha/sounds/518305/
 */
 let titleMusic;
 let gameMusic;
