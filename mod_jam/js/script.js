@@ -5,8 +5,6 @@
  * This is my mod jam submission!
  * 
  * TO DO:
- * - TITLE SCREEN: title + instructions > start with spacebar/activating by catching your first fly
- * 
  * - GAME OVER SCREEN: timer runs out and didn't catch enough flies
  * 
  * - WIN SCREEN: congratulations for completing all levels
@@ -81,16 +79,36 @@ function setup() {
 function draw() {
     if (state === "title screen") {
         titleScreen();
+        if (titleMusic && !titleMusic.isPlaying()) {
+            titleMusic.loop();
+        }
     }
     else if (state === "game screen") {
         gameScreen();
+        if (titleMusic && titleMusic.isPlaying()) {
+            titleMusic.stop();
+        }
     }
 }    
+
+
+/**
+ * Audio files used:
+ * - 8 bit water stage loop from https://freesound.org/people/Mrthenoronha/sounds/523725/
+ */
+let titleMusic;
+
+function preload() {
+    titleMusic = loadSound("assets/sounds/titleScreen.wav");
+}
+
 
 //Start game when a key is pressed
 function keyPressed() {
     if (state === "title screen" && (key === ' ' || keyCode === 32)) {
-    state = "game screen";}
+    state = "game screen";
+
+}
 }
 
 /** 
@@ -137,6 +155,9 @@ function titleScreen() {
     text("Press spacebar to start", width / 2, height / 2 + 150);
     pop();
 }
+
+
+/** GAME SCREEN FUNCTIONS   */
 
 /**
  * Moves the fly according to its speed
