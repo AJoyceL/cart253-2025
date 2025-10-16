@@ -91,6 +91,9 @@ function draw() {
         if (gameMusic && !gameMusic.isPlaying()) {
             gameMusic.loop();
         }
+        if (frogCroak && !frogCroak.isPlaying()) {
+            frogCroak.play();
+        }
     }
 }    
 
@@ -102,10 +105,17 @@ function draw() {
  */
 let titleMusic;
 let gameMusic;
+let frogCroak;
 
 function preload() {
     titleMusic = loadSound("assets/sounds/titleScreen.wav");
+    titleMusic.setVolume(0.5); // lower title music (50%)
+
     gameMusic = loadSound("assets/sounds/gameScreen.wav");
+    gameMusic.setVolume(0.4); // lower game music (40%)
+
+    frogCroak = loadSound("assets/sounds/frogCroak.wav");
+    frogCroak.setVolume(1.5); // increase croak sound (150%)
 }
 
 
@@ -113,7 +123,7 @@ function preload() {
 function keyPressed() {
     if (state === "title screen" && (key === ' ' || keyCode === 32)) {
     state = "game screen";
-
+    
 }
 }
 
