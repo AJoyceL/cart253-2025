@@ -77,12 +77,15 @@ function setup() {
  * Draws the title screen or game screen based on the state
  */
 function draw() {
+    // Check the state and draw the correct screen
     if (state === "title screen") {
         titleScreen();
         if (titleMusic && !titleMusic.isPlaying()) {
             titleMusic.loop();
         }
     }
+
+    // Draw the game screen
     else if (state === "game screen") {
         gameScreen();
         if (titleMusic && titleMusic.isPlaying()) {
@@ -106,25 +109,44 @@ function draw() {
 let titleMusic;
 let gameMusic;
 let frogCroak;
+let tongueSlurp;
 
 function preload() {
+    // Load the sound files
+
+    //load title music and set volume
     titleMusic = loadSound("assets/sounds/titleScreen.wav");
     titleMusic.setVolume(0.5); // lower title music (50%)
 
+    //load game music and set volume
     gameMusic = loadSound("assets/sounds/gameScreen.wav");
     gameMusic.setVolume(0.4); // lower game music (40%)
 
+    //load frog croak sound and set volume
     frogCroak = loadSound("assets/sounds/frogCroak.wav");
     frogCroak.setVolume(1.5); // increase croak sound (150%)
+
+    //load tongue slurping sound and set volume
+    tongueSlurp = loadSound("assets/sounds/tongueSlurp.wav");
+    tongueSlurp.setVolume(0.5); // lower slurp sound (50%)
 }
 
 
 //Start game when a key is pressed
 function keyPressed() {
+    // If the spacebar is pressed, start the game
     if (state === "title screen" && (key === ' ' || keyCode === 32)) {
     state = "game screen";
-    
-}
+    }
+
+    // Launch the tongue if spacebar is pressed and tongue is idle
+    if (frog.tongue.state === "idle" && (key === ' ' || keyCode === 32)) {
+        frog.tongue.state = "outbound";
+        if (tongueSlurp) {
+            tongueSlurp.play();
+        }
+        return false; // prevent default browser scrolling on space
+    }
 }
 
 /** 
@@ -299,8 +321,8 @@ function drawScore(){
 /**
  * Launch the tongue on click (if it's not launched yet)
  */
-function mousePressed() {
-    if (frog.tongue.state === "idle") {
-        frog.tongue.state = "outbound";
-    }
-}
+// function mousePressed() {
+//     if (frog.tongue.state === "idle") {
+//         frog.tongue.state = "outbound";
+//     }
+// }
