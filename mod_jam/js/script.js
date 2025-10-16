@@ -21,6 +21,7 @@
  * - health system: lose health when you hit an enemy, gain health when you catch a fly?
  *  * - different types of flies: some are worth more points, some move faster, some move in different patterns
  * - different types of enemies: some take more than one hit to defeat, some move faster, some move in different patterns
+ * - use function trisolaris example to build lilipads in the lake
  *
  * Made with p5
  * https://p5js.org/
