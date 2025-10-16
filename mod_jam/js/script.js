@@ -120,7 +120,7 @@ function preload() {
 
     //load game music and set volume
     gameMusic = loadSound("assets/sounds/gameScreen.wav");
-    gameMusic.setVolume(0.4); // lower game music (40%)
+    gameMusic.setVolume(0.3); // lower game music (40%)
 
     //load frog croak sound and set volume
     frogCroak = loadSound("assets/sounds/frogCroak.wav");
@@ -230,10 +230,17 @@ function resetFly() {
 }
 
 /**
- * Moves the frog to the mouse position on x
+ * Moves the frog to the keyIsDown(left and right) position on x
  */
 function moveFrog() {
-    frog.body.x = mouseX;
+    if (keyIsDown(LEFT_ARROW) || keyCode === (65)) {
+        frog.body.x -= 10;
+    }
+    if (keyIsDown(RIGHT_ARROW) || keyCode === (68)) {
+        frog.body.x += 10;
+    }
+    // Constrain the frog to the canvas
+    frog.body.x = constrain(frog.body.x, 0 + frog.body.size / 2, width - frog.body.size / 2);
 }
 
 /**
