@@ -88,18 +88,24 @@ function draw() {
         if (titleMusic && titleMusic.isPlaying()) {
             titleMusic.stop();
         }
+        if (gameMusic && !gameMusic.isPlaying()) {
+            gameMusic.loop();
+        }
     }
 }    
 
 
 /**
  * Audio files used:
- * - 8 bit water stage loop from https://freesound.org/people/Mrthenoronha/sounds/523725/
+ * - titleMusic from https://freesound.org/people/Mrthenoronha/sounds/523725/
+ * - game screen music from https://freesound.org/people/Mrthenoronha/sounds/512161/
  */
 let titleMusic;
+let gameMusic;
 
 function preload() {
     titleMusic = loadSound("assets/sounds/titleScreen.wav");
+    gameMusic = loadSound("assets/sounds/gameScreen.wav");
 }
 
 
