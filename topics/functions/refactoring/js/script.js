@@ -11,42 +11,46 @@
  */
 
 "use strict";
+let ball1 = undefined;
+let ball2 = undefined;
+let ball3 = undefined;
 
-// Ball 1
-const ball1 = {
-    // Position and size
-    x: 100,
-    y: 0,
-    size: 20,
-    // Velocity
-    velocity: {
-        x: 0,
-        y: 4 // Moves down
-    }
-};
 
-// Ball 2 is just like ball1 in a different place with different velocity
-const ball2 = {
-    x: 200,
-    y: -50,
-    size: 20,
-    velocity: {
-        x: 0,
-        y: 5
-    }
-};
+// // Ball 1
+// const ball1 = {
+//     // Position and size
+//     x: 100,
+//     y: 0,
+//     size: 20,
+//     // Velocity
+//     velocity: {
+//         x: 0,
+//         y: 4 // Moves down
+//     }
+// };
 
-// Ball 2 is just like ball1 and ball2 in a different place 
-// with different velocity
-const ball3 = {
-    x: 300,
-    y: -25,
-    size: 20,
-    velocity: {
-        x: 0,
-        y: 6
-    }
-};
+// // Ball 2 is just like ball1 in a different place with different velocity
+// const ball2 = {
+//     x: 200,
+//     y: -50,
+//     size: 20,
+//     velocity: {
+//         x: 0,
+//         y: 5
+//     }
+// };
+
+// // Ball 2 is just like ball1 and ball2 in a different place 
+// // with different velocity
+// const ball3 = {
+//     x: 300,
+//     y: -25,
+//     size: 20,
+//     velocity: {
+//         x: 0,
+//         y: 6
+//     }
+// };
 
 // The paddle the user controls
 const paddle = {
@@ -64,10 +68,27 @@ const paddle = {
 function setup() {
     createCanvas(400, 400);
 
+    ball1 = createBall();
+    ball2 = createBall();
+    ball3 = createBall();
+
     // Position the paddle at the bottom
     paddle.y = height - paddle.height;
 }
 
+
+function createBall() {
+    let ball = {
+        x: random(50, width - 50),
+        y: 150,
+        size: 20,
+        velocity: {
+            x: 0,
+            y: random(2, 30)
+        }
+    };
+    return ball;
+}
 
 /**
  * Background, update balls and paddle, check bounces, display it all
@@ -77,22 +98,22 @@ function draw() {
     background(0);
 
     // Move balls
-    moveBall1();
-    moveBall2();
-    moveBall3();
+    moveBall(ball1);
+    moveBall(ball2);
+    moveBall(ball3);
 
     // Move paddle
     movePaddle();
 
     // Check for bounces
-    checkBall1Bounce();
-    checkBall2Bounce();
-    checkBall3Bounce();
+    checkBallBounce(ball1);
+    checkBallBounce(ball2);
+    checkBallBounce(ball3);
 
     // Display balls
-    drawBall1();
-    drawBall2();
-    drawBall3();
+    drawBall(ball1);
+    drawBall(ball2);
+    drawBall(ball3);
 
     // Display paddle
     drawPaddle();
@@ -101,6 +122,11 @@ function draw() {
 /**
  * Move ball 1 by its velocity
  */
+function moveBall (ball) {
+    ball.x += ball.velocity.x;
+    ball.y += ball.velocity.y;
+}
+
 function moveBall1() {
     ball1.x += ball1.velocity.x;
     ball1.y += ball1.velocity.y;
@@ -132,6 +158,27 @@ function movePaddle() {
 /**
  * Checks if ball1 is bouncing off the paddle
  */
+function checkBallBounce(ball) {
+    // Check if ball1 overlaps the paddle
+    // const overlap = (ball.x + ball.size > paddle.x &&
+    //     ball.x < paddle.x + paddle.width &&
+    //     ball.y + ball.size > paddle.y &&
+    //     ball.y < paddle.y + paddle.height);
+    const overlap = checkBallOverlap(ball, paddle);
+    // If there is an overlap, bounce the ball back up
+    if (overlap) {
+        ball.velocity.y *= -1;
+    }
+}
+
+function checkBallOverlap (ball, paddle) {
+    let result = (ball.x + ball.size > paddle.x &&
+        ball.x < paddle.x + paddle.width &&
+        ball.y + ball.size > paddle.y &&
+        ball.y < paddle.y + paddle.height);
+    return result;
+}
+
 function checkBall1Bounce() {
     // Check if ball1 overlaps the paddle
     const overlap = (ball1.x + ball1.size > paddle.x &&
@@ -177,6 +224,15 @@ function checkBall3Bounce() {
 /**
  * Draw ball 1 as a white square
  */
+
+function drawBall(ball) {
+    push();
+    noStroke();
+    fill(255);
+    rect(ball.x, ball.y, ball.size);
+    pop();
+}   
+
 function drawBall1() {
     push();
     noStroke();
