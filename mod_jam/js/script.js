@@ -69,7 +69,7 @@ const fly = {
 let state = "title screen"; // Can be: title screen, game screen
 
 // Timer variables
-let timeLimit= 30 ; // seconds
+let timeLimit= 30; // seconds
 let countDown;
 
 
@@ -78,17 +78,19 @@ let countDown;
 /** 
  * AUDIO FILES 
  * 
- * titleMusic from https://freesound.org/people/Mrthenoronha/sounds/523725/
- *  game screen music from https://freesound.org/people/Mrthenoronha/sounds/512161/
+ * titleMusic from https://freesound.org/people/Mrthenoronha/sounds/528773/
+ *  game screen music from https://freesound.org/people/Mrthenoronha/sounds/528717/
  *  frog croak fromhttps://freesound.org/people/TheKingOfGeeks360/sounds/744309/
  *  tongue slurp from https://freesound.org/people/Stroopwafels112/sounds/560597/
  * win music from https://freesound.org/people/Mrthenoronha/sounds/518305/
+ * lose music from https://freesound.org/people/Argenisflores/sounds/633215/
 */
 let titleMusic;
 let gameMusic;
 let frogCroak;
 let tongueSlurp;
 let winMusic;
+let loseMusic;
 
 // Preload function to load audio files before the program starts
 function preload() {
@@ -113,6 +115,10 @@ function preload() {
     //load win music and set volume
     winMusic = loadSound("assets/sounds/winScreen.wav");
     winMusic.setVolume(0.5); // lower win music (50%)
+
+    //load lose music and set volume
+    loseMusic = loadSound("assets/sounds/loseScreen.wav");
+    loseMusic.setVolume(0.5); // lower lose music (50%)
 }
 
 
@@ -139,6 +145,9 @@ function draw() {
         }
         if(winMusic && winMusic.isPlaying()){
             winMusic.stop();
+        }
+        if(loseMusic && loseMusic.isPlaying()){
+            loseMusic.stop();
         }
     }
 
@@ -171,6 +180,12 @@ function draw() {
         if (gameMusic && gameMusic.isPlaying()) {
             gameMusic.stop();
         }
+        if (loseMusic && !loseMusic.isPlaying()) {
+            loseMusic.play();
+        }
+        if(frogCroak && frogCroak.isPlaying()){
+            frogCroak.stop();
+        }
     }
 }    
 
@@ -179,7 +194,7 @@ function draw() {
 /**
  *  INPUT FUNCTIONS
  * 
- * - keyPressed()
+ * - keyPressed()  
  * - keyIsDown()
 */
 
@@ -188,6 +203,8 @@ function keyPressed() {
     // If the spacebar is pressed, start the game
     if (state === "title screen" && (key === ' ' || keyCode === 32)) {
         state = "game screen";
+        score = 0; // reset score
+        countDown = timeLimit; // reset timer
     }
 
     // Launch the tongue if spacebar is pressed and tongue is idle
@@ -201,15 +218,17 @@ function keyPressed() {
 
     if (state === "win screen" && (key === ' ' || keyCode === 32)) {
         state = "title screen";
+        score = 0; // reset score
+        countDown = timeLimit; // reset timer
+
     }
     
     // Reset to title screen from game over
     if (state === "lose screen" && (key === ' ' || keyCode === 32)) {
         state = "title screen";
+        score = 0; // reset score
     }
 }
-
-
 
 
 
@@ -325,7 +344,7 @@ function gameScreen(){
     drawScore();
   
     // Check for timer running out
-    if (countDown <= 0 && score < 1) {
+    if (countDown <= 0 && score < 5) {
         countDown = 0;
         state = "lose screen";
     }
@@ -447,7 +466,7 @@ function checkTongueFlyOverlap() {
         score = score + flyScoreAmount;
     }
     // Check for win condition
-    if (score >= 1) {
+    if (score >= 5) {
         state = "win screen";
     }
 }
