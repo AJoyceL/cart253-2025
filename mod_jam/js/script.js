@@ -68,6 +68,9 @@ const fly = {
 // The current state of the game
 let state = "title screen"; // Can be: title screen, game screen
 
+// Timer variables
+let time= 120;
+let timer = false;
 
 
 /** 
@@ -173,6 +176,8 @@ function keyPressed() {
     // If the spacebar is pressed, start the game
     if (state === "title screen" && (key === ' ' || keyCode === 32)) {
     state = "game screen";
+    time = 120;    // reset to 2 minutes
+    timer = true;  // start countdown
     }
 
     // Launch the tongue if spacebar is pressed and tongue is idle
@@ -188,6 +193,11 @@ function keyPressed() {
         state = "title screen";
         score = 0; // reset score
     }
+    
+    // Reset to title screen from game over
+    if (state === "game over" && (key === ' ' || keyCode === 32)) {
+    state = "title screen";
+}
 }
 
 
@@ -272,7 +282,37 @@ function gameScreen(){
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
+    drawTimer(); 
     drawScore();
+
+    // countdown while running (deltaTime is milliseconds since last frame)
+    if (timer && time > 0) {
+        time -= deltaTime / 1000.0; // convert ms to seconds
+        if (time <= 0 || score <= 5) {
+            time = 0;
+            timer = false;
+            // choose how to handle end-of-time:
+            state = "game over"; 
+        }
+    }
+}
+
+// Draws the timer at the top left corner ===> took example from CodePal, will hvae to rework it later
+function drawTimer() {
+    push();
+    textSize(32);
+    textAlign(LEFT, TOP);
+    fill(0); 
+
+    // round up so the display shows 2:00 -> 1:59 only after a full second passes
+    const totalSeconds = Math.ceil(time);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const paddedSeconds = (seconds < 10) ? '0' + seconds : seconds;
+    const timeString = minutes + ':' + paddedSeconds;
+
+    text(timeString, 20, 20); // top-left, adjust x,y if needed
+    pop();
 }
 
 // Moves the fly according to its speed
@@ -389,5 +429,28 @@ function drawScore(){
     textSize(100);
     textAlign(CENTER, CENTER);
     text(score, 50, 50);
+    pop();
+}
+
+
+/**
+ * GAME OVER SCREEN FUNCTIONS
+ * 
+ * (to be implemented)
+ */
+
+function gameOverScreen() {
+    push();
+    background("#222");
+    fill("#fff");
+    textAlign(CENTER, CENTER);
+
+    textSize(48);
+    text("Time's up!", width/2, height/2 - 40);
+    text("You didn't catch enough flies!", width/2, height/2);
+    text("You went hungry...", width/2, height/2 + 40);
+
+    textSize(20);
+    text("Press space to return to title", width/2, height/2 + 20);
     pop();
 }
