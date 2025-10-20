@@ -69,8 +69,10 @@ const fly = {
 let state = "title screen"; // Can be: title screen, game screen
 
 // Timer variables
-let time= 120;
-let timer = false;
+let timeLimit= 30 ; // seconds
+let countDown;
+
+
 
 
 /** 
@@ -135,6 +137,9 @@ function draw() {
         if (titleMusic && !titleMusic.isPlaying()) {
             titleMusic.loop();
         }
+        if(winMusic && winMusic.isPlaying()){
+            winMusic.stop();
+        }
     }
 
     // Draw the game screen
@@ -150,7 +155,7 @@ function draw() {
             frogCroak.play();
         }
     }
-    // Draw the win screen
+    // Draw the win screen 
     else if (state === "win screen") {
         winScreen();
         if (gameMusic && gameMusic.isPlaying()) {
@@ -158,6 +163,13 @@ function draw() {
         }
         if (winMusic && !winMusic.isPlaying()) {
             winMusic.play();
+        }
+    }
+    // Draw the game over screen
+    else if (state === "lose screen") {
+        loseScreen();
+        if (gameMusic && gameMusic.isPlaying()) {
+            gameMusic.stop();
         }
     }
 }    
@@ -175,9 +187,7 @@ function draw() {
 function keyPressed() {
     // If the spacebar is pressed, start the game
     if (state === "title screen" && (key === ' ' || keyCode === 32)) {
-    state = "game screen";
-    time = 120;    // reset to 2 minutes
-    timer = true;  // start countdown
+        state = "game screen";
     }
 
     // Launch the tongue if spacebar is pressed and tongue is idle
@@ -191,13 +201,12 @@ function keyPressed() {
 
     if (state === "win screen" && (key === ' ' || keyCode === 32)) {
         state = "title screen";
-        score = 0; // reset score
     }
     
     // Reset to title screen from game over
-    if (state === "game over" && (key === ' ' || keyCode === 32)) {
-    state = "title screen";
-}
+    if (state === "lose screen" && (key === ' ' || keyCode === 32)) {
+        state = "title screen";
+    }
 }
 
 
@@ -269,6 +278,36 @@ function titleScreen() {
 
 
 
+/**
+ * GAME OVER SCREEN FUNCTIONS
+ */
+
+function loseScreen() {
+    push();
+    textAlign(CENTER, CENTER);
+    textStyle(BOLD);
+    textFont("Monospace");
+    fill("#b9def3ff");
+    background("#04053dff");
+
+    textSize(50);
+    text("Time's up!", width/2, height/2 - 100);
+    
+    textSize(20);
+    textStyle(NORMAL);
+    textFont("Monacospace");
+    text("You didn't catch enough flies!", width/2, height/2);
+    text("You went hungry...", width/2, height/2 + 25);
+    text("Better luck next time!", width/2, height/2 + 50);
+
+    textSize(25);
+    textStyle(BOLD);
+    textFont("Monospace");
+    text("Press space to return to title", width/2, height/2 + 100);
+    pop();
+}
+
+
 /** 
  * GAME SCREEN FUNCTIONS   
 */
@@ -284,34 +323,24 @@ function gameScreen(){
     checkTongueFlyOverlap();
     drawTimer(); 
     drawScore();
-
-    // countdown while running (deltaTime is milliseconds since last frame)
-    if (timer && time > 0) {
-        time -= deltaTime / 1000.0; // convert ms to seconds
-        if (time <= 0 || score <= 5) {
-            time = 0;
-            timer = false;
-            // choose how to handle end-of-time:
-            state = "game over"; 
-        }
+  
+    // Check for timer running out
+    if (countDown <= 0 && score < 1) {
+        countDown = 0;
+        state = "lose screen";
     }
 }
 
-// Draws the timer at the top left corner ===> took example from CodePal, will hvae to rework it later
+// Draws the timer at the top left corner ===> took example from CodePal, will have to rework it later
 function drawTimer() {
     push();
     textSize(32);
     textAlign(LEFT, TOP);
     fill(0); 
+    text(`${countDown}s`, 20, 20);
 
-    // round up so the display shows 2:00 -> 1:59 only after a full second passes
-    const totalSeconds = Math.ceil(time);
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    const paddedSeconds = (seconds < 10) ? '0' + seconds : seconds;
-    const timeString = minutes + ':' + paddedSeconds;
-
-    text(timeString, 20, 20); // top-left, adjust x,y if needed
+    let currentTime = int(millis() / 1000);
+    countDown = timeLimit - currentTime;
     pop();
 }
 
@@ -426,31 +455,9 @@ function checkTongueFlyOverlap() {
 // scores
 function drawScore(){
     push();
-    textSize(100);
-    textAlign(CENTER, CENTER);
-    text(score, 50, 50);
+    textSize(50);
+    textAlign(RIGHT , TOP);
+    text(score, width - 20, 20);
     pop();
 }
 
-
-/**
- * GAME OVER SCREEN FUNCTIONS
- * 
- * (to be implemented)
- */
-
-function gameOverScreen() {
-    push();
-    background("#222");
-    fill("#fff");
-    textAlign(CENTER, CENTER);
-
-    textSize(48);
-    text("Time's up!", width/2, height/2 - 40);
-    text("You didn't catch enough flies!", width/2, height/2);
-    text("You went hungry...", width/2, height/2 + 40);
-
-    textSize(20);
-    text("Press space to return to title", width/2, height/2 + 20);
-    pop();
-}
