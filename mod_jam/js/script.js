@@ -6,11 +6,11 @@
  * 
  * TO DO:
  * POSSIBLY:
- *  * - multiple levels: each level has a   different goal and time limit (if possible + different backgrounds and music)
- * - health system: lose health when you hit an enemy, gain health when you catch a fly?
  *  * - different types of flies: some are worth more points, some move faster, some move in different patterns
  * - different types of enemies: some take more than one hit to defeat, some move faster, some move in different patterns
  * - use function trisolaris example to build lilipads in the lake
+ *  - add obstacle seen in the function refactory project
+ 
  *
  * Made with p5
  * https://p5js.org/
@@ -373,6 +373,7 @@ function drawTimer() {
 
 
     /** FLY */
+    //Reference from p5
 
 // Moves the fly according to its speed using sine
 // Resets the fly if it gets all the way to the right
@@ -412,6 +413,7 @@ function resetFly() {
 
 
     /** BUTTERFLY */
+    //Reference from p5
 
 //Draw the butterfly as an orange circle
 function drawButterfly() {
