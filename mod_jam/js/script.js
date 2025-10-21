@@ -5,10 +5,6 @@
  * This is my mod jam submission!
  * 
  * TO DO:
- * - GAME OVER SCREEN: timer runs out and didn't catch enough flies
- * 
- * - TIMER: countdown timer for limiting the game time
- * 
  *  - SCORING SYSTEM: points deducted for hitting enemies
  * > ENEMIES: flies that deduct points when hit
  * 
@@ -65,14 +61,26 @@ const fly = {
     speed: 3
 };
 
+// Our monarch butterfly
+const butterfly = {
+    x: 0,
+    y: 200,
+    size:15,
+    speed: 3
+};
+
 // The current state of the game
-let state = "title screen"; // Can be: title screen, game screen
+let state = "title screen";
 
 // Timer variables
-let timeLimit= 30; // seconds
+let timeLimit= 45; // seconds
 let countDown;
 
-
+// graph variables
+let graphX = 50;
+let graphY = 300;
+let graphAmplitude = 70;
+let graphPeriod = 300;
 
 
 /** 
@@ -133,6 +141,9 @@ function setup() {
 
     // Give the fly its first random position
     resetFly();
+
+    //sine and cosine
+    angleMode(DEGREES);
 }
 
 // Draws the title screen or game screen based on the state
@@ -194,8 +205,7 @@ function draw() {
 /**
  *  INPUT FUNCTIONS
  * 
- * - keyPressed()  
- * - keyIsDown()
+ * - keyPressed() - press spacebar
 */
 
 // Start game when a key is pressed
@@ -220,13 +230,13 @@ function keyPressed() {
         state = "title screen";
         score = 0; // reset score
         countDown = timeLimit; // reset timer
-
     }
     
     // Reset to title screen from game over
     if (state === "lose screen" && (key === ' ' || keyCode === 32)) {
         state = "title screen";
         score = 0; // reset score
+        countDown = timeLimit; //reset timer
     }
 }
 
@@ -356,20 +366,28 @@ function drawTimer() {
     textSize(32);
     textAlign(LEFT, TOP);
     fill(0); 
-    text(`${countDown}s`, 20, 20);
-
+    
     let currentTime = int(millis() / 1000);
     countDown = timeLimit - currentTime;
+
+    text(`${countDown}s`, 20, 20);
     pop();
 }
 
-// Moves the fly according to its speed
+// Moves the fly according to its speed using sine
 // Resets the fly if it gets all the way to the right
 function moveFly() {
-    // Move the fly
+    // Move the fly horizontally
     fly.x += fly.speed;
-    // Handle the fly going off the canvas
-    if (fly.x > width) {
+
+    // Use graphX as a horizontal offset / phase for the sine
+    fly.y = fly.baseY + sin(((fly.x + graphX) / graphPeriod) * 360) * graphAmplitude;
+
+    // Keep the fly visible on the canvas vertically
+    fly.y = constrain(fly.y, fly.size / 2, height - fly.size / 2);
+
+    // Handle the fly going off the canvas to the right
+    if (fly.x > width + fly.size) {
         resetFly();
     }
 }
@@ -383,10 +401,13 @@ function drawFly() {
     pop();
 }
 
- // Resets the fly to the left with a random y
+// Resets the fly to the left with random Y and sine
 function resetFly() {
-    fly.x = 0;
-    fly.y = random(0, 300);
+    fly.x = -fly.size; // start just off-screen for smooth entry
+    // baseY is the center line of the sine wave (keeps the wave on screen)
+    fly.baseY = random(100, height - 150);
+    // set initial y to match the sine calculation so it doesn't jump
+    fly.y = fly.baseY + sin((fly.x / graphPeriod) * 360) * graphAmplitude;
 }
 
 // Moves the frog to the keyIsDown(left and right) position on x
