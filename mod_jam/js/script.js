@@ -64,9 +64,9 @@ const fly = {
 // Our monarch butterfly
 const butterfly = {
     x: 0,
-    y: 200,
+    y: 250,
     size:15,
-    speed: 3
+    speed: 2 
 };
 
 // The current state of the game
@@ -78,7 +78,6 @@ let countDown;
 
 // graph variables
 let graphX = 50;
-let graphY = 300;
 let graphAmplitude = 70;
 let graphPeriod = 300;
 
@@ -141,6 +140,7 @@ function setup() {
 
     // Give the fly its first random position
     resetFly();
+    resetButterfly();
 
     //sine and cosine
     angleMode(DEGREES);
@@ -346,6 +346,8 @@ function gameScreen(){
     background("#87ceeb");
     moveFly();
     drawFly();
+    moveButterfly();
+    drawButterfly();
     moveFrog();
     moveTongue();
     drawFrog();
@@ -409,6 +411,40 @@ function resetFly() {
     // set initial y to match the sine calculation so it doesn't jump
     fly.y = fly.baseY + sin((fly.x / graphPeriod) * 360) * graphAmplitude;
 }
+
+//Draw the butterfly as an orange circle
+function drawButterfly() {
+    push();
+    noStroke();
+    fill("#ff5100ff");
+    ellipse(butterfly.x, butterfly.y, butterfly.size);
+    pop();
+}
+
+function moveButterfly() {
+    // Move the fly horizontally
+    butterfly.x += butterfly.speed;
+
+    // Use graphX as a horizontal offset / phase for the sine
+    butterfly.y = butterfly.baseY + cos(((butterfly.x + graphX) / graphPeriod) * 360) * graphAmplitude;
+
+    // Keep the fly visible on the canvas vertically
+    butterfly.y = constrain(butterfly.y, butterfly.size / 2, height - butterfly.size / 2);
+
+    // Handle the fly going off the canvas to the right
+    if (butterfly.x > width + butterfly.size) {
+        resetButterfly();
+    }
+}
+
+function resetButterfly() {
+    butterfly.x = -butterfly.size; // start just off-screen for smooth entry
+    // baseY is the center line of the sine wave (keeps the wave on screen)
+    butterfly.baseY = random(100, height - 150);
+    // set initial y to match the sine calculation so it doesn't jump
+    butterfly.y = butterfly.baseY + cos((butterfly.x / graphPeriod) * 360) * graphAmplitude;
+}
+
 
 // Moves the frog to the keyIsDown(left and right) position on x
 function moveFrog() {
