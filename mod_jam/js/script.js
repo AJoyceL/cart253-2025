@@ -5,13 +5,6 @@
  * This is my mod jam submission!
  * 
  * TO DO:
- *  - SCORING SYSTEM: points deducted for hitting enemies
- * > ENEMIES: flies that deduct points when hit
- * 
- * - NEW MOVEMENT: flies moves randomly (look up different movement types)
- * 
- * - NEW AUDIO/VISUAL EFFECTS: new sound effects for catching flies, hitting enemies, launching tongue, background music
- * 
  * POSSIBLY:
  *  * - multiple levels: each level has a   different goal and time limit (if possible + different backgrounds and music)
  * - health system: lose health when you hit an enemy, gain health when you catch a fly?
@@ -32,6 +25,7 @@
 // Score
 let score = 0;
 let flyScoreAmount = 1;
+let butterflyScoreAmount = 1;
 
 // Our frog
 const frog = {
@@ -138,12 +132,12 @@ function preload() {
 function setup() {
     createCanvas(640, 480);
 
+    //sine and cosine
+    angleMode(DEGREES);
+
     // Give the fly its first random position
     resetFly();
     resetButterfly();
-
-    //sine and cosine
-    angleMode(DEGREES);
 }
 
 // Draws the title screen or game screen based on the state
@@ -352,6 +346,7 @@ function gameScreen(){
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
+    checkTongueButterflyOverlap();
     drawTimer(); 
     drawScore();
   
@@ -375,6 +370,9 @@ function drawTimer() {
     text(`${countDown}s`, 20, 20);
     pop();
 }
+
+
+    /** FLY */
 
 // Moves the fly according to its speed using sine
 // Resets the fly if it gets all the way to the right
@@ -412,6 +410,9 @@ function resetFly() {
     fly.y = fly.baseY + sin((fly.x / graphPeriod) * 360) * graphAmplitude;
 }
 
+
+    /** BUTTERFLY */
+
 //Draw the butterfly as an orange circle
 function drawButterfly() {
     push();
@@ -421,6 +422,8 @@ function drawButterfly() {
     pop();
 }
 
+// Moves the butterfly according to its speed using cosine
+// Resets the butterfly if it gets all the way to the right
 function moveButterfly() {
     // Move the fly horizontally
     butterfly.x += butterfly.speed;
@@ -437,6 +440,7 @@ function moveButterfly() {
     }
 }
 
+// Resets the fly to the left with random Y and cosine
 function resetButterfly() {
     butterfly.x = -butterfly.size; // start just off-screen for smooth entry
     // baseY is the center line of the sine wave (keeps the wave on screen)
@@ -445,6 +449,8 @@ function resetButterfly() {
     butterfly.y = butterfly.baseY + cos((butterfly.x / graphPeriod) * 360) * graphAmplitude;
 }
 
+
+    /** FROG */
 
 // Moves the frog to the keyIsDown(left and right) position on x
 function moveFrog() {
@@ -527,6 +533,27 @@ function checkTongueFlyOverlap() {
         state = "win screen";
     }
 }
+
+function checkTongueButterflyOverlap() {
+    // Get distance from tongue to butterfly
+    const d = dist(frog.tongue.x, frog.tongue.y, butterfly.x, butterfly.y);
+    // Check if it's an overlap
+    const eaten = (d < frog.tongue.size/2 + butterfly.size/2);
+    if (eaten) {
+        // Reset the butterfly
+        resetButterfly();
+        // Bring back the tongue
+        frog.tongue.state = "inbound";
+        //increase score
+        score = score - butterflyScoreAmount;
+    }
+
+    //Check for the losing condition
+    if (score <= -2) {
+        state = "lose screen";
+    }
+}
+
 
 // scores
 function drawScore(){
