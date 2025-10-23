@@ -199,10 +199,12 @@ function draw() {
 /**
  *  INPUT FUNCTIONS
  * 
- * - keyPressed() - press spacebar
+ * - keyPressed() => press spacebar
 */
 
 // Start game when a key is pressed
+// Game state changes whenever key is pressed
+// Tongue is triggered when key is pressed 
 function keyPressed() {
     // If the spacebar is pressed, start the game
     if (state === "title screen" && (key === ' ' || keyCode === 32)) {
@@ -220,6 +222,7 @@ function keyPressed() {
         return false; // prevent default browser scrolling on space
     }
 
+    // Reset to title screen from win screen
     if (state === "win screen" && (key === ' ' || keyCode === 32)) {
         state = "title screen";
         score = 0; // reset score
@@ -245,6 +248,8 @@ function keyPressed() {
 function titleScreen() {
     push();
     textAlign(CENTER, CENTER);
+
+    // Title
     textSize(50);
     textStyle(BOLD);
     textFont("Monospace");
@@ -252,6 +257,7 @@ function titleScreen() {
     background("#04053dff");
     text("Catch The flies", width / 2, height / 2 - 100);
 
+    // Instruction
     textSize(20);
     textStyle(NORMAL);
     textFont("Monacospace");
@@ -261,6 +267,7 @@ function titleScreen() {
     text("Move your frog by pressing your left and right arrow!", width / 2, height / 2 + 75);
     text("Good luck on your first hunt, little froggie!", width / 2, height / 2 + 125);
 
+    // Start game action
     textSize(25);
     textStyle(BOLD);
     textFont("Monospace");
@@ -278,6 +285,8 @@ function titleScreen() {
  function winScreen() {
     push();
     textAlign(CENTER, CENTER);
+
+    // Win declaration
     textSize(50);
     textStyle(BOLD);
     textFont("Monospace");
@@ -285,6 +294,7 @@ function titleScreen() {
     background("#04053dff");
     text("Congratulations!", width / 2, height / 2 - 100);
 
+    // Ending text
     textSize(20);
     textStyle(NORMAL);
     textFont("Monacospace");
@@ -292,6 +302,7 @@ function titleScreen() {
     text("You are now full!", width / 2, height / 2 + 25);
     text("See you next time you feed!", width / 2, height / 2 + 50);
 
+    //Game action
     textSize(25);
     textStyle(BOLD);
     textFont("Monospace");
@@ -308,14 +319,16 @@ function titleScreen() {
 function loseScreen() {
     push();
     textAlign(CENTER, CENTER);
-    textStyle(BOLD);
-    textFont("Monospace");
     fill("#b9def3ff");
     background("#04053dff");
 
+    //Lose declaration
+    textStyle(BOLD);
+    textFont("Monospace");
     textSize(50);
     text("Time's up!", width/2, height/2 - 100);
     
+    // Ending text
     textSize(20);
     textStyle(NORMAL);
     textFont("Monacospace");
@@ -323,6 +336,7 @@ function loseScreen() {
     text("You went hungry...", width/2, height/2 + 25);
     text("Better luck next time!", width/2, height/2 + 50);
 
+    //Game action
     textSize(25);
     textStyle(BOLD);
     textFont("Monospace");
@@ -373,7 +387,7 @@ function drawTimer() {
 
 
     /** FLY */
-    //Reference from p5
+    //Reference from p5 (noted the link in changes.md)
 
 // Moves the fly according to its speed using sine
 // Resets the fly if it gets all the way to the right
@@ -413,7 +427,7 @@ function resetFly() {
 
 
     /** BUTTERFLY */
-    //Reference from p5
+    //Reference from p5 (noted the link in changes.md)
 
 //Draw the butterfly as an orange circle
 function drawButterfly() {
@@ -536,6 +550,7 @@ function checkTongueFlyOverlap() {
     }
 }
 
+// Handles the tongue overlapping the butterfly
 function checkTongueButterflyOverlap() {
     // Get distance from tongue to butterfly
     const d = dist(frog.tongue.x, frog.tongue.y, butterfly.x, butterfly.y);
@@ -556,8 +571,8 @@ function checkTongueButterflyOverlap() {
     }
 }
 
-
-// scores
+    /** SCORE*/
+    
 function drawScore(){
     push();
     textSize(50);

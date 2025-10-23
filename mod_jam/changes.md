@@ -9,7 +9,7 @@
     - Spacebar is used to start the game as well as launching the tongue.
 
 > Movement
-    - The fly and butterfly move on a sine and cosine line respectively.
+    - The fly and butterfly move on a sine and cosine line respectively => reference from p5 : https://p5js.org/examples/angles-and-motion-sine-cosine/
 
 > State
     - There is a title screen => a game screen => a win and lose screen.
