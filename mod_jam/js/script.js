@@ -25,6 +25,7 @@
 // Score
 let score = 0;
 let flyScoreAmount = 1;
+let superFlyScoreAmount = 2;
 let butterflyScoreAmount = 1;
 
 // Our frog
@@ -48,12 +49,13 @@ const frog = {
 
 const paddle = {
     // Position will be defined by randomiser
-    x: undefined,
-    y: undefined,
+    x: 0,
+    y: 200,
+    speed: 3,
 
     // Dimensions
     width: 100,
-    height: 40,
+    height: 20,
 };
 
 // Our fly
@@ -61,8 +63,15 @@ const paddle = {
 const fly = {
     x: 0,
     y: 200, // Will be random
-    size: 10,
+    size: 12,
     speed: 3
+};
+
+const superFly = {
+    x: 0,
+    y: 150,
+    size: 10,
+    speed: 4,
 };
 
 // Our monarch butterfly
@@ -147,7 +156,11 @@ function setup() {
 
     // Give the fly its first random position
     resetFly();
+    resetSuperFly();
     resetButterfly();
+
+    //Give the paddle it's first random position
+    resetPaddle();
 }
 
 // Draws the title screen or game screen based on the state
@@ -364,17 +377,21 @@ function gameScreen(){
     background("#87ceeb");
     moveFly();
     drawFly();
+    moveSuperFly();
+    drawSuperFly();
     moveButterfly();
     drawButterfly();
     moveFrog();
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
+    checkTongueSuperFlyOverlap();
     checkTongueButterflyOverlap();
 
     drawPaddle();
-    checkTongueBounce();
-    checkTongueOverlap();
+    movePaddle();
+    // checkTongueBounce();
+    // checkTongueOverlap();
     drawTimer(); 
     drawScore();
   
@@ -440,6 +457,46 @@ function resetFly() {
 }
 
 
+    /** SUPERFLY */
+    //Reference from p5 (noted the link in changes.md)
+
+// Moves the superfly according to its speed using sine
+// Resets the superFly if it gets all the way to the right
+function moveSuperFly() {
+    // Move the fly horizontally
+    superFly.x += superFly.speed;
+
+    // Use graphX as a horizontal offset / phase for the sine
+    superFly.y = superFly.baseY + sin(((superFly.x + graphX) / graphPeriod) * 360) * graphAmplitude;
+
+    // Keep the fly visible on the canvas vertically
+    superFly.y = constrain(superFly.y, superFly.size / 2, height - superFly.size / 2);
+
+    // Handle the fly going off the canvas to the right
+    if (superFly.x > width + superFly.size) {
+        resetSuperFly();
+    }
+}
+
+// Draws the fly as a black circle
+function drawSuperFly() {
+    push();
+    noStroke();
+    fill("#000000");
+    ellipse(superFly.x, superFly.y, superFly.size);
+    pop();
+}
+
+// Resets the fly to the left with random Y and sine
+function resetSuperFly() {
+    superFly.x = -superFly.size; // start just off-screen for smooth entry
+    // baseY is the center line of the sine wave (keeps the wave on screen)
+    superFly.baseY = random(100, height - 150);
+    // set initial y to match the sine calculation so it doesn't jump
+    superFly.y = superFly.baseY + sin((superFly.x / graphPeriod) * 360) * graphAmplitude;
+}
+
+
     /** BUTTERFLY */
     //Reference from p5 (noted the link in changes.md)
 
@@ -479,6 +536,31 @@ function resetButterfly() {
     butterfly.y = butterfly.baseY + cos((butterfly.x / graphPeriod) * 360) * graphAmplitude;
 }
 
+
+    /** PADDLE*/
+
+// Draws the paddle 
+function drawPaddle() {
+    push();
+    noStroke();
+    fill("#073607ff");
+    rect(paddle.x, paddle.y, paddle.width, paddle.height);
+    pop();
+}
+
+function movePaddle() {
+    // Move the paddle
+    paddle.x += paddle.speed;
+    // Handle the paddle going off the canvas
+    if (paddle.x > width) {
+        resetPaddle();
+    }
+}    
+
+function resetPaddle() {
+    paddle.x = 0;
+    paddle.y = random(0, 300);
+}
 
     /** FROG */
 
@@ -520,17 +602,7 @@ function moveTongue() {
     }
 }
 
-// Draws the paddle 
-function drawPaddle() {
-    push();
-    paddle.x = random;
-    paddle.y = random;
 
-    noStroke;
-    fill(255);
-    rect(paddle.x, paddle.y, paddle.width, paddle.height);
-    pop();
-}
 
 // Handles the tongue's bounce when hitting the paddle
 function checkTongueBounce (frog) {
@@ -580,6 +652,26 @@ function checkTongueFlyOverlap() {
         frog.tongue.state = "inbound";
         //increase score
         score = score + flyScoreAmount;
+    }
+    // Check for win condition
+    if (score >= 5) {
+        state = "win screen";
+    }
+}
+
+// Handles the tongue overlapping the superFly
+function checkTongueSuperFlyOverlap() {
+    // Get distance from tongue to fly
+    const d = dist(frog.tongue.x, frog.tongue.y, superFly.x, superFly.y);
+    // Check if it's an overlap
+    const eaten = (d < frog.tongue.size/2 + superFly.size/2);
+    if (eaten) {
+        // Reset the fly
+        resetSuperFly();
+        // Bring back the tongue
+        frog.tongue.state = "inbound";
+        //increase score
+        score = score + superFlyScoreAmount;
     }
     // Check for win condition
     if (score >= 5) {
