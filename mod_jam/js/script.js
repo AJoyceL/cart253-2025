@@ -46,6 +46,16 @@ const frog = {
     }
 };
 
+const paddle = {
+    // Position will be defined by randomiser
+    x: undefined,
+    y: undefined,
+
+    // Dimensions
+    width: 100,
+    height: 40,
+};
+
 // Our fly
 // Has a position, size, and speed of horizontal movement
 const fly = {
@@ -361,6 +371,10 @@ function gameScreen(){
     drawFrog();
     checkTongueFlyOverlap();
     checkTongueButterflyOverlap();
+
+    drawPaddle();
+    checkTongueBounce();
+    checkTongueOverlap();
     drawTimer(); 
     drawScore();
   
@@ -504,6 +518,29 @@ function moveTongue() {
             frog.tongue.state = "idle";
         }
     }
+}
+
+// Draws the paddle 
+function drawPaddle() {
+    push();
+    paddle.x = random;
+    paddle.y = random;
+
+    noStroke;
+    fill(255);
+    rect(paddle.x, paddle.y, paddle.width, paddle.height);
+    pop();
+}
+
+// Handles the tongue's bounce when hitting the paddle
+function checkTongueBounce (frog) {
+
+}
+
+// Handles the tongue and paddle overlap
+function checkTongueOverlap (frog, paddle) {
+    let result = (frog.tongue.x + frog.tongue.size > paddle.x && frog.tongue.x < paddle.x + paddle.width && frog.tongue.y + frog.tongue.size > paddle.y && frog.tongue.y < paddle.y + paddle.height);
+    return result;
 }
 
 // Displays the tongue (tip and line connection) and the frog (body)
