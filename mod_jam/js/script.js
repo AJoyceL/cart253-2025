@@ -390,8 +390,7 @@ function gameScreen(){
 
     drawPaddle();
     movePaddle();
-    // checkTongueBounce();
-    // checkTongueOverlap();
+    checkTongueBounce();
     drawTimer(); 
     drawScore();
   
@@ -602,18 +601,32 @@ function moveTongue() {
     }
 }
 
-
-
 // Handles the tongue's bounce when hitting the paddle
-function checkTongueBounce (frog) {
+function checkTongueBounce () {
+    if(frog.tongue.state !== "outbound") return;
+
+    //tongue tip
+    const tx = frog.tongue.x;
+    const ty = frog.tongue.y;
+    const tr = frog.tongue.size/2;
+
+    //paddle rect 
+    const px = paddle.x;
+    const py = paddle.y;
+    const pw = paddle.width;
+    const ph = paddle.height;
+
+    //overlap test
+    const hit = tx + tr > px && tx - tr < px + pw && ty + tr > py && ty + tr < py + ph;
+
+    if (hit) {
+        frog.tongue.state = "inbound";
+        frog.tongue.y = py - tr - 1;
+    }
+
 
 }
 
-// Handles the tongue and paddle overlap
-function checkTongueOverlap (frog, paddle) {
-    let result = (frog.tongue.x + frog.tongue.size > paddle.x && frog.tongue.x < paddle.x + paddle.width && frog.tongue.y + frog.tongue.size > paddle.y && frog.tongue.y < paddle.y + paddle.height);
-    return result;
-}
 
 // Displays the tongue (tip and line connection) and the frog (body)
 function drawFrog() {
