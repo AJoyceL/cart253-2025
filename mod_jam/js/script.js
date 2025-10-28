@@ -40,21 +40,14 @@ const bat = {
     // The bat's wings possition and size
     wings: {
         left:{
-            x: 200,
-            y: 475,
             w: 90,
             h:175,
         },
 
         right:{
-            x: 450,
-            y: 475,
             w: 90,
             h:175,
         },
-       
-        minrotate:0,
-        maxrotate: 50,
     },
 
     // The bat's eyes position and size
@@ -82,6 +75,10 @@ const bat = {
         state: "idle" // State can be: idle, outbound, inbound
     }
 };
+
+let flapAngle = 0;
+let flapSpeed = 5;
+
 
 const paddle = {
     // Position will be defined by randomiser
@@ -418,6 +415,8 @@ function gameScreen(){
     drawSuperFly();
     moveButterfly();
     drawButterfly();
+
+    flapAngle = sin(frameCount * flapSpeed) * 30;
     moveFrog();
     moveTongue();
     drawFrog();
@@ -436,6 +435,9 @@ function gameScreen(){
         countDown = 0;
         state = "lose screen";
     }
+
+
+
 }
 
 // Draws the timer at the top left corner ===> took example from CodePal, will have to rework it later
@@ -697,18 +699,30 @@ function drawFrog() {
     pop();
 
     // Reference from p5 to draw arc
+    // Draw left wing
     push();
     fill(0);
     noStroke();
-    arc(bat.wings.left.x, bat.wings.left.y, 100, bat.wings.left.w, bat.wings.left.h, PI + QUARTER_PI, PIE);
-    arc(bat.wings.right.x, bat.wings.right.y, 100, bat.wings.right.w, bat.wings.right.h, PI + QUARTER_PI, PIE);
+    translate(bat.body.x, bat.body.y);
+    rotate(flapAngle);
+    arc(-120, -25, 100, bat.wings.left.w, bat.wings.left.h, 360);
+    pop();
+
+    // Draw right wing
+    push();
+    fill(0);
+    noStroke();
+    translate(bat.body.x, bat.body.y);
+    rotate(-flapAngle);
+    arc(120, -25, 100, bat.wings.left.w, bat.wings.right.h, 360);
     pop();
 
     push();
     fill(255);
     noStroke();
-    ellipse(bat.eyes.left.x, bat.eyes.left.y, bat.eyes.left.size);
-    ellipse(bat.eyes.right.x, bat.eyes.right.y, bat.eyes.right.size);
+    translate(bat.body.x, bat.body.y);
+    ellipse(-30, -70, bat.eyes.left.size);
+    ellipse(30, -70, bat.eyes.right.size);
     pop();
 }
 
