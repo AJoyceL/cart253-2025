@@ -65,15 +65,15 @@ const bat = {
         },
     },
 
-    // The bat's tongue has a position, size, speed, and state
-    tongue: {
+    mouth:{
         x: undefined,
         y: 480,
-        size: 20,
-        speed: 20,
-        // Determines how the tongue moves each frame
-        state: "idle" // State can be: idle, outbound, inbound
-    }
+        size: 40,
+    },
+
+    velocity: 0,
+    speed: 10,
+    state: "idle",   
 };
 
 let flapAngle = 0;
@@ -270,9 +270,9 @@ function keyPressed() {
         countDown = timeLimit; // reset timer
     }
 
-    // Launch the tongue if spacebar is pressed and tongue is idle
-    if (bat.tongue.state === "idle" && (key === ' ' || keyCode === 32)) {
-        bat.tongue.state = "outbound";
+    // Launch the bat if spacebar is pressed and tongue is idle
+    if (bat.state === "idle" && (key === ' ' || keyCode === 32)) {
+        bat.state = "outbound";
         if (tongueSlurp) {
             tongueSlurp.play();
         }
@@ -417,16 +417,15 @@ function gameScreen(){
     drawButterfly();
 
     flapAngle = sin(frameCount * flapSpeed) * 30;
-    moveFrog();
-    moveTongue();
-    drawFrog();
-    checkTongueFlyOverlap();
-    checkTongueSuperFlyOverlap();
-    checkTongueButterflyOverlap();
+    moveBat();
+    drawBat();
+    checkBatFlyOverlap();
+    checkBatSuperFlyOverlap();
+    checkBatButterflyOverlap();
 
     drawPaddle();
     movePaddle();
-    checkTongueBounce();
+    checkBatBounce();
     drawTimer(); 
     drawScore();
   
@@ -603,59 +602,58 @@ function resetPaddle() {
     /** FROG */
 
 // Moves the frog to the keyIsDown(left and right) position on x
-function moveFrog() {
-    if (keyIsDown(LEFT_ARROW) || keyCode === (65)) {
+function moveBat() {
+    // Handles the bat moving left
+    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
         bat.body.x -= 10;
         bat.wings.left.x -= 10;
         bat.wings.right.x -= 10;
         bat.eyes.left.x -= 10;
         bat.eyes.right.x -= 10;
     }
-    if (keyIsDown(RIGHT_ARROW) || keyCode === (68)) {
+
+    // Handles the bat moving right
+    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
         bat.body.x += 10;
         bat.wings.left.x += 10;
         bat.wings.right.x += 10;
         bat.eyes.left.x += 10;
         bat.eyes.right.x += 10;
     }
-    // Constrain the frog to the canvas
+    // Constrain the bat to the canvas
     bat.body.x = constrain(bat.body.x, 0 + bat.body.size / 2, width - bat.body.size / 2);
-}
 
-// Handles moving the tongue based on its state
-function moveTongue() {
-    // Tongue matches the frog's x
-    bat.tongue.x = bat.body.x;
-    // If the tongue is idle, it doesn't do anything
-    if (bat.tongue.state === "idle") {
+    // Handles the bat shooting upwards
+    // If the bat is idle, it doesn't do anything
+    if (bat.state === "idle") {
         // Do nothing
     }
-    // If the tongue is outbound, it moves up
-    else if (bat.tongue.state === "outbound") {
-        bat.tongue.y += -bat.tongue.speed;
-        // The tongue bounces back if it hits the top
-        if (bat.tongue.y <= 0) {
-            bat.tongue.state = "inbound";
+    // If the bat is outbound, it moves up
+    else if (bat.state === "outbound") {
+        bat.body.y += -bat.speed;
+        // The bat bounces back if it hits the top
+        if (bat.body.y <= 0) {
+            bat.state = "inbound";
         }
     }
-    // If the tongue is inbound, it moves down
-    else if (bat.tongue.state === "inbound") {
-        bat.tongue.y += bat.tongue.speed;
-        // The tongue stops if it hits the bottom
-        if (bat.tongue.y >= height) {
-            bat.tongue.state = "idle";
+    // If the bat is inbound, it moves down
+    else if (bat.state === "inbound") {
+        bat.body.y += bat.speed  ;
+        // The bat stops if it hits the bottom
+        if (bat.body.y >= height) {
+            bat.state = "idle";
         }
     }
 }
 
-// Handles the tongue's bounce when hitting the paddle
-function checkTongueBounce () {
-    if(bat.tongue.state !== "outbound") return;
+// Handles the bat's bounce when hitting the paddle
+function checkBatBounce () {
+    if(bat.state !== "outbound") return;
 
-    //tongue tip
-    const tx = bat.tongue.x;
-    const ty = bat.tongue.y;
-    const tr = bat.tongue.size/2;
+    //bat's body
+    const tx = bat.body.x;
+    const ty = bat.body.y;
+    const tr = bat.body.size/2;
 
     //paddle rect 
     const px = paddle.x;
@@ -664,39 +662,32 @@ function checkTongueBounce () {
     const ph = paddle.height;
 
     //overlap test
-    const hit = tx + tr > px && tx - tr < px + pw && ty + tr > py && ty + tr < py + ph;
+    const hit = tx + tr > px && tx - tr < px + pw && ty + tr > py && ty - tr < py + ph;
 
     if (hit) {
-        bat.tongue.state = "inbound";
-        bat.tongue.y = py - tr - 1;
+        bat.state = "inbound";
+        bat.body.y = py + tr - 1;
+
     }
-
-
 }
 
 
 // Displays the tongue (tip and line connection) and the frog (body)
-function drawFrog() {
-    // Draw the tongue tip
-    push();
-    fill("#ff0000");
-    noStroke();
-    ellipse(bat.tongue.x, bat.tongue.y, bat.tongue.size);
-    pop();
-
-    // Draw the rest of the tongue
-    push();
-    stroke("#ff0000");
-    strokeWeight(bat.tongue.size);
-    line(bat.tongue.x, bat.tongue.y, bat.body.x, bat.body.y);
-    pop();
-
+function drawBat() {
     // Draw the frog's body
     push();
     fill(0);
     noStroke();
     ellipse(bat.body.x, bat.body.y, bat.body.size);
     pop();
+
+    // Draw mouth
+    // push();
+    // fill(255);
+    // noStroke();
+    // translate(bat.body.x, bat.body.y);
+    // ellipse(bat.mouth.x, bat.mouth.y, bat.mouth.size);
+    // pop();
 
     // Reference from p5 to draw arc
     // Draw left wing
@@ -717,6 +708,7 @@ function drawFrog() {
     arc(120, -25, 100, bat.wings.left.w, bat.wings.right.h, 360);
     pop();
 
+    // Draw the eyes
     push();
     fill(255);
     noStroke();
@@ -727,16 +719,16 @@ function drawFrog() {
 }
 
 // Handles the tongue overlapping the fly
-function checkTongueFlyOverlap() {
+function checkBatFlyOverlap() {
     // Get distance from tongue to fly
-    const d = dist(bat.tongue.x, bat.tongue.y, fly.x, fly.y);
+    const d = dist(bat.body.x, bat.body.y, fly.x, fly.y);
     // Check if it's an overlap
-    const eaten = (d < bat.tongue.size/2 + fly.size/2);
+    const eaten = (d < bat.body.size/2 + fly.size/2);
     if (eaten) {
         // Reset the fly
         resetFly();
         // Bring back the tongue
-        bat.tongue.state = "inbound";
+        bat.state = "inbound";
         //increase score
         score = score + flyScoreAmount;
     }
@@ -747,16 +739,16 @@ function checkTongueFlyOverlap() {
 }
 
 // Handles the tongue overlapping the superFly
-function checkTongueSuperFlyOverlap() {
+function checkBatSuperFlyOverlap() {
     // Get distance from tongue to fly
-    const d = dist(bat.tongue.x, bat.tongue.y, superFly.x, superFly.y);
+    const d = dist(bat.body.x, bat.body.y, superFly.x, superFly.y);
     // Check if it's an overlap
-    const eaten = (d < bat.tongue.size/2 + superFly.size/2);
+    const eaten = (d < bat.body.size/2 + superFly.size/2);
     if (eaten) {
         // Reset the fly
         resetSuperFly();
         // Bring back the tongue
-        bat.tongue.state = "inbound";
+        bat.state = "inbound";
         //increase score
         score = score + superFlyScoreAmount;
     }
@@ -767,16 +759,16 @@ function checkTongueSuperFlyOverlap() {
 }
 
 // Handles the tongue overlapping the butterfly
-function checkTongueButterflyOverlap() {
+function checkBatButterflyOverlap() {
     // Get distance from tongue to butterfly
-    const d = dist(bat.tongue.x, bat.tongue.y, butterfly.x, butterfly.y);
+    const d = dist(bat.body.x, bat.body.y, butterfly.x, butterfly.y);
     // Check if it's an overlap
-    const eaten = (d < bat.tongue.size/2 + butterfly.size/2);
+    const eaten = (d < bat.body.size/2 + butterfly.size/2);
     if (eaten) {
         // Reset the butterfly
         resetButterfly();
         // Bring back the tongue
-        bat.tongue.state = "inbound";
+        bat.state = "inbound";
         //increase score
         score = score - butterflyScoreAmount;
     }
