@@ -32,10 +32,33 @@ let butterflyScoreAmount = 1;
 const frog = {
     // The frog's body has a position and size
     body: {
-        x: 320,
-        y: 520,
+        x: 325,
+        y: 500,
         size: 150
     },
+
+    // The wings's possition and size
+    wings: {
+        left:{
+            x: 200,
+            y: 475,
+            w: 90,
+            h:175,
+        },
+
+        right:{
+            x: 450,
+            y: 475,
+            w: 90,
+            h:175,
+        }
+       
+    },
+
+    eyes:{
+        
+    },
+
     // The frog's tongue has a position, size, speed, and state
     tongue: {
         x: undefined,
@@ -83,10 +106,11 @@ const butterfly = {
 };
 
 // The current state of the game
-let state = "title screen";
+// let state = "title screen";
+let state = "game screen";
 
 // Timer variables
-let timeLimit= 45; // seconds
+let timeLimit= 100000; // seconds
 let countDown;
 
 // graph variables
@@ -646,10 +670,19 @@ function drawFrog() {
 
     // Draw the frog's body
     push();
-    fill("#00ff00");
+    fill(0);
     noStroke();
     ellipse(frog.body.x, frog.body.y, frog.body.size);
     pop();
+
+    // Reference from p5 to draw arc
+    push();
+    fill(0);
+    noStroke();
+    arc(frog.wings.left.x, frog.wings.left.y, 100, frog.wings.left.w, frog.wings.left.h, PI + QUARTER_PI, PIE);
+    arc(frog.wings.right.x, frog.wings.right.y, 100, frog.wings.right.w, frog.wings.right.h, PI + QUARTER_PI, PIE);
+    pop();
+    
 }
 
 // Handles the tongue overlapping the fly
