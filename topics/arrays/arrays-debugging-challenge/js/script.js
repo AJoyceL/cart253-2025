@@ -20,7 +20,7 @@ const speech = [
     "So let it be with Caesar. The noble Brutus",
     "Hath told you Caesar was ambitious:",
     "If it were so, it was a grievous fault,",
-    "And grievously hath Caesar answer’d it."
+    "And grievously hath Caesar answer’d it.",
     "*cough* Thank you *cough*"
 ];
 // Which part of the speech are we displaying?
@@ -80,7 +80,7 @@ function showDialog() {
     push();
     fill(255);
     textSize(18);
-    text(speech[0, box.x + box.padding, box.y + box.padding, box.width - 2 * box.padding, box.height - 2 * box.padding);
+    text(speech0, box.x + box.padding, box.y + box.padding, box.width - 2 * box.padding, box.height - 2 * box.padding);
     pop();
 }
 
