@@ -120,7 +120,7 @@ const butterfly = {
 let state = "game screen";
 
 // Timer variables
-let timeLimit= 100000; // seconds
+let timeLimit= 100000; // 60 seconds
 let countDown;
 
 // graph variables
@@ -128,8 +128,18 @@ let graphX = 50;
 let graphAmplitude = 70;
 let graphPeriod = 300;
 
-// draw numberof stars
+// draw number of stars
 const numStars = 50;
+
+// moon size and position
+const moon = {
+    x: 50,
+    y: 300,
+    size: 100,
+};
+
+let moonAngle = 100;
+let moonSpeed = 0.2;
 
 /** 
  * AUDIO FILES 
@@ -417,6 +427,9 @@ function gameScreen(){
     for (let i = 0; i < numStars; i++){
         drawStar();
     }
+    moonAngle = sin(frameCount * moonSpeed) * 30;
+    drawMoon();
+    // moveMoon();
 
     moveFly();
     drawFly();
@@ -452,7 +465,7 @@ function drawTimer() {
     push();
     textSize(32);
     textAlign(LEFT, TOP);
-    fill(0); 
+    fill(255); 
     
     let currentTime = int(millis() / 1000);
     countDown = timeLimit - currentTime;
@@ -461,6 +474,8 @@ function drawTimer() {
     pop();
 }
 
+
+    /** BACKGROUND */
 // Draws the star field. taken from the starfield project.
 function drawStar() {
     const x = random(0, width);
@@ -473,6 +488,22 @@ function drawStar() {
     ellipse(x, y, diameter);
     pop();
 }
+
+function drawMoon() {
+    push();
+    noStroke();
+    fill("#CECECE");
+
+    translate(320, 400);
+    rotate(moonAngle);
+    ellipse(moon.x, moon.y, moon.size);
+    pop();
+}
+
+// function moveMoon() {
+//     // Move the moon
+//     moon.x += moon.speed;
+// }
 
 
     /** FLY */
@@ -805,6 +836,7 @@ function checkBatButterflyOverlap() {
 function drawScore(){
     push();
     textSize(50);
+    fill(255);
     textAlign(RIGHT , TOP);
     text(score, width - 20, 20);
     pop();
