@@ -128,6 +128,8 @@ let graphX = 50;
 let graphAmplitude = 70;
 let graphPeriod = 300;
 
+// draw numberof stars
+const numStars = 50;
 
 /** 
  * AUDIO FILES 
@@ -408,7 +410,14 @@ function loseScreen() {
 
 // Draws the game screen
 function gameScreen(){
-    background("#87ceeb");
+    background("#02022cff");
+
+    // for loop to draw stars
+    randomSeed(1);
+    for (let i = 0; i < numStars; i++){
+        drawStar();
+    }
+
     moveFly();
     drawFly();
     moveSuperFly();
@@ -416,6 +425,7 @@ function gameScreen(){
     moveButterfly();
     drawButterfly();
 
+    // Calls for the wings flapping
     flapAngle = sin(frameCount * flapSpeed) * 30;
     moveBat();
     drawBat();
@@ -426,6 +436,7 @@ function gameScreen(){
     drawPaddle();
     movePaddle();
     checkBatBounce();
+
     drawTimer(); 
     drawScore();
   
@@ -434,9 +445,6 @@ function gameScreen(){
         countDown = 0;
         state = "lose screen";
     }
-
-
-
 }
 
 // Draws the timer at the top left corner ===> took example from CodePal, will have to rework it later
@@ -450,6 +458,19 @@ function drawTimer() {
     countDown = timeLimit - currentTime;
 
     text(`${countDown}s`, 20, 20);
+    pop();
+}
+
+// Draws the star field. taken from the starfield project.
+function drawStar() {
+    const x = random(0, width);
+    const y = random(0, height);
+    const diameter = random(2, 5);
+
+    push();
+    fill(255);
+    noStroke();
+    ellipse(x, y, diameter);
     pop();
 }
 
@@ -479,7 +500,7 @@ function moveFly() {
 function drawFly() {
     push();
     noStroke();
-    fill("#000000");
+    fill("#e0af27ff");
     ellipse(fly.x, fly.y, fly.size);
     pop();
 }
@@ -519,7 +540,7 @@ function moveSuperFly() {
 function drawSuperFly() {
     push();
     noStroke();
-    fill("#000000");
+    fill("#e0af27ff");
     ellipse(superFly.x, superFly.y, superFly.size);
     pop();
 }
@@ -677,7 +698,7 @@ function drawBat() {
     // Draw the frog's body
     push();
     fill(0);
-    noStroke();
+    stroke(255);
     ellipse(bat.body.x, bat.body.y, bat.body.size);
     pop();
 
@@ -693,7 +714,7 @@ function drawBat() {
     // Draw left wing
     push();
     fill(0);
-    noStroke();
+    stroke(255);
     translate(bat.body.x, bat.body.y);
     rotate(flapAngle);
     arc(-120, -25, 100, bat.wings.left.w, bat.wings.left.h, 360);
@@ -702,7 +723,7 @@ function drawBat() {
     // Draw right wing
     push();
     fill(0);
-    noStroke();
+    stroke(255);
     translate(bat.body.x, bat.body.y);
     rotate(-flapAngle);
     arc(120, -25, 100, bat.wings.left.w, bat.wings.right.h, 360);

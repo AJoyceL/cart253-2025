@@ -5,6 +5,7 @@
     - I added a monarch butterfly(orange circle) as an enemy.
     - I added a superfly that gives twice the point of a fly.
     - I changed the frog to a bat (rather than launchign a tongue, the bat springs forward to catch the flies).
+    - changed the background from morning to night with stars(taken from the starfield project).
 
 > Gameplay
     - The bat moves by pressing down on the left and right arrow or the A and D key.
