@@ -540,7 +540,7 @@ function drawFly() {
 function resetFly() {
     fly.x = -fly.size; // start just off-screen for smooth entry
     // baseY is the center line of the sine wave (keeps the wave on screen)
-    fly.baseY = random(100, height - 150);
+    fly.baseY = random(100,300);
     // set initial y to match the sine calculation so it doesn't jump
     fly.y = fly.baseY + sin((fly.x / graphPeriod) * 360) * graphAmplitude;
 }
@@ -580,7 +580,7 @@ function drawSuperFly() {
 function resetSuperFly() {
     superFly.x = -superFly.size; // start just off-screen for smooth entry
     // baseY is the center line of the sine wave (keeps the wave on screen)
-    superFly.baseY = random(100, height - 150);
+    superFly.baseY = random(100, 300);
     // set initial y to match the sine calculation so it doesn't jump
     superFly.y = superFly.baseY + sin((superFly.x / graphPeriod) * 360) * graphAmplitude;
 }
@@ -620,7 +620,7 @@ function moveButterfly() {
 function resetButterfly() {
     butterfly.x = -butterfly.size; // start just off-screen for smooth entry
     // baseY is the center line of the sine wave (keeps the wave on screen)
-    butterfly.baseY = random(100, height - 150);
+    butterfly.baseY = random(100, 300);
     // set initial y to match the sine calculation so it doesn't jump
     butterfly.y = butterfly.baseY + cos((butterfly.x / graphPeriod) * 360) * graphAmplitude;
 }
@@ -630,10 +630,19 @@ function resetButterfly() {
 
 // Draws the paddle 
 function drawPaddle() {
+    // Draw bird's body
     push();
     noStroke();
-    fill("#073607ff");
-    rect(paddle.x, paddle.y, paddle.width, paddle.height);
+    fill("#5f3b0dff");
+    ellipse(paddle.x, paddle.y, paddle.width, paddle.height);
+    pop();
+
+    // Draw bird's wings
+    push();
+    noStroke();
+    fill("#5f3b0dff");
+    translate(paddle.x, paddle.y);
+    
     pop();
 }
 
@@ -648,7 +657,7 @@ function movePaddle() {
 
 function resetPaddle() {
     paddle.x = 0;
-    paddle.y = random(0, 300);
+    paddle.y =  random(0, 300)
 }
 
     /** FROG */
