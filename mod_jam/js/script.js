@@ -208,7 +208,7 @@ function setup() {
     resetButterfly();
 
     //Give the paddle it's first random position
-    resetPaddle();
+    resetBird();
 }
 
 // Draws the title screen or game screen based on the state
@@ -422,9 +422,8 @@ function loseScreen() {
 
 // Draws the game screen
 function gameScreen(){
-    // background("#02022cff");
+    // Functions for the sky
     drawSky();
-
     // for loop to draw stars
     randomSeed(1);
     for (let i = 0; i < numStars; i++){
@@ -433,7 +432,7 @@ function gameScreen(){
     drawMoon();
     moveMoon();
     
-
+    // Functions for the flies
     moveFly();
     drawFly();
     moveSuperFly();
@@ -441,16 +440,17 @@ function gameScreen(){
     moveButterfly();
     drawButterfly();
 
-    // Calls for the wings flapping
-    flapAngle = sin(frameCount * flapSpeed) * 30;
+    // Functions for the bat
+    flapAngle = sin(frameCount * flapSpeed) * 30; // Calls for the wings flapping
     moveBat();
     drawBat();
     checkBatFlyOverlap();
     checkBatSuperFlyOverlap();
     checkBatButterflyOverlap();
 
-    drawPaddle();
-    movePaddle();
+    // Funcitons for the bird
+    drawBird();
+    moveBird();
     checkBatBounce();
 
     drawTimer(); 
@@ -485,11 +485,17 @@ function drawStar() {
     const y = random(0, height);
     const diameter = random(2, 5);
 
+    //transition of vanishing stars when the sky is affected
+    let sky = map(moon.angle, 130, 180, 0, 1, true);
+    let fade = map(sky, 0, 1, 255, 0);
+
     push();
-    fill(255);
+    fill(255, fade);
     noStroke();
     ellipse(x, y, diameter);
     pop();
+
+
 }
 
 function drawMoon() {
@@ -523,9 +529,10 @@ function drawSky(){
     let nightColour = color("#02022cff"); 
     let morningColour = color("#5badddff");
 
-    // how to simplify this line
+    // Transition the sky
     let sky = map(moon.angle, 130, 180, 0, 1, true);
 
+    // lerpColor from p5 reference
     let currentSky = lerpColor(nightColour, morningColour, sky);
 
     background(currentSky);
@@ -655,7 +662,7 @@ function resetButterfly() {
     /** PADDLE*/
 
 // Draws the paddle 
-function drawPaddle() {
+function drawBird() {
     // Draw bird's body
     push();
     noStroke();
@@ -672,16 +679,16 @@ function drawPaddle() {
     pop();
 }
 
-function movePaddle() {
+function moveBird() {
     // Move the paddle
     paddle.x += paddle.speed;
     // Handle the paddle going off the canvas
     if (paddle.x > width) {
-        resetPaddle();
+        resetBird();
     }
 }    
 
-function resetPaddle() {
+function resetBird() {
     paddle.x = 0;
     paddle.y =  random(0, 300)
 }
