@@ -136,10 +136,11 @@ const moon = {
     x: 50,
     y: 300,
     size: 100,
+    angle: 10,
+    speed: 0.05,
+    radius: 350,
 };
 
-let moonAngle = 100;
-let moonSpeed = 0.2;
 
 /** 
  * AUDIO FILES 
@@ -427,9 +428,8 @@ function gameScreen(){
     for (let i = 0; i < numStars; i++){
         drawStar();
     }
-    moonAngle = sin(frameCount * moonSpeed) * 30;
     drawMoon();
-    // moveMoon();
+    moveMoon();
 
     moveFly();
     drawFly();
@@ -493,17 +493,27 @@ function drawMoon() {
     push();
     noStroke();
     fill("#CECECE");
-
-    translate(320, 400);
-    rotate(moonAngle);
     ellipse(moon.x, moon.y, moon.size);
     pop();
 }
 
-// function moveMoon() {
-//     // Move the moon
-//     moon.x += moon.speed;
-// }
+function moveMoon() {
+    // Move the moon
+    moon.angle += moon.speed;
+
+    // Travel in an arc
+    let centerX = width/2;
+    let centerY = height + 50;
+
+    // Calculate position
+    moon.x = centerX + cos(moon.angle) * moon.radius;
+    moon.y = centerY - sin(moon.angle) * moon.radius;
+
+    // Reset moon
+    if (moon.angle > 180) {
+        moon.angle = 0;
+    }
+}
 
 
     /** FLY */
