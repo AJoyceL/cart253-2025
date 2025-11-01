@@ -137,9 +137,10 @@ const moon = {
     y: 300,
     size: 100,
     angle: 10,
-    speed: 0.05,
+    speed: 1, // should be 0.05
     radius: 350,
 };
+
 
 
 /** 
@@ -421,7 +422,8 @@ function loseScreen() {
 
 // Draws the game screen
 function gameScreen(){
-    background("#02022cff");
+    // background("#02022cff");
+    drawSky();
 
     // for loop to draw stars
     randomSeed(1);
@@ -430,6 +432,7 @@ function gameScreen(){
     }
     drawMoon();
     moveMoon();
+    
 
     moveFly();
     drawFly();
@@ -513,6 +516,19 @@ function moveMoon() {
     if (moon.angle > 180) {
         moon.angle = 0;
     }
+}
+
+function drawSky(){
+    // background colours
+    let nightColour = color("#02022cff"); 
+    let morningColour = color("#5badddff");
+
+    // how to simplify this line
+    let sky = map(moon.angle, 130, 180, 0, 1, true);
+
+    let currentSky = lerpColor(nightColour, morningColour, sky);
+
+    background(currentSky);
 }
 
 
