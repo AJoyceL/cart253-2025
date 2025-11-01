@@ -6,7 +6,8 @@
     - I added a superfly that gives twice the point of a fly.
     - I changed the frog to a bat (rather than launchign a tongue, the bat springs forward to catch the flies).
     - changed the background from morning to night with stars(taken from the starfield project).
-    - I added a moon that moves around the canvas.
+    - I added a moon that moves across the sky in an arc.
+    - Made the sky transition smoothly from night to day and the star vanish.
 
 > Gameplay
     - The bat moves by pressing down on the left and right arrow or the A and D key.

@@ -5,12 +5,8 @@
  * This is my mod jam submission!
  * 
  * TO DO:
- * POSSIBLY:
- *  * - different types of flies: some are worth more points, some move faster, some move in different patterns
- * - different types of enemies: some take more than one hit to defeat, some move faster, some move in different patterns
- * - use function trisolaris example to build lilipads in the lake
- *  - add obstacle seen in the function refactory project
- 
+ * - rework the random movement of the flies
+ * - change the audio to fit the new change
  *
  * Made with p5
  * https://p5js.org/
