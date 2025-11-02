@@ -5,9 +5,7 @@
  * This is my mod jam submission!
  * 
  * TO DO:
- * - rework the random movement of the flies
- * - change the audio to fit the new change
- *
+
  * Made with p5
  * https://p5js.org/
  */
@@ -113,10 +111,10 @@ const butterfly = {
 
 // The current state of the game
 // let state = "title screen";
-let state = "game screen";
+let state = "title screen";
 
 // Timer variables
-let timeLimit= 100000; // 60 seconds
+let timeLimit= 60; // 60 seconds
 let countDown;
 
 // graph variables
@@ -134,7 +132,7 @@ const moon = {
     y: 300,
     size: 100,
     angle: 10,
-    speed: 1, // should be 0.05
+    speed: 0.04, // should be 0.05
     radius: 350,
 };
 
@@ -346,11 +344,11 @@ function titleScreen() {
     textSize(20);
     textStyle(NORMAL);
     textFont("Monacospace");
-    text("Catch the flies by pressing the spacebar to launch your tongue!", width / 2, height / 2);
+    text("Catch the flies by pressing the spacebar to launch forward!", width / 2, height / 2);
     text("Make sure to catch as many as you can before the timer runs out!", width / 2, height / 2 + 25);
-    text("But only the black ones! The red ones are poisonous!", width / 2, height / 2 + 50);
-    text("Move your frog by pressing your left and right arrow!", width / 2, height / 2 + 75);
-    text("Good luck on your first hunt, little froggie!", width / 2, height / 2 + 125);
+    text("But only the glowing ones! The oramge ones are poisonous!", width / 2, height / 2 + 50);
+    text("Move your bat by pressing your left and right arrow, or a & d!", width / 2, height / 2 + 75);
+    text("Good luck on your first hunt, little bat!", width / 2, height / 2 + 125);
 
     // Start game action
     textSize(25);
@@ -854,6 +852,9 @@ function drawBat() {
     pop();
 }
 
+
+    /** SCORE*/
+
 // Handles the tongue overlapping the fly
 function checkBatFlyOverlap() {
     // Get distance from tongue to fly
@@ -869,7 +870,7 @@ function checkBatFlyOverlap() {
         score = score + flyScoreAmount;
     }
     // Check for win condition
-    if (score >= 5) {
+    if (score >= 10) {
         state = "win screen";
     }
 }
@@ -889,7 +890,7 @@ function checkBatSuperFlyOverlap() {
         score = score + superFlyScoreAmount;
     }
     // Check for win condition
-    if (score >= 5) {
+    if (score >= 10) {
         state = "win screen";
     }
 }
@@ -914,8 +915,6 @@ function checkBatButterflyOverlap() {
         state = "lose screen";
     }
 }
-
-    /** SCORE*/
     
 function drawScore(){
     push();
