@@ -143,19 +143,22 @@ const moon = {
 /** 
  * AUDIO FILES 
  * 
- * titleMusic from https://freesound.org/people/Mrthenoronha/sounds/528773/
- *  game screen music from https://freesound.org/people/Mrthenoronha/sounds/528717/
- *  frog croak fromhttps://freesound.org/people/TheKingOfGeeks360/sounds/744309/
- *  tongue slurp from https://freesound.org/people/Stroopwafels112/sounds/560597/
+ * title music from https://freesound.org/people/Mrthenoronha/sounds/528773/
+ * game screen music from https://freesound.org/people/Mrthenoronha/sounds/528717/
  * win music from https://freesound.org/people/Mrthenoronha/sounds/518305/
  * lose music from https://freesound.org/people/Argenisflores/sounds/633215/
+ * bat flapping from https://freesound.org/people/Natty23/sounds/349224/
+ * bat chomp from https://freesound.org/people/Rudmer_Rotteveel/sounds/364924/
+ * hit sound from https://freesound.org/people/RICHERlandTV/sounds/232358/
 */
 let titleMusic;
 let gameMusic;
-let frogCroak;
-let tongueSlurp;
 let winMusic;
 let loseMusic;
+let batFlap;
+let chomp;
+let hitSound;
+
 
 // Preload function to load audio files before the program starts
 function preload() {
@@ -168,15 +171,7 @@ function preload() {
     //load game music and set volume
     gameMusic = loadSound("assets/sounds/gameScreen.wav");
     gameMusic.setVolume(0.3); // lower game music (40%)
-
-    //load frog croak sound and set volume
-    frogCroak = loadSound("assets/sounds/frogCroak.wav");
-    frogCroak.setVolume(1.5); // increase croak sound (150%)
-
-    //load tongue slurping sound and set volume
-    tongueSlurp = loadSound("assets/sounds/tongueSlurp.wav");
-    tongueSlurp.setVolume(0.5); // lower slurp sound (50%)
-
+    
     //load win music and set volume
     winMusic = loadSound("assets/sounds/winScreen.wav");
     winMusic.setVolume(0.5); // lower win music (50%)
@@ -184,6 +179,19 @@ function preload() {
     //load lose music and set volume
     loseMusic = loadSound("assets/sounds/loseScreen.wav");
     loseMusic.setVolume(0.5); // lower lose music (50%)
+
+    //load bat flapping sound and set volume and speed
+    batFlap = loadSound("assets/sounds/bat_flap.wav");
+    batFlap.setVolume(0.25); // increase flapping sound (150%)
+    batFlap.rate(0.5)
+
+    //load tongue slurping sound and set volume
+    chomp = loadSound("assets/sounds/chomp.wav");
+    chomp.setVolume(0.5); // lower chomp sound (50%)
+
+    //load hit sound and set volume
+    hitSound = loadSound("assets/sounds/hit.mp3");
+    hitSound.setVolume(1);
 }
 
 
@@ -242,8 +250,8 @@ function draw() {
         if (gameMusic && !gameMusic.isPlaying()) {
             gameMusic.loop();
         }
-        if (frogCroak && !frogCroak.isPlaying()) {
-            frogCroak.play();
+        if (batFlap && !batFlap.isPlaying()) {
+            batFlap.loop();
         }
     }
     // Draw the win screen 
@@ -253,7 +261,7 @@ function draw() {
             gameMusic.stop();
         }
         if (winMusic && !winMusic.isPlaying()) {
-            winMusic.play();
+            winMusic.loop();
         }
     }
     // Draw the game over screen
@@ -263,10 +271,10 @@ function draw() {
             gameMusic.stop();
         }
         if (loseMusic && !loseMusic.isPlaying()) {
-            loseMusic.play();
+            loseMusic.loop();
         }
-        if(frogCroak && frogCroak.isPlaying()){
-            frogCroak.stop();
+        if(batFlap && batFlap.isPlaying()){
+            batFlap.stop();
         }
     }
 }    
@@ -293,8 +301,8 @@ function keyPressed() {
     // Launch the bat if spacebar is pressed and tongue is idle
     if (bat.state === "idle" && (key === ' ' || keyCode === 32)) {
         bat.state = "outbound";
-        if (tongueSlurp) {
-            tongueSlurp.play();
+        if (chomp) {
+            chomp.play();
         }
         return false; // prevent default browser scrolling on space
     }
@@ -467,6 +475,7 @@ function gameScreen(){
         countDown = 0;
         state = "lose screen";
     }
+
 }
 
 // Draws the timer at the top left corner ===> took example from CodePal, will have to rework it later
@@ -789,6 +798,12 @@ function checkBatBounce () {
         bat.state = "inbound";
         bat.body.y = py + tr - 1;
 
+        hitSound.play();
+        
+    }
+
+    else if (hitSound){
+        hitSound.stop();
     }
 }
 
