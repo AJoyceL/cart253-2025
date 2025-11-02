@@ -125,7 +125,8 @@ let graphAmplitude = 70;
 let graphPeriod = 300;
 
 // draw number of stars
-const numStars = 50;
+const numStars = 100;
+let stars = [];
 
 // moon size and position
 const moon = {
@@ -197,6 +198,15 @@ function setup() {
 
     //sine and cosine
     angleMode(DEGREES);
+
+    // Make a fixed set of stars
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: random(width),
+            y: random(height),
+            size: random(2, 5)
+        });
+    }
 
     // Give the fly its first random position
     resetFly();
@@ -421,10 +431,10 @@ function gameScreen(){
     // Functions for the sky
     drawSky();
     // for loop to draw stars
-    randomSeed(1);
-    for (let i = 0; i < numStars; i++){
-        drawStar();
-    }
+    // for (let i = 0; i < numStars; i++){
+    //     drawStar();
+    // }
+    drawStar();
     drawMoon();
     moveMoon();
     
@@ -488,7 +498,9 @@ function drawStar() {
     push();
     fill(255, fade);
     noStroke();
-    ellipse(x, y, diameter);
+    for (let s of stars){
+        ellipse(s.x, s.y, s.size);
+    }
     pop();
 
 
@@ -569,7 +581,7 @@ function drawFly() {
 function resetFly() {
     fly.x = -fly.size; // start just off-screen for smooth entry
     // baseY is the center line of the sine wave (keeps the wave on screen)
-    fly.baseY = random(100,300);
+    fly.baseY = random(50, 300);
     // set initial y to match the sine calculation so it doesn't jump
     fly.y = fly.baseY + sin((fly.x / graphPeriod) * 360) * graphAmplitude;
 }
@@ -609,7 +621,7 @@ function drawSuperFly() {
 function resetSuperFly() {
     superFly.x = -superFly.size; // start just off-screen for smooth entry
     // baseY is the center line of the sine wave (keeps the wave on screen)
-    superFly.baseY = random(100, 300);
+    superFly.baseY = random(50, 300);
     // set initial y to match the sine calculation so it doesn't jump
     superFly.y = superFly.baseY + sin((superFly.x / graphPeriod) * 360) * graphAmplitude;
 }
@@ -649,13 +661,13 @@ function moveButterfly() {
 function resetButterfly() {
     butterfly.x = -butterfly.size; // start just off-screen for smooth entry
     // baseY is the center line of the sine wave (keeps the wave on screen)
-    butterfly.baseY = random(100, 300);
+    butterfly.baseY = random(50, 300);
     // set initial y to match the sine calculation so it doesn't jump
     butterfly.y = butterfly.baseY + cos((butterfly.x / graphPeriod) * 360) * graphAmplitude;
 }
 
 
-    /** PADDLE*/
+    /** PADDLE/BIRD */
 
 // Draws the paddle 
 function drawBird() {
@@ -685,8 +697,8 @@ function moveBird() {
 }    
 
 function resetBird() {
-    paddle.x = 0;
-    paddle.y =  random(0, 300)
+    paddle.x =  -paddle.width;
+    paddle.y = random(50, 300);
 }
 
     /** FROG */
