@@ -671,6 +671,9 @@ function resetButterfly() {
 
 // Draws the paddle 
 function drawBird() {
+    // Handle wing flap
+    let flap = sin(frameCount * 10);
+
     // Draw bird's body
     push();
     noStroke();
@@ -678,13 +681,29 @@ function drawBird() {
     ellipse(paddle.x, paddle.y, paddle.width, paddle.height);
     pop();
 
-    // Draw bird's wings
+    // Draw right wings
+    push();
+    noStroke(); 
+    fill("#422808ff");
+    rotate(flap);
+    ellipse(paddle.x + 40, paddle.y, 60, 15);
+    pop();
+
+    // Draw bird's body
     push();
     noStroke();
     fill("#5f3b0dff");
-    translate(paddle.x, paddle.y);
-    
+    ellipse(paddle.x, paddle.y, paddle.width, paddle.height);
     pop();
+
+    // Draw left wings
+    push();
+    noStroke(); 
+    fill("#704712ff");
+    rotate(flap);
+    ellipse(paddle.x - 40, paddle.y, 60, 15);
+    pop();
+
 }
 
 function moveBird() {
