@@ -4,10 +4,13 @@
  * 
  * This is my mod jam submission!
  * 
- * TO DO:
-
+ * to do:
+ * Add a mouth so the bat can only catch flies with it.
+ * 
  * Made with p5
  * https://p5js.org/
+ * and freesound
+ * https://freesound.org/
  */
 
 "use strict";
