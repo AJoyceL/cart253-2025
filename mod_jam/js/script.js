@@ -63,9 +63,9 @@ const bat = {
     },
 
     mouth:{
-        x: undefined,
+        x: 325,
         y: 480,
-        size: 40,
+        size: 50,
     },
 
     velocity: 0,
@@ -240,6 +240,9 @@ function draw() {
         if(loseMusic && loseMusic.isPlaying()){
             loseMusic.stop();
         }
+          if (batFlap && !batFlap.isPlaying()) {
+            batFlap.stop();
+        }
     }
 
     // Draw the game screen
@@ -302,9 +305,6 @@ function keyPressed() {
     // Launch the bat if spacebar is pressed and tongue is idle
     if (bat.state === "idle" && (key === ' ' || keyCode === 32)) {
         bat.state = "outbound";
-        if (chomp) {
-            chomp.play();
-        }
         return false; // prevent default browser scrolling on space
     }
 
@@ -512,10 +512,9 @@ function drawStar() {
         ellipse(s.x, s.y, s.size);
     }
     pop();
-
-
 }
 
+// Draws the moon
 function drawMoon() {
     push();
     noStroke();
@@ -524,6 +523,7 @@ function drawMoon() {
     pop();
 }
 
+// Handles the moon's movement
 function moveMoon() {
     // Move the moon
     moon.angle += moon.speed;
@@ -542,6 +542,7 @@ function moveMoon() {
     }
 }
 
+// Draws the sky and colour transition
 function drawSky(){
     // background colours
     let nightColour = color("#02022cff"); 
@@ -679,7 +680,7 @@ function resetButterfly() {
 
     /** PADDLE/BIRD */
 
-// Draws the paddle 
+// Draws the paddle/bird 
 function drawBird() {
     // Handle wing flap
     let flap = sin(frameCount * 10);
@@ -716,6 +717,7 @@ function drawBird() {
 
 }
 
+//Handles the paddle/bird mivement
 function moveBird() {
     // Move the paddle
     paddle.x += paddle.speed;
@@ -725,6 +727,7 @@ function moveBird() {
     }
 }    
 
+// Resets the paddle/bird position
 function resetBird() {
     paddle.x =  -paddle.width;
     paddle.y = random(50, 300);
@@ -819,12 +822,12 @@ function drawBat() {
     pop();
 
     // Draw mouth
-    // push();
-    // fill(255);
-    // noStroke();
-    // translate(bat.body.x, bat.body.y);
-    // ellipse(bat.mouth.x, bat.mouth.y, bat.mouth.size);
-    // pop();
+    push();
+    fill(255);
+    noStroke();
+    translate(bat.body.x, bat.body.y);
+    ellipse(bat.mouth.x, bat.mouth.y, bat.mouth.size);
+    pop();
 
     // Reference from p5 to draw arc
     // Draw left wing
@@ -863,11 +866,14 @@ function checkBatFlyOverlap() {
     // Get distance from tongue to fly
     const d = dist(bat.body.x, bat.body.y, fly.x, fly.y);
     // Check if it's an overlap
-    const eaten = (d < bat.body.size/2 + fly.size/2);
+    const eaten = (d < bat.mouth.size/2 + fly.size/2);
     if (eaten) {
+        if (chomp) {
+            chomp.play();
+        }
         // Reset the fly
         resetFly();
-        // Bring back the tongue
+        // Bring back the bat
         bat.state = "inbound";
         //increase score
         score = score + flyScoreAmount;
@@ -883,8 +889,11 @@ function checkBatSuperFlyOverlap() {
     // Get distance from tongue to fly
     const d = dist(bat.body.x, bat.body.y, superFly.x, superFly.y);
     // Check if it's an overlap
-    const eaten = (d < bat.body.size/2 + superFly.size/2);
+    const eaten = (d < bat.mouth.size/2 + superFly.size/2);
     if (eaten) {
+        if (chomp) {
+            chomp.play();
+        }
         // Reset the fly
         resetSuperFly();
         // Bring back the tongue
@@ -903,8 +912,11 @@ function checkBatButterflyOverlap() {
     // Get distance from tongue to butterfly
     const d = dist(bat.body.x, bat.body.y, butterfly.x, butterfly.y);
     // Check if it's an overlap
-    const eaten = (d < bat.body.size/2 + butterfly.size/2);
+    const eaten = (d < bat.mouth.size/2 + butterfly.size/2);
     if (eaten) {
+        if (chomp) {
+            chomp.play();
+        }
         // Reset the butterfly
         resetButterfly();
         // Bring back the tongue
