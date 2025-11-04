@@ -86,6 +86,10 @@ const paddle = {
     // Dimensions
     width: 100,
     height: 20,
+
+    eye: {
+        size: 10
+    }
 };
 
 // Our fly
@@ -685,13 +689,6 @@ function drawBird() {
     // Handle wing flap
     let flap = sin(frameCount * 10);
 
-    // Draw bird's body
-    push();
-    noStroke();
-    fill("#5f3b0dff");
-    ellipse(paddle.x, paddle.y, paddle.width, paddle.height);
-    pop();
-
     // Draw right wings
     push();
     noStroke(); 
@@ -714,6 +711,18 @@ function drawBird() {
     rotate(flap);
     ellipse(paddle.x - 40, paddle.y, 60, 15);
     pop();
+
+    // Draws the eye
+    push();
+    noStroke();
+    fill("#ffffffff");
+
+    const eyeOffsetX = 25;
+    const eyeOffsetY = -5;
+
+    ellipse(paddle.x + eyeOffsetX, paddle.y + eyeOffsetY, paddle.eye.size);
+    pop();
+
 
 }
 
