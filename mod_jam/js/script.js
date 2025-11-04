@@ -821,12 +821,12 @@ function checkBatBounce () {
 }
 
 
-// Displays the tongue (tip and line connection) and the frog (body)
+// Displays the mouth and the bat (body)
 function drawBat() {
-    // Draw the frog's body
+    // Draw the bat's body
     push();
-    fill(0);
-    stroke(255);
+    fill("#361306ff");
+    noStroke();
     ellipse(bat.body.x, bat.body.y, bat.body.size);
     pop();
 
@@ -841,8 +841,8 @@ function drawBat() {
     // Reference from p5 to draw arc
     // Draw left wing
     push();
-    fill(0);
-    stroke(255);
+    fill("#222221ff");
+    noStroke();
     translate(bat.body.x, bat.body.y);
     rotate(flapAngle);
     arc(-120, -25, 100, bat.wings.left.w, bat.wings.left.h, 360);
@@ -850,8 +850,8 @@ function drawBat() {
 
     // Draw right wing
     push();
-    fill(0);
-    stroke(255);
+    fill("#222221ff");
+    noStroke();
     translate(bat.body.x, bat.body.y);
     rotate(-flapAngle);
     arc(120, -25, 100, bat.wings.left.w, bat.wings.right.h, 360);
@@ -859,7 +859,7 @@ function drawBat() {
 
     // Draw the eyes
     push();
-    fill(255);
+    fill("#222221ff");
     noStroke();
     translate(bat.body.x, bat.body.y);
     ellipse(-30, -70, bat.eyes.left.size);
