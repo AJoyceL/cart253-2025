@@ -37,6 +37,18 @@ function setup() {
     createCanvas(300, 300);
 }
 
+function createFly() {
+    //generateb a rabndome fly object
+    let fly  = {
+        x: random(0, width),
+        y: random(0, height),
+        size: random(2, 10),
+        buzziness: random(2, 0)
+    };
+    return fly;
+}
+
+
 /**
  * Moves and displays the flies
  */
@@ -68,4 +80,20 @@ function drawFly(fly) {
     fill(0);
     ellipse(fly.x, fly.y, fly.size);
     pop();
+}
+
+function keyPressed() {
+    //add a new fly
+    const newFly = createFly();
+    flies.push(newFly);
+}
+
+function mousePressed() {
+    for(let fly of flies) {
+        const d = dist(mouseX, mouseY, fly.x, fly.y);
+        if (d < fly.size/2) {
+            const index = flies.indexOf(fly);
+            flies.splice(index, 1);
+        }
+    }
 }
