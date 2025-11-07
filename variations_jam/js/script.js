@@ -1,6 +1,6 @@
 /**
  * Variation Menu
- * Pippin Barr
+ * Joyce Angelina Lam
  * 
  * A relatively simple example of a set of variations within a single
  * project. (When we learn Object-Oriented Programming this will be a

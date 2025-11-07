@@ -5,22 +5,38 @@
  */
 
 const menuText = `
-(R) Red variation
-(G) Green variation
-(B) Blue variation`
+(R) Variation One
+(G) Variation Two
+(B) Variation Three
+`
 
 /**
  * Display the main menu
  */
 function menuDraw() {
-    background(0);
+    background('#609ee6ff');
 
     push();
-    fill(255);
+    fill('#22115fff');
+
+    textFont("Verdana");
+    textStyle(BOLD);
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    text("Talk To Me", width/2, height/2 -100);
+
+    textFont("Arial");
     textSize(32);
     textAlign(CENTER, CENTER);
-    text(menuText, width / 2, height / 2);
+    text(menuText, width / 2, height / 2 + 50);
     pop();
+
+    //to verify if the alignbment
+    // noFill();
+    // stroke(255, 0, 0);
+    // rect(width/2 - 150, height/2 -10, 300, 40);  // Red area
+    // rect(width/2 - 150, height/2 + 30, 300, 40);  // Green area
+    // rect(width/2 - 150, height/2 + 70, 300, 40); // Blue area
 }
 
 /**
@@ -28,17 +44,17 @@ function menuDraw() {
  */
 function menuKeyPressed(event) {
     switch (event.keyCode) {
-        case 82:
+        case 82: // R
             state = "red-variation";
             redSetup();
             break;
 
-        case 71:
+        case 71: // G
             state = "green-variation";
             greenSetup();
             break;
 
-        case 66:
+        case 66: // B
             state = "blue-variation";
             blueSetup();
             break;
@@ -49,5 +65,21 @@ function menuKeyPressed(event) {
  * This will be called whenever the mouse is pressed while the menu is active
  */
 function menuMousePressed() {
+    // variation one
+    if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 - 10 && mouseY < height/2 + 30) {
+        state = "red-variation";
+        redSetup();
+    };
 
+    // variaiton two
+    if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 + 30 && mouseY < height/2 + 70) {
+        state = "green-variation";
+        redSetup();
+    };
+
+    // variation three
+      if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 + 70 && mouseY < height/2 + 110) {
+        state = "blue-variation";
+        redSetup();
+    };
 }
