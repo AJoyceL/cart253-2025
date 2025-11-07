@@ -9,13 +9,14 @@
 
 "use strict";
 
-let state = "menu";
+let state = "red-variation"; // menu
 
 /**
  * Create the canvas
 */
 function setup() {
     createCanvas(500, 500);
+    redSetup();
 }
 
 
