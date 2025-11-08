@@ -20,6 +20,24 @@ const player = {
     state: "idle",
 }
 
+let blocks = {
+    one : {
+        x: 150,
+        y: 300,
+        w: 60,
+        h: 20,
+        fill: "#bbbbff",
+    },
+    two: {
+        x: 300,
+        y: 300,
+        w: 60,
+        h: 20,
+        fill: "#bbffeeff",
+    },
+}
+
+
 
 /**
  * This will be called just before the red variation starts
@@ -33,7 +51,7 @@ function redSetup() {
             size: random(60, 100),
         };
         clouds.push(cloud);
-    } 
+    };
 }
 
 /**
@@ -51,6 +69,10 @@ function redDraw() {
     // player
     moveRedPlayer();
     drawPlayer();
+    redPlayerOverlap();
+
+    // speech block
+    drawBlock();
 }
 
 /**
@@ -128,7 +150,7 @@ function moveRedPlayer() {
     player.y += -player.speed;
 
     // player falls back
-    if (player.y <= 300) {
+    if (player.y <= 250) {
         player.state = "fall";
     }
    }
@@ -150,4 +172,52 @@ function drawPlayer() {
     noStroke();
     rect(player.x, player.y, player.size)
     pop();
+}
+
+/**
+ * Block functions
+*/
+function drawBlock() {
+    push();
+    fill(blocks.one.fill);
+    noStroke();
+    rect(blocks.one.x, blocks.one.y, blocks.one.w, blocks.one.h);
+
+    fill(blocks.two.fill);
+    noStroke();
+    rect(blocks.two.x, blocks.two.y, blocks.two.w, blocks.two.h);
+    pop();
+}
+
+// player and block overlap
+// taken from Mod Jam checkBatBounce
+function redPlayerOverlap() {
+    if(player.state !== "jump") return; 
+
+    //player 
+    const px = player.x;
+    const py = player.y;
+    const pr = player.size/2;
+
+    //block one
+    const bx = blocks.one.x;
+    const by = blocks.one.y;
+    const bw = blocks.one.w;
+    const bh = blocks.one.h;
+
+    //block two
+    const bx2 = blocks.two.x;
+    const by2 = blocks.two.y;
+    const bw2 = blocks.two.w;
+    const bh2 = blocks.two.h;
+
+    //overlap block one
+    const hit = px + pr > bx && px - pr < bx + bw && py +pr > by && py - pr < by + bh;
+    const hit2 = px + pr > bx2 && px - pr < bx2 + bw2 && py +pr > by2 && py - pr < by2 + bh2;
+
+    if(hit || hit2) {
+        player.state = "fall";
+        player.y = by + pr; //block one
+        player.y = by2 + pr; //block two
+    }
 }
