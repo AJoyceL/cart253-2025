@@ -10,6 +10,16 @@
 
 let clouds = [];
 
+const player = {
+    x: 25,
+    y: 350,
+    size: 50,
+
+    velocity: 0,
+    speed: 2,
+    state: "idle",
+}
+
 
 /**
  * This will be called just before the red variation starts
@@ -37,6 +47,10 @@ function redDraw() {
     for (let c of clouds) {
         drawCloud(c.x, c.y, c.size);     // draws clouds
     }
+
+    // player
+    moveRedPlayer();
+    drawPlayer();
 }
 
 /**
@@ -81,5 +95,59 @@ function drawCloud(x, y, size) {
     ellipse(x, y, size, size* .6);
     ellipse(x - size * .4, y + 5, size * .7, size * .5);
     ellipse(x - size * .4, y + 5, size * .7, size * .5);
+    pop();
+}
+
+/**
+ * Player functions
+*/
+function moveRedPlayer() {
+    // move player on the X axis (left and right)
+    if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+        player.x -= 5;
+    }
+
+    if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+        player.x += 5;
+    }
+    
+    // Constrain the bat to the canvas
+   player.x = constrain(player.x, player.size / 2, width - player.size / 2);
+
+   // handle the player jump
+    if(player.state === "idle" && (keyIsDown(' ') || keyIsDown(32))) { //spacebar
+        player.state = "jump";
+        return false; //stop browser from scrolling
+    } 
+
+   if(player.state === "idle") {
+    // idle, does nothing
+   }
+
+   else if(player.state === "jump") {
+    player.y += -player.speed;
+
+    // player falls back
+    if (player.y <= 300) {
+        player.state = "fall";
+    }
+   }
+
+   else if(player.state === "fall") {
+        player.y += player.speed;
+
+        //stops when player reaches platform
+        if(player.y >= 350) {
+            player.state = "idle";
+        }
+   }
+
+}
+
+function drawPlayer() {
+    push();
+    fill("#1366e2ff")
+    noStroke();
+    rect(player.x, player.y, player.size)
     pop();
 }
