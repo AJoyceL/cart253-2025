@@ -1,0 +1,19 @@
+{
+"speech_interactions" :[
+    {
+        "suffix": [
+            "I love",
+            "I have",
+            "I want",
+            "I hate"
+        ],
+
+        "prefix":[
+            "red apples.",
+            "dreams of exploring the sky.",
+            "empowered superdogs.",
+            "newly made games."
+        ]
+    }
+]
+}
