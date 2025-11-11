@@ -29,13 +29,17 @@ let blocks = {
         fill: "#bbbbff",
     },
     two: {
-        x: 300,
+        x: 600,
         y: 300,
         w: 60,
         h: 20,
         fill: "#bbffeeff",
     },
 }
+
+//camera
+let camX = 0;
+let camY = 0;
 
 
 
@@ -44,14 +48,21 @@ let blocks = {
  */
 function redSetup() {
     // draws clouds
-    for (let i = 0; i < 10; i++) {
-        let cloud = {
-            x: random(width),
+    // for (let i = 0; i < 10; i++) {
+    //     let cloud = {
+    //         x: random(width),
+    //         y: random(10, 350),
+    //         size: random(60, 100),
+    //     };
+    //     clouds.push(cloud);
+    // };
+    for(let i = 0; i< 10; i++) {
+        clouds.push({
+            x: random(2000),
             y: random(10, 350),
             size: random(60, 100),
-        };
-        clouds.push(cloud);
-    };
+        });
+    }
 }
 
 /**
@@ -59,6 +70,13 @@ function redSetup() {
  */
 function redDraw() {
     background('#fa94e0ff');
+
+    // Handles camera position == follows the player => reference p5
+    camX = lerp(camX, player.x - width/2, 0.1); // smoother with lerp
+    camX = constrain(camX, 0, 2000 - width); // limit the camra within the world
+     
+    push();
+    translate(-camX, -camY);
 
     // Background
     drawBg(); // draws main background
@@ -73,6 +91,8 @@ function redDraw() {
 
     // speech block
     drawBlock();
+
+    pop();
 }
 
 /**
@@ -100,12 +120,12 @@ function drawBg() {
     push();
     fill('#591669ff');
     noStroke();
-    rect(0, 400, 1000, 100);
+    rect(0, 400, 2000, 100);
 
     // draws the grass
     fill('#cf48b2ff');
     noStroke();
-    rect(0, 400, 1000, 25);
+    rect(0, 400, 2000, 25);
     pop();
 }
 
@@ -133,8 +153,8 @@ function moveRedPlayer() {
         player.x += 5;
     }
     
-    // Constrain the bat to the canvas
-   player.x = constrain(player.x, player.size / 2, width - player.size / 2);
+    // Constrain the player to the canvas
+    player.x = constrain(player.x, player.size / 2, 2000 - player.size / 2);
 
    // handle the player jump
     if(player.state === "idle" && (keyIsDown(' ') || keyIsDown(32))) { //spacebar
@@ -192,7 +212,7 @@ function drawBlock() {
 // player and block overlap
 // taken from Mod Jam checkBatBounce
 function redPlayerOverlap() {
-    if(player.state !== "jump") return; 
+    if(player.state !== "jump" && player.state !== "fall") return; 
 
     //player 
     const px = player.x;
