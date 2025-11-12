@@ -8,7 +8,7 @@ Talk To Me (URL_FOR_THE_RUNNING_PROJECT)
 Talk To Me is a dialogue-based game where you (the player) move and interact with blocks to trigger words from an unknown entity. There will be two speech variation to the game: a preffix and a suffix.
 
 > There are three modes/variations to this game: 
-    1. In Bow At The Alter, you're(the player) an oracle, worshipping an unknown God. You seek guidance through the alters the people have build for THEM. You hope that whatever THEIR words are, lead your city state forward.
+    1. In Bow At The Alter, you're(the player) an oracle, worshipping an unknown God at two different temples. You seek guidance through the alters the people have build for THEM. You hope that whatever THEIR words are, lead your city state forward.
 
         Instruction:
         - Move the player with left/right arrow and/or A & D key.

@@ -154,35 +154,6 @@ function moveRedPlayer() {
     
     // Constrain the player to the canvas
     player.x = constrain(player.x, player.size / 2, 2000 - player.size / 2);
-
-//    // handle the player jump
-//     if(player.state === "idle" && (keyIsDown(' ') || keyIsDown(32))) { //spacebar
-//         player.state = "jump";
-//         return false; //stop browser from scrolling
-//     } 
-
-//    if(player.state === "idle") {
-//     // idle, does nothing
-//    }
-
-//    else if(player.state === "jump") {
-//     player.y += -player.speed;
-
-//     // player falls back
-//     if (player.y <= 250) {
-//         player.state = "fall";
-//     }
-//    }
-
-//    else if(player.state === "fall") {
-//         player.y += player.speed;
-
-//         //stops when player reaches platform
-//         if(player.y >= 350) {
-//             player.state = "idle";
-//         }
-//    }
-
 }
 
 function drawPlayer() {
@@ -209,10 +180,10 @@ function drawBlock() {
 }
 
 // player and block overlap
-// taken from Mod Jam checkBatBounce
+// overlap const taken from conditionals/creature-loves-massage
 function redPlayerOverlap() {
     // calls for speech
-    const interaction = speech.speech_interactions[0];
+    const interaction = speech.speech_interactions[0].red_var;
 
     //calls for the blok arrays
     const blocksArray = [blocks.one, blocks.two];
@@ -222,6 +193,7 @@ function redPlayerOverlap() {
         const distance = dist(player.x, player.y, b.x, b.y);
         const alterOverlap = (distance < player.size/2);
 
+        //triggers respective speech
         if(alterOverlap) {
             collided = true;
             if(b === blocks.one) {

@@ -1,19 +1,54 @@
 {
 "speech_interactions" :[
     {
-        "prefix": [
-            "I love",
-            "I have",
-            "I want",
-            "I hate"
-        ],
+        "red_var": {
+            "prefix": [
+                "I love",
+                "I have",
+                "I want",
+                "I hate"
+            ],
 
-        "sufix":[
-            "red apples.",
-            "dreams of exploring the sky.",
-            "empowered superdogs.",
-            "newly made games."
-        ]
+            "sufix":[
+                "red apples.",
+                "dreams of exploring the sky.",
+                "empowered superdogs.",
+                "newly made games."
+            ]
+        },
+
+        "green_var": {
+            "prefix": [
+                "I'm not",
+                "I don't",
+                "I can't",
+                "Is this"
+            ],
+
+            "sufix":[
+                "red apples.",
+                "dreams of exploring the sky.",
+                "empowered superdogs.",
+                "newly made games."
+            ]
+        },
+
+        "blue_var": {
+            "prefix": [
+                "I'm not there!",
+                "I don't",
+                "I can't",
+                "Is this"
+            ],
+
+            "sufix":[
+                "red apples.",
+                "dreams of exploring the sky.",
+                "empowered superdogs.",
+                "newly made games."
+            ]
+        }        
     }
 ]
 }
+
