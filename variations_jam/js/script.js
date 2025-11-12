@@ -64,8 +64,9 @@ function draw() {
             fill("black");
             textSize(20);
             textFont(novem);
+            textWrap(CHAR);
             textAlign(CENTER, TOP);
-            text(currentSpeech, width/2, height/2 -200);
+            text(currentSpeech, width/2 - 150, height/2 - 200, 350);
             pop();
         }
 
