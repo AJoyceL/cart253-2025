@@ -43,6 +43,7 @@ let camY = 0;
 
 
 
+
 /**
  * This will be called just before the red variation starts
  */
@@ -213,6 +214,8 @@ function drawBlock() {
 // taken from Mod Jam checkBatBounce
 function redPlayerOverlap() {
     if(player.state !== "jump") return; 
+    
+    const interaction = speech.speech_interactions[0];
 
     //player 
     const px = player.x;
@@ -230,6 +233,15 @@ function redPlayerOverlap() {
 
         if(hit) {
             player.state = "fall";
+            collided = true;
+            
+            if(b === blocks.one) {
+                preffixText = random(interaction.prefix);
+            }
+            if(b === blocks.two) {
+                suffixText = random(interaction.sufix);
+            }
         }   
     }
+    console.log(showText);
 }

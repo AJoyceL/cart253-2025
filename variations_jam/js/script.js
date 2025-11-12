@@ -11,6 +11,21 @@
 
 let state = "red-variation"; // menu
 
+//speech data
+let speech = undefined;
+
+let collided = false;
+let showText = false;
+let preffixText = "";
+let suffixText = "";
+let currentSpeech= '';
+
+
+//load speech data
+function preload(){
+    speech = loadJSON("assets/data/speech_interaction.json");
+}
+
 /**
  * Create the canvas
 */
@@ -37,6 +52,22 @@ function draw() {
         case "blue-variation":
             blueDraw();
             break;
+    }
+    
+    if(showText && currentSpeech) {
+        push();
+        fill(255);
+        textSize(20);
+        text(currentSpeech, width/2, height/2 -200);
+        pop();
+    } 
+
+    if(collided) {
+        currentSpeech = suffixText + " " + preffixText;
+        showText = true;
+    }
+    else{
+        showText = false;
     }
 }
 
