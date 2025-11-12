@@ -64,7 +64,7 @@ function draw() {
     } 
 
     if(collided) {
-        currentSpeech = suffixText + " " + preffixText;
+        currentSpeech = preffixText + " " + suffixText;
         showText = true;
     }
     else{
