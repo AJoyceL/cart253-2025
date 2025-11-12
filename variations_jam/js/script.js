@@ -13,7 +13,6 @@ let state = "red-variation"; // menu
 
 //speech data
 let speech = undefined;
-
 let collided = false;
 let showText = false;
 let preffixText = "";
@@ -21,9 +20,13 @@ let suffixText = "";
 let currentSpeech= '';
 
 
+//font
+let novem = undefined;
+
 //load speech data
 function preload(){
     speech = loadJSON("assets/data/speech_interaction.json");
+    novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf");
 }
 
 /**
@@ -55,12 +58,17 @@ function draw() {
     }
     
     if(showText && currentSpeech) {
-        push();
-        fill(255);
-        textSize(20);
-        textAlign(CENTER, TOP);
-        text(currentSpeech, width/2, height/2 -200);
-        pop();
+
+        if(state === "red-variation"){
+            push();
+            fill("black");
+            textSize(20);
+            textFont(novem);
+            textAlign(CENTER, TOP);
+            text(currentSpeech, width/2, height/2 -200);
+            pop();
+        }
+
     } 
 
     if(collided) {

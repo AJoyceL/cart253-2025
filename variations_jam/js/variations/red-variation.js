@@ -17,7 +17,6 @@ const player = {
 
     velocity: 0,
     speed: 3,
-    // state: "idle",
 }
 
 let blocks = {
@@ -46,16 +45,8 @@ let camY = 0;
  * This will be called just before the red variation starts
  */
 function redSetup() {
-    // draws clouds
-    // for (let i = 0; i < 10; i++) {
-    //     let cloud = {
-    //         x: random(width),
-    //         y: random(10, 350),
-    //         size: random(60, 100),
-    //     };
-    //     clouds.push(cloud);
-    // };
-    for(let i = 0; i< 10; i++) {
+    //draws the clouds at random position across the world
+    for(let i = 0; i< 20; i++) {
         clouds.push({
             x: random(2000),
             y: random(10, 350),
@@ -190,6 +181,8 @@ function redPlayerOverlap() {
 
     //Horizontal overlap => text appears when the player overlaps with the alter
     for (let b of blocksArray) {
+        //text font
+        textFont(novem);
         const distance = dist(player.x, player.y, b.x, b.y);
         const alterOverlap = (distance < player.size/2);
 
