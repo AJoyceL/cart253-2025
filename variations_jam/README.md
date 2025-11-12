@@ -1,32 +1,42 @@
-# TITLE OF PROJECT
+# Variation Jam
 
-AUTHOR NAME
+Joyce Angelina Lam
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+Talk To Me (URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
+Talk To Me is a dialogue-based game where you (the player) move and interact with blocks to trigger words from an unknown entity. There will be two speech variation to the game: a preffix and a suffix.
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+> There are three modes/variations to this game: 
+    1. In Bow At The Alter, you're(the player) an oracle, worshipping an unknown God. You seek guidance through the alters the people have build for THEM. You hope that whatever THEIR words are, lead your city state forward.
 
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
+        Instruction:
+        - Move the player with left/right arrow and/or A & D key.
+        - Overlap with alters to trigger speech. 
 
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
+    2.In Within My Mind, you(the player) are a very self-conscious person who often doubts themselves. You often doubt yourself, your ideas and/or your acts in your consciousness.
 
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
+        Instruction: 
+        - Press spacebar to trigger speech.
+
+    3. In Forest Fae, you(the player) are on an quest, looking under rocks, over threes and through flower bushes for little faes. Rumors say that they are mischevious little creatures that like playing Hide&Seek with visitors.
+
+        Instruction: 
+        - Move the player with left/right/up/down arrows and/or A. S. D & W key.
+        - Overlap with the trees to trigger speech.
+
+> Contribution
+   
 
 ## Screenshot(s)
-
-This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
 
 > ![Image of a clown face](./assets/images/clown.png)
 
 ## Attribution
 
-This bit should attribute any code, assets or other elements used taken from other sources. For example:
-
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
 > - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - 
 
 ## License
 

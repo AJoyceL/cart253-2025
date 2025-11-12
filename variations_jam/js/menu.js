@@ -5,9 +5,9 @@
  */
 
 const menuText = `
-(R) Variation One
-(G) Variation Two
-(B) Variation Three
+(R) Bow At The Alter
+(G) Within My Mind
+(B) Forest Fae
 `
 
 /**
