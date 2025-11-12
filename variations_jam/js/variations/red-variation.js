@@ -17,22 +17,20 @@ const player = {
 
     velocity: 0,
     speed: 3,
-    state: "idle",
+    // state: "idle",
 }
 
 let blocks = {
     one : {
         x: 150,
-        y: 300,
-        w: 60,
-        h: 20,
+        y: 340,
+        s: 60,
         fill: "#bbbbff",
     },
     two: {
         x: 600,
-        y: 300,
-        w: 60,
-        h: 20,
+        y: 340,
+        s: 60,
         fill: "#bbffeeff",
     },
 }
@@ -157,33 +155,33 @@ function moveRedPlayer() {
     // Constrain the player to the canvas
     player.x = constrain(player.x, player.size / 2, 2000 - player.size / 2);
 
-   // handle the player jump
-    if(player.state === "idle" && (keyIsDown(' ') || keyIsDown(32))) { //spacebar
-        player.state = "jump";
-        return false; //stop browser from scrolling
-    } 
+//    // handle the player jump
+//     if(player.state === "idle" && (keyIsDown(' ') || keyIsDown(32))) { //spacebar
+//         player.state = "jump";
+//         return false; //stop browser from scrolling
+//     } 
 
-   if(player.state === "idle") {
-    // idle, does nothing
-   }
+//    if(player.state === "idle") {
+//     // idle, does nothing
+//    }
 
-   else if(player.state === "jump") {
-    player.y += -player.speed;
+//    else if(player.state === "jump") {
+//     player.y += -player.speed;
 
-    // player falls back
-    if (player.y <= 250) {
-        player.state = "fall";
-    }
-   }
+//     // player falls back
+//     if (player.y <= 250) {
+//         player.state = "fall";
+//     }
+//    }
 
-   else if(player.state === "fall") {
-        player.y += player.speed;
+//    else if(player.state === "fall") {
+//         player.y += player.speed;
 
-        //stops when player reaches platform
-        if(player.y >= 350) {
-            player.state = "idle";
-        }
-   }
+//         //stops when player reaches platform
+//         if(player.y >= 350) {
+//             player.state = "idle";
+//         }
+//    }
 
 }
 
@@ -202,46 +200,38 @@ function drawBlock() {
     push();
     fill(blocks.one.fill);
     noStroke();
-    rect(blocks.one.x, blocks.one.y, blocks.one.w, blocks.one.h);
+    rect(blocks.one.x, blocks.one.y, blocks.one.s);
 
     fill(blocks.two.fill);
     noStroke();
-    rect(blocks.two.x, blocks.two.y, blocks.two.w, blocks.two.h);
+    rect(blocks.two.x, blocks.two.y, blocks.two.s);
     pop();
 }
 
 // player and block overlap
 // taken from Mod Jam checkBatBounce
 function redPlayerOverlap() {
-    if(player.state !== "jump") return; 
-    
+    // calls for speech
     const interaction = speech.speech_interactions[0];
 
-    //player 
-    const px = player.x;
-    const py = player.y;
-    const ps = player.size/2;
-
+    //calls for the blok arrays
     const blocksArray = [blocks.one, blocks.two];
 
-    //vertical collision
+    //Horizontal overlap => text appears when the player overlaps with the alter
     for (let b of blocksArray) {
-        const hit = px < b.x + b.w &&
-                    px + ps > b.x &&
-                    py < b.y + b.h &&
-                    py + ps > b.y;
+        const distance = dist(player.x, player.y, b.x, b.y);
+        const alterOverlap = (distance < player.size/2);
 
-        if(hit) {
-            player.state = "fall";
+        if(alterOverlap) {
             collided = true;
-            
             if(b === blocks.one) {
                 preffixText = random(interaction.prefix);
             }
+
             if(b === blocks.two) {
                 suffixText = random(interaction.sufix);
             }
-        }   
+        }
     }
     console.log(showText);
 }
