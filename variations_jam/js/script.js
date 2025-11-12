@@ -58,6 +58,7 @@ function draw() {
         push();
         fill(255);
         textSize(20);
+        textAlign(CENTER, TOP);
         text(currentSpeech, width/2, height/2 -200);
         pop();
     } 
