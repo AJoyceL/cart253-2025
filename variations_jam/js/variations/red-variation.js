@@ -16,7 +16,7 @@ const player = {
     size: 50,
 
     velocity: 0,
-    speed: 2,
+    speed: 3,
     state: "idle",
 }
 
@@ -212,32 +212,24 @@ function drawBlock() {
 // player and block overlap
 // taken from Mod Jam checkBatBounce
 function redPlayerOverlap() {
-    if(player.state !== "jump" && player.state !== "fall") return; 
+    if(player.state !== "jump") return; 
 
     //player 
     const px = player.x;
     const py = player.y;
-    const pr = player.size/2;
+    const ps = player.size/2;
 
-    //block one
-    const bx = blocks.one.x;
-    const by = blocks.one.y;
-    const bw = blocks.one.w;
-    const bh = blocks.one.h;
+    const blocksArray = [blocks.one, blocks.two];
 
-    //block two
-    const bx2 = blocks.two.x;
-    const by2 = blocks.two.y;
-    const bw2 = blocks.two.w;
-    const bh2 = blocks.two.h;
+    //vertical collision
+    for (let b of blocksArray) {
+        const hit = px < b.x + b.w &&
+                    px + ps > b.x &&
+                    py < b.y + b.h &&
+                    py + ps > b.y;
 
-    //overlap block one
-    const hit = px + pr > bx && px - pr < bx + bw && py +pr > by && py - pr < by + bh;
-    const hit2 = px + pr > bx2 && px - pr < bx2 + bw2 && py +pr > by2 && py - pr < by2 + bh2;
-
-    if(hit || hit2) {
-        player.state = "fall";
-        player.y = by + pr; //block one
-        player.y = by2 + pr; //block two
+        if(hit) {
+            player.state = "fall";
+        }   
     }
 }
