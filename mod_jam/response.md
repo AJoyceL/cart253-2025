@@ -23,7 +23,7 @@ In general, I liked how modern, engaging, and unexpectedly complex the project t
 
 
 
-#Ya Xuan Pang
+# Ya Xuan Pang
 > https://yaxuanpang.github.io/cart253/topics/mod-jam/
 > https://github.com/yaxuanscpang/cart253/tree/main/topics/mod-jam
 
