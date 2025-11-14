@@ -17,20 +17,22 @@ const player = {
     speed: 3,
 }
 
-let blocks = {
-    one : {
-        x: 150,
-        y: 340,
-        s: 60,
-        fill: "#bbbbff",
-    },
-    two: {
-        x: 600,
-        y: 340,
-        s: 60,
-        fill: "#bbffeeff",
-    },
-}
+let altarOne = undefined;
+let altarTwo = undefined;
+// let blocks = {
+//     one : {
+//         x: 150,
+//         y: 340,
+//         s: 60,
+//         fill: "#bbbbff",
+//     },
+//     two: {
+//         x: 600,
+//         y: 340,
+//         s: 60,
+//         fill: "#bbffeeff",
+//     },
+// }
 
 //camera
 let camX = 0;
@@ -43,6 +45,8 @@ let camY = 0;
  * This will be called just before the red variation starts
  */
 function redSetup() {
+    altarOne = createAltars(1);
+    altarTwo = createAltars(2)
 }
 
 /**
@@ -62,14 +66,14 @@ function redDraw() {
     // Background
     drawBg(); // draws main background
 
+    // speech altar
+    drawAltars(altarOne);
+    drawAltars(altarTwo);
 
     // player
     moveRedPlayer();
     drawPlayer();
     redPlayerOverlap();
-
-    // speech block
-    drawBlock();
 
     pop();
 }
@@ -136,42 +140,46 @@ function drawPlayer() {
 /**
  * Block functions
 */
-function drawBlock() {
+function createAltars(altars) {
+    let altar = {
+        x: random(200, 1300 - 200),
+        y: 340,
+        size: 50,
+        altar: altars,
+    };
+    return altar;
+}
+function drawAltars(altars) {
     push();
-    fill(blocks.one.fill);
     noStroke();
-    rect(blocks.one.x, blocks.one.y, blocks.one.s);
-
-    fill(blocks.two.fill);
-    noStroke();
-    rect(blocks.two.x, blocks.two.y, blocks.two.s);
+    image(altarImg, altars.x, altars.y, altars.size);
     pop();
 }
 
-// player and block overlap
+// player and altar overlap
 // overlap const taken from conditionals/creature-loves-massage
 function redPlayerOverlap() {
     // calls for speech
     const interaction = speech.speech_interactions[0].red_var;
 
-    //calls for the blok arrays
-    const blocksArray = [blocks.one, blocks.two];
+    //calls for the alatr arrays
+    const altarsArray = [altarOne, altarTwo];
 
-    //Horizontal overlap => text appears when the player overlaps with the alter
-    for (let b of blocksArray) {
+    //Horizontal overlap => text appears when the player overlaps with the altar
+    for (let a of altarsArray) {
         //text font
         textFont(novem);
-        const distance = dist(player.x, player.y, b.x, b.y);
-        const alterOverlap = (distance < player.size/2);
+        const distance = dist(player.x, player.y, a.x, a.y);
+        const altarOverlap = (distance < player.size/2);
 
         //triggers respective speech
-        if(alterOverlap) {
+        if(altarOverlap) {
             collided = true;
-            if(b === blocks.one) {
+            if(a === altarOne) {
                 preffixText = random(interaction.prefix);
             }
 
-            if(b === blocks.two) {
+            if(a === altarTwo) {
                 suffixText = random(interaction.sufix);
             }
         }
