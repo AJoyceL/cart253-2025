@@ -23,10 +23,18 @@ let currentSpeech= '';
 //font
 let novem = undefined;
 
+//background img
+let redBg = undefined;
 //load speech data
 function preload(){
+    // dialogue preload
     speech = loadJSON("assets/data/speech_interaction.json");
-    novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf");
+
+    //font preload
+    novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf"); //red variation
+
+    //background preload taken from Freepik
+    redBg = loadImage("assets/images/red_var_bg.png") //red variation
 }
 
 /**

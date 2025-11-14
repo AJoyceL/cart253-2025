@@ -8,8 +8,6 @@
  * GLOBAL VALUES
 */
 
-let clouds = [];
-
 const player = {
     x: 25,
     y: 350,
@@ -45,14 +43,6 @@ let camY = 0;
  * This will be called just before the red variation starts
  */
 function redSetup() {
-    //draws the clouds at random position across the world
-    for(let i = 0; i< 20; i++) {
-        clouds.push({
-            x: random(2000),
-            y: random(10, 350),
-            size: random(60, 100),
-        });
-    }
 }
 
 /**
@@ -63,16 +53,15 @@ function redDraw() {
 
     // Handles camera position == follows the player => reference p5
     camX = lerp(camX, player.x - width/2, 0.1); // smoother with lerp
-    camX = constrain(camX, 0, 2000 - width); // limit the camra within the world
+    camX = constrain(camX, 0, 1300 - width); // limit the camra within the world
      
     push();
     translate(-camX, -camY);
+    image(redBg, 0, 0, 1300, height); // calls the background img
 
     // Background
     drawBg(); // draws main background
-    for (let c of clouds) {
-        drawCloud(c.x, c.y, c.size);     // draws clouds
-    }
+
 
     // player
     moveRedPlayer();
@@ -119,17 +108,6 @@ function drawBg() {
     pop();
 }
 
-function drawCloud(x, y, size) {
-    // draws cloud
-    push();
-    fill('#ffdbf7ff');
-    noStroke();
-    ellipse(x, y, size, size* .6);
-    ellipse(x - size * .4, y + 5, size * .7, size * .5);
-    ellipse(x - size * .4, y + 5, size * .7, size * .5);
-    pop();
-}
-
 /**
  * Player functions
 */
@@ -144,7 +122,7 @@ function moveRedPlayer() {
     }
     
     // Constrain the player to the canvas
-    player.x = constrain(player.x, player.size / 2, 2000 - player.size / 2);
+    player.x = constrain(player.x, player.size / 2, 1300 - player.size / 2);
 }
 
 function drawPlayer() {
