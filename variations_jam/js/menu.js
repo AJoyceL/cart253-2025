@@ -5,7 +5,7 @@
  */
 
 const menuText = `
-(R) Bow At The Alter
+(R) Bow At The Altar
 (G) Within My Mind
 (B) Forest Fae
 `
