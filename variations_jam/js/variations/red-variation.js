@@ -103,12 +103,12 @@ function drawBg() {
     push();
     fill('#591669ff');
     noStroke();
-    rect(0, 400, 2000, 100);
+    image(redPaveImg, 0, 400, 1300, 100);
 
     // draws the grass
     fill('#cf48b2ff');
     noStroke();
-    rect(0, 400, 2000, 25);
+    image(redStoneImg, 0, 400, 1300, 25);
     pop();
 }
 
@@ -138,8 +138,9 @@ function drawPlayer() {
 }
 
 /**
- * Block functions
+ * Altars functions
 */
+//creates the altars base values
 function createAltars(altars) {
     let altar = {
         x: random(200, 1300 - 200),
@@ -149,6 +150,8 @@ function createAltars(altars) {
     };
     return altar;
 }
+
+// draws the altars
 function drawAltars(altars) {
     push();
     noStroke();

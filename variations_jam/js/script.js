@@ -26,6 +26,8 @@ let novem = undefined;
 //background img
 let redBg = undefined;
 let altarImg = undefined;
+let redPaveImg = undefined;
+let redStoneImg = undefined;
 
 //load speech data
 function preload(){
@@ -36,8 +38,11 @@ function preload(){
     novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf"); //red variation
 
     //background preload taken from Freepik
-    redBg = loadImage("assets/images/red_var_bg.png"); //red variation
+    //red variation
+    redBg = loadImage("assets/images/red_var_bg.png"); 
     altarImg = loadImage("assets/images/altar.png");
+    redPaveImg = loadImage("assets/images/pavement.png");
+    redStoneImg = loadImage("assets/images/stone.png");
 }
 
 /**
