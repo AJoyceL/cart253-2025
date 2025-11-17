@@ -81,17 +81,20 @@ function draw() {
             textSize(20);
             textFont(novem);
             textWrap(CHAR);
-            textAlign(CENTER, TOP);
-            text(currentSpeech, width/2 - 150, height/2 - 200, 350);
+            textAlign(LEFT, TOP);
+            text(currentSpeech, width/2 - 150, height/2 - 200, 300);
             pop();
         }
 
     } 
 
     if(collided) {
-        currentSpeech = preffixText + " " + suffixText;
         showText = true;
+        if(state === "red-variation"){
+            currentSpeech = preffixText + " " + suffixText;
+        }
     }
+
     else{
         showText = false;
     }

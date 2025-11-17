@@ -38,7 +38,8 @@ function redSetup() {
     altarTwo = createAltars(2)
 
     // reset the altars position
-    resetAltar();
+    resetAltar(altarOne);
+    resetAltar(altarTwo);
 }
 
 /**
@@ -66,8 +67,10 @@ function redDraw() {
     moveRedPlayer();
     drawPlayer();
     redPlayerOverlap();
-
     pop();
+
+    //draws the speech box
+    drawSpeechBox();
 }
 
 /**
@@ -91,18 +94,25 @@ function redMousePressed() {
 */
 
 function drawBg() {
-    // draws the dirt
     push();
-    fill('#591669ff');
-    noStroke();
+    // draws the pavement
     image(redPaveImg, 0, 400, 1300, 100);
 
-    // draws the grass
-    fill('#cf48b2ff');
-    noStroke();
+    // draws the stone
     image(redStoneImg, 0, 400, 1300, 25);
     pop();
 }
+
+// draws the speech box
+function drawSpeechBox() {
+    push();
+    fill(247, 152, 183, 150);
+    stroke(0, 0, 0, 150);
+    strokeWeight(3);
+    rect(75, 25, 350, 150);
+    pop();
+}
+
 
 /**
  * Player functions
@@ -162,8 +172,6 @@ function redPlayerOverlap() {
 
     //Horizontal overlap => text appears when the player overlaps with the altar
     for (let a of altarsArray) {
-        //text font
-        textFont(novem);
         const distance = dist(player.x, player.y, a.x, a.y);
         const altarOverlap = (distance < player.size/2);
 
@@ -172,12 +180,12 @@ function redPlayerOverlap() {
             collided = true; //speech true
             if(a === altarOne) {
                 preffixText = random(interaction.prefix);
-                resetAltar();
+                resetAltar(a);
             }
 
             if(a === altarTwo) {
                 suffixText = random(interaction.sufix);
-                resetAltar();
+                resetAltar(a);
             }
             
 
@@ -186,11 +194,6 @@ function redPlayerOverlap() {
 }
 
 //Resets the altar
-function resetAltar() {
-    //calls for the alatr arrays
-    const altarsArray = [altarOne, altarTwo];
-
-    for (let a of altarsArray) {
-        a.x = random(100, 1250); //reset scroll position
-    };
+function resetAltar(altar) {
+    altar.x = random(100, 1250); //reset scroll position
 }
