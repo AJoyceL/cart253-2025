@@ -8,6 +8,7 @@
  * GLOBAL VALUES
 */
 
+//Player values
 const player = {
     x: 25,
     y: 350,
@@ -17,22 +18,9 @@ const player = {
     speed: 3,
 }
 
+//Altar  values
 let altarOne = undefined;
 let altarTwo = undefined;
-// let blocks = {
-//     one : {
-//         x: 150,
-//         y: 340,
-//         s: 60,
-//         fill: "#bbbbff",
-//     },
-//     two: {
-//         x: 600,
-//         y: 340,
-//         s: 60,
-//         fill: "#bbffeeff",
-//     },
-// }
 
 //camera
 let camX = 0;
@@ -45,8 +33,12 @@ let camY = 0;
  * This will be called just before the red variation starts
  */
 function redSetup() {
+    //Calls both altar scrolls
     altarOne = createAltars(1);
     altarTwo = createAltars(2)
+
+    // reset the altars position
+    resetAltar();
 }
 
 /**
@@ -177,15 +169,28 @@ function redPlayerOverlap() {
 
         //triggers respective speech
         if(altarOverlap) {
-            collided = true;
+            collided = true; //speech true
             if(a === altarOne) {
                 preffixText = random(interaction.prefix);
+                resetAltar();
             }
 
             if(a === altarTwo) {
                 suffixText = random(interaction.sufix);
+                resetAltar();
             }
+            
+
         }
     }
-    console.log(showText);
+}
+
+//Resets the altar
+function resetAltar() {
+    //calls for the alatr arrays
+    const altarsArray = [altarOne, altarTwo];
+
+    for (let a of altarsArray) {
+        a.x = random(100, 1250); //reset scroll position
+    };
 }
