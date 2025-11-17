@@ -5,6 +5,11 @@
  */
 
 /**
+ * GLOBAL VALUES
+*/
+
+
+/**
  * This will be called just before the green variation starts
  */
 function greenSetup() {
@@ -15,14 +20,14 @@ function greenSetup() {
  * This will be called every frame when the green variation is active
  */
 function greenDraw() {
-    background("green");
+    background("#24394dff");
 }
 
 /**
  * This will be called whenever a key is pressed while the green variation is active
  */
 function greenKeyPressed(event) {
-    if (event.keyCode === 27) {
+    if (event.keyCode === 27) { //esc button
         state = "menu";
     }
 }
