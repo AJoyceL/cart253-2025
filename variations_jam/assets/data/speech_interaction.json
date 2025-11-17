@@ -18,18 +18,21 @@
         },
 
         "green_var": {
-            "prefix": [
-                "I'm not",
-                "I don't",
-                "I can't",
-                "Is this"
-            ],
-
-            "sufix":[
-                "red apples.",
-                "dreams of exploring the sky.",
-                "empowered superdogs.",
-                "newly made games."
+            "doubt": [
+                "I… I don’t think I’m good enough.",
+                "Why would anyone care about me?",
+                "I always mess things up.",
+                "I’m probably bothering everyone.",
+                "I can’t do anything right.",
+                "Nobody would notice if I disappeared.",
+                "I wish I were… different.",
+                "I don’t belong here.",
+                "I’m too much, or maybe too little.",
+                "I’m not sure anyone likes me.",
+                "Everything I do feels wrong.",
+                "I’m scared I’ll fail again.",
+                "I wish I could be confident.",
+                "I hate the way I am."
             ]
         },
 
