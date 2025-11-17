@@ -20,7 +20,8 @@ function greenSetup() {
  * This will be called every frame when the green variation is active
  */
 function greenDraw() {
-    background("#24394dff");
+    background("#091b2bff");
+    drawGreenSpeechBox();
 }
 
 /**
@@ -37,4 +38,25 @@ function greenKeyPressed(event) {
  */
 function greenMousePressed() {
 
+}
+
+
+/**
+ * Background functions
+*/
+
+function drawGreenSpeechBox() {
+    push();
+    fill(0, 0, 0, 200);
+    stroke(255, 255, 255, 200);
+    strokeWeight(1);
+    rect(50, 325, 400, 150);
+    pop();
+}
+
+function drawGreenSpeech() {
+    if(keyPressed('')) {
+        collided = true;
+        
+    }
 }

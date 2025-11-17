@@ -17,7 +17,8 @@ let collided = false;
 let showText = false;
 let preffixText = "";
 let suffixText = "";
-let currentSpeech= '';
+let currentSpeech = '';
+let doubtSpeech = '';
 
 
 //font
@@ -92,6 +93,10 @@ function draw() {
         showText = true;
         if(state === "red-variation"){
             currentSpeech = preffixText + " " + suffixText;
+        }
+
+        if(state === "green-variation") {
+            currentSpeech = doubtSpeech;
         }
     }
 

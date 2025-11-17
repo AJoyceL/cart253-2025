@@ -57,7 +57,7 @@ function redDraw() {
     image(redBg, 0, 0, 1300, height); // calls the background img
 
     // Background
-    drawBg(); // draws main background
+    drawRedBg(); // draws main background
 
     // speech altar
     drawAltars(altarOne);
@@ -70,7 +70,7 @@ function redDraw() {
     pop();
 
     //draws the speech box
-    drawSpeechBox();
+    drawRedSpeechBox();
 }
 
 /**
@@ -93,7 +93,7 @@ function redMousePressed() {
  * Background functions
 */
 
-function drawBg() {
+function drawRedBg() {
     push();
     // draws the pavement
     image(redPaveImg, 0, 400, 1300, 100);
@@ -104,7 +104,7 @@ function drawBg() {
 }
 
 // draws the speech box
-function drawSpeechBox() {
+function drawRedSpeechBox() {
     push();
     fill(247, 152, 183, 150);
     stroke(0, 0, 0, 150);
