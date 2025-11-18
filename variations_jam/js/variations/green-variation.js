@@ -21,7 +21,20 @@ function greenSetup() {
  */
 function greenDraw() {
     background("#091b2bff");
+
+    //draws the speech box
     drawGreenSpeechBox();
+
+    //calls for speech
+    if(showText && greenSpeech) {
+        push();
+        fill("white");
+        textSize(30);
+        textWrap(WORD);
+        textAlign(LEFT, TOP);
+        text(greenSpeech,  width/2 - 150, height/2 + 100, 320);
+        pop();  
+    }; 
 }
 
 /**
@@ -30,6 +43,12 @@ function greenDraw() {
 function greenKeyPressed(event) {
     if (event.keyCode === 27) { //esc button
         state = "menu";
+    }
+
+    if(event.keyCode === 32) { //spacebar
+        const interaction = speech.speech_interactions[0].green_var;
+        greenSpeech = random(interaction.doubt);
+        showText = true;
     }
 }
 
@@ -52,11 +71,4 @@ function drawGreenSpeechBox() {
     strokeWeight(1);
     rect(50, 325, 400, 150);
     pop();
-}
-
-function drawGreenSpeech() {
-    if(keyPressed('')) {
-        collided = true;
-        
-    }
 }

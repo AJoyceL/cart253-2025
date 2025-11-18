@@ -17,9 +17,8 @@ let collided = false;
 let showText = false;
 let preffixText = "";
 let suffixText = "";
-let currentSpeech = '';
-let doubtSpeech = '';
-
+let redSpeech = '';
+let greenSpeech = '';
 
 //font
 let novem = undefined;
@@ -74,35 +73,6 @@ function draw() {
             break;
     }
     
-    if(showText && currentSpeech) {
-
-        if(state === "red-variation"){
-            push();
-            fill("black");
-            textSize(20);
-            textFont(novem);
-            textWrap(CHAR);
-            textAlign(LEFT, TOP);
-            text(currentSpeech, width/2 - 150, height/2 - 200, 300);
-            pop();
-        }
-
-    } 
-
-    if(collided) {
-        showText = true;
-        if(state === "red-variation"){
-            currentSpeech = preffixText + " " + suffixText;
-        }
-
-        if(state === "green-variation") {
-            currentSpeech = doubtSpeech;
-        }
-    }
-
-    else{
-        showText = false;
-    }
 }
 
 /**

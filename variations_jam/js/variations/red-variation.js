@@ -66,11 +66,27 @@ function redDraw() {
     // player
     moveRedPlayer();
     drawPlayer();
-    redPlayerOverlap();
+    redPlayerOverlap();  
     pop();
 
     //draws the speech box
     drawRedSpeechBox();
+
+    //Calls for speech
+      if(showText && redSpeech) {
+        push();
+        fill("black");
+        textSize(20);
+        textFont(novem);
+        textWrap(WORD);
+        textAlign(LEFT, TOP);
+        text(redSpeech, width/2 - 150, height/2 - 200, 300);
+        pop();
+    }
+    if(collided) {
+        showText = true;
+        redSpeech = preffixText + " " + suffixText;
+    }    
 }
 
 /**
