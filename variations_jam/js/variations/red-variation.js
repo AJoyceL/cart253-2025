@@ -21,14 +21,16 @@ const player = {
 //Altar values
 let altarOne = undefined;
 let altarTwo = undefined;
+let altarThree = undefined;
 
 //camera
 let camX = 0;
 let camY = 0;
 
 //speech values
-let preffixText = "";
-let suffixText = "";
+let prefixText = "";
+let sufixText = "";
+let middleText = "";
 let redSpeech = '';
 
 
@@ -39,11 +41,13 @@ let redSpeech = '';
 function redSetup() {
     //Calls both altar scrolls
     altarOne = createAltars(1);
-    altarTwo = createAltars(2)
+    altarTwo = createAltars(2);
+    altarThree = createAltars(3);
 
     // reset the altars position
     resetAltar(altarOne);
     resetAltar(altarTwo);
+    resetAltar(altarThree);
 }
 
 /**
@@ -66,6 +70,7 @@ function redDraw() {
     // speech altar
     drawAltars(altarOne);
     drawAltars(altarTwo);
+    drawAltars(altarThree);
 
     // player
     moveRedPlayer();
@@ -85,7 +90,7 @@ function redDraw() {
     if(showText && redSpeech) {
         push();
         fill("black");
-        textSize(20);
+        textSize(18);
         textFont(novem);
         textWrap(WORD);
         textAlign(LEFT, TOP);
@@ -95,7 +100,7 @@ function redDraw() {
     if(collided) {
         showText = true;
         intro = false;
-        redSpeech = preffixText + " " + suffixText;
+        redSpeech = prefixText + " " + middleText + " " + sufixText;
     }    
 }
 
@@ -209,7 +214,7 @@ function redPlayerOverlap() {
     const interaction = speech.speech_interactions[0].red_var;
 
     //calls for the alatr arrays
-    const altarsArray = [altarOne, altarTwo];
+    const altarsArray = [altarOne, altarTwo, altarThree];
 
     //Horizontal overlap => text appears when the player overlaps with the altar
     for (let a of altarsArray) {
@@ -220,16 +225,19 @@ function redPlayerOverlap() {
         if(altarOverlap) {
             collided = true; //speech true
             if(a === altarOne) {
-                preffixText = random(interaction.prefix);
+                prefixText = random(interaction.prefix);
                 resetAltar(a);
             }
 
             if(a === altarTwo) {
-                suffixText = random(interaction.sufix);
+                middleText = random(interaction.middle);
                 resetAltar(a);
             }
-            
 
+            if(a === altarThree) {
+                sufixText = random(interaction.sufix);
+                resetAltar(a);
+            }
         }
     }
 }

@@ -2,23 +2,52 @@
 "speech_interactions" :[
     {
         "red_var": {
-            "prefix": {
-                "I love",
-                "I have",
-                "I want",
-                "I hate"
-            },
-
-            "sufix":[
-                "red apples.",
-                "dreams of exploring the sky.",
-                "empowered superdogs.",
-                "newly made games."
+            "prefix": [
+                "Hear me, mortal, for",
+                "Know this, child of fate,",
+                "By my will,",
+                "Let it be known that",
+                "The gods decree that",
+                "Mark these words, oracle,",
+                "From the heavens, it is spoken that",
+                "Attend closely, for",
+                "The divine whispers:",
+                "So it has been foretold that",
+                "Listen, for",
+                "By the power of the ancients,"
+            ],
+            "middle": [
+                "the shadows will rise",
+                "your path shall be tested",
+                "a great change approaches",
+                "the winds of destiny shift",
+                "a secret will be revealed",
+                "darkness encroaches upon the land",
+                "an ally may betray you",
+                "the balance of power will falter",
+                "the truth shall be hidden",
+                "omens foretell a perilous journey",
+                "a choice will define your fate",
+                "the stars align against you"
+            ],
+            "sufix": [
+                "and only you may prevail.",
+                "heed this warning, oracle.",
+                "and chaos will follow if ignored.",
+                "let your courage guide you.",
+                "for the fate of many rests upon this.",
+                "trust in the unseen path.",
+                "the consequences are yours alone.",
+                "prepare, for nothing is as it seems.",
+                "fortune favors the vigilant.",
+                "beware the voices that deceive.",
+                "your resolve will be tested.",
+                "the outcome lies within your hands."
             ]
         },
 
         "green_var": {
-            "doubt": [ 
+            "doubt": [
                 "I… I don’t think I’m good enough.",
                 "Why would anyone care about me?",
                 "I always mess things up.",

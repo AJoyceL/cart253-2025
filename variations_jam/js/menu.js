@@ -31,7 +31,7 @@ function menuDraw() {
     text(menuText, width / 2, height / 2 + 50);
     pop();
 
-    //to verify if the alignbment
+    //to verify if the alignment
     // noFill();
     // stroke(255, 0, 0);
     // rect(width/2 - 150, height/2 -10, 300, 40);  // Red area

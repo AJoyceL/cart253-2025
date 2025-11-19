@@ -35,10 +35,11 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
 ## Attribution
 
 > - This project uses [p5.js](https://p5js.org).
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
-> - The background image is from Freepik: https://www.freepik.com
-> - The greek font for variation one is from itch.io: https://ggbot.itch.io/novem-font
-> - 
+> - A lot of the code was taken and inspired by Pippin Barr.
+> - The red variaiton background is from Freepik: https://www.freepik.com
+> - The red variation pavement and stone are from Pinterest.
+> - The fonts are from itch.io: https://ggbot.itch.io/novem-font / https://ggbot.itch.io/first-time-writing-font /
+> - The speech options are created by Chat GPT.
 
 ## License
 
