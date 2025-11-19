@@ -32,6 +32,7 @@ function greenDraw() {
         textSize(30);
         textWrap(WORD);
         textAlign(LEFT, TOP);
+        textFont(firstTime);
         text(greenSpeech,  width/2 - 150, height/2 + 100, 320);
         pop();  
     }; 

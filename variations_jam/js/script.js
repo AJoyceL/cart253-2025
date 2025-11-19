@@ -15,13 +15,18 @@ let state = "green-variation"; // menu
 let speech = undefined;
 let collided = false;
 let showText = false;
+
+//red-var
 let preffixText = "";
 let suffixText = "";
 let redSpeech = '';
+
+//green var
 let greenSpeech = '';
 
 //font
 let novem = undefined;
+let firstTime = undefined;
 
 //background img
 let redBg = undefined;
@@ -36,6 +41,7 @@ function preload(){
 
     //font preload
     novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf"); //red variation
+    firstTime = loadFont("assets/fonts/first_time/FirstTimeWriting.oft"); //green variation
 
     //background preload taken from Freepik
     //red variation
