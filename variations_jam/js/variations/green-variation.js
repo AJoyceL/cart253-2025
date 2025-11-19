@@ -60,6 +60,11 @@ function greenDraw() {
 function greenKeyPressed(event) {
     if (event.keyCode === 27) { //esc button
         state = "menu";
+        //reset game
+        panicked = [];
+        showText = false;
+        greenSpeech = "";
+        intro = true;
     }
 
     if(event.keyCode === 32) { //spacebar

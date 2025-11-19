@@ -110,6 +110,20 @@ function redDraw() {
 function redKeyPressed(event) {
     if (event.keyCode === 27) {
         state = "menu"; //esc button
+        
+        //reset game
+        player.x = 25; //player position
+        //cam position
+        camX.x = 0;
+        camX.y = 0;
+        //speech
+        prefixText = "";
+        middleText = "";
+        sufixText = "";
+        redSpeech = "";
+        showText = false;
+        collided = false;
+        intro = true;
     }
 }
 
