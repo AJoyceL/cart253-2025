@@ -7,7 +7,13 @@
 /**
  * GLOBAL VALUES
 */
+
+//speech values
+let greenSpeech = '';
+
+//panicked mind values
 let panicked = [];
+
 
 /**
  * This will be called just before the green variation starts
@@ -31,6 +37,10 @@ function greenDraw() {
     //draws the speech box
     drawGreenSpeechBox();
 
+    //draws the introduction
+    if (intro) {
+        greenIntro();
+    }
     //calls for speech
     if(showText && greenSpeech) {
         push();
@@ -56,6 +66,7 @@ function greenKeyPressed(event) {
         const interaction = speech.speech_interactions[0].green_var;
         greenSpeech = random(interaction.doubt);
         showText = true;
+        intro = false;
 
         //triggers the panic
         for(let i = 0; i < 10; i++) {
@@ -87,6 +98,18 @@ function drawGreenSpeechBox() {
     pop();
 }
 
+//instruction
+function greenIntro() {
+    intro= true;
+    push();
+    fill("white");   
+    textSize(30);
+    textWrap(WORD);
+    textAlign(CENTER, CENTER);
+    textFont("Courier New");
+    text("press space", width/2 - 150, height/2 + 150, 300);
+    pop();
+}
 
 //generate everything related to the panic
 function createPanic() {

@@ -9,20 +9,14 @@
 
 "use strict";
 
-let state = "green-variation"; // menu
+let state = "menu"; // menu
 
 //speech data
 let speech = undefined;
 let collided = false;
 let showText = false;
-
-//red-var
-let preffixText = "";
-let suffixText = "";
-let redSpeech = '';
-
-//green var
-let greenSpeech = '';
+//introduction
+let intro = true;
 
 //font
 let novem = undefined;

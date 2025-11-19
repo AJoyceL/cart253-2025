@@ -18,7 +18,7 @@ const player = {
     speed: 3,
 }
 
-//Altar  values
+//Altar values
 let altarOne = undefined;
 let altarTwo = undefined;
 
@@ -26,6 +26,10 @@ let altarTwo = undefined;
 let camX = 0;
 let camY = 0;
 
+//speech values
+let preffixText = "";
+let suffixText = "";
+let redSpeech = '';
 
 
 
@@ -72,8 +76,13 @@ function redDraw() {
     //draws the speech box
     drawRedSpeechBox();
 
+    //draws the introduction
+    if(intro) {
+        redIntro();
+    }
+
     //Calls for speech
-      if(showText && redSpeech) {
+    if(showText && redSpeech) {
         push();
         fill("black");
         textSize(20);
@@ -85,6 +94,7 @@ function redDraw() {
     }
     if(collided) {
         showText = true;
+        intro = false;
         redSpeech = preffixText + " " + suffixText;
     }    
 }
@@ -126,6 +136,21 @@ function drawRedSpeechBox() {
     stroke(0, 0, 0, 150);
     strokeWeight(3);
     rect(75, 25, 350, 150);
+    pop();
+}
+
+/**
+ * Introduction/rules
+ * let the player know how to play
+*/
+function redIntro() {
+    push();
+    fill("black");
+    textSize(20);
+    textFont("Courier New");
+    textWrap(WORD);
+    textAlign(CENTER, CENTER);
+    text("move player with Left/Right arrow or A/D key", width/2 - 150, height/2 - 150, 300);
     pop();
 }
 
