@@ -7,7 +7,7 @@
 /**
  * GLOBAL VALUES
 */
-
+let panicked = [];
 
 /**
  * This will be called just before the green variation starts
@@ -22,13 +22,19 @@ function greenSetup() {
 function greenDraw() {
     background("#091b2bff");
 
+    // handles the panic
+    for(let panic of panicked) {
+        movePanic(panic);
+        drawPanic(panic);
+    }
+
     //draws the speech box
     drawGreenSpeechBox();
 
     //calls for speech
     if(showText && greenSpeech) {
         push();
-        fill("white");
+        fill("white");   
         textSize(30);
         textWrap(WORD);
         textAlign(LEFT, TOP);
@@ -50,6 +56,12 @@ function greenKeyPressed(event) {
         const interaction = speech.speech_interactions[0].green_var;
         greenSpeech = random(interaction.doubt);
         showText = true;
+
+        //triggers the panic
+        for(let i = 0; i < 10; i++) {
+            const morePanic = createPanic();
+            panicked.push(morePanic);
+        }
     }
 }
 
@@ -61,15 +73,44 @@ function greenMousePressed() {
 }
 
 
-/**
+/** 
  * Background functions
 */
 
+///Generate the speech box for the speech
 function drawGreenSpeechBox() {
     push();
     fill(0, 0, 0, 200);
     stroke(255, 255, 255, 200);
     strokeWeight(1);
     rect(50, 325, 400, 150);
+    pop();
+}
+
+
+//generate everything related to the panic
+function createPanic() {
+    //generate panic
+    let panic = {
+        x: random(225, 275),
+        y: random(225, 275),
+        w: random(200, 400),
+        h: random(200, 400),
+        shaking: random(2, 8),
+    };
+    return panic;
+}
+
+function movePanic(panic) {
+    panic.x += random(-panic.shaking, panic.shaking);
+    panic.y += random(-panic.shaking, panic.shaking);
+}
+
+function drawPanic(panic) {
+    push();
+    stroke("white");
+    strokeWeight(random(.5,2));
+    noFill();
+    ellipse(panic.x, panic.y, panic.w, panic.h);
     pop();
 }
