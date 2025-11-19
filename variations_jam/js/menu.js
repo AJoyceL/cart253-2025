@@ -5,9 +5,9 @@
  */
 
 const menuText = `
-(R) Bow At The Altar
-(G) Within My Mind
-(B) Forest Fae
+(1) Bow At The Altar
+(2) Within My Mind
+(3) Forest Fae
 `
 
 /**
@@ -27,8 +27,8 @@ function menuDraw() {
 
     textFont("Arial");
     textSize(32);
-    textAlign(CENTER, CENTER);
-    text(menuText, width / 2, height / 2 + 50);
+    textAlign(LEFT, CENTER);
+    text(menuText, width / 2 - 150, height / 2 + 50);
     pop();
 
     //to verify if the alignment
@@ -44,17 +44,17 @@ function menuDraw() {
  */
 function menuKeyPressed(event) {
     switch (event.keyCode) {
-        case 82: // R
+        case 49: // 1
             state = "red-variation";
             redSetup();
             break;
 
-        case 71: // G
+        case 50: // 2
             state = "green-variation";
             greenSetup();
             break;
 
-        case 66: // B
+        case 51: // 3
             state = "blue-variation";
             blueSetup();
             break;
@@ -74,12 +74,13 @@ function menuMousePressed() {
     // variaiton two
     if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 + 30 && mouseY < height/2 + 70) {
         state = "green-variation";
-        redSetup();
+        greenSetup();
     };
 
     // variation three
       if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 + 70 && mouseY < height/2 + 110) {
         state = "blue-variation";
-        redSetup();
+        blueSetup();
     };
+  
 }
