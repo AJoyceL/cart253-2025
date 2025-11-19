@@ -2,12 +2,12 @@
 "speech_interactions" :[
     {
         "red_var": {
-            "prefix": [
+            "prefix": {
                 "I love",
                 "I have",
                 "I want",
                 "I hate"
-            ],
+            },
 
             "sufix":[
                 "red apples.",
@@ -18,7 +18,7 @@
         },
 
         "green_var": {
-            "doubt": [
+            "doubt": [ 
                 "I… I don’t think I’m good enough.",
                 "Why would anyone care about me?",
                 "I always mess things up.",
@@ -32,7 +32,34 @@
                 "Everything I do feels wrong.",
                 "I’m scared I’ll fail again.",
                 "I wish I could be confident.",
-                "I hate the way I am."
+                "I hate the way I am.",
+                "I don’t know if I can handle this.",
+                "Why does everything feel so heavy?",
+                "I feel invisible no matter what I do.",
+                "I’m scared people will see the real me.",
+                "Nothing I do seems to matter.",
+                "I feel like I’m always falling behind.",
+                "I wish I could just disappear for a while.",
+                "I feel like I’m disappointing everyone.",
+                "I don’t trust myself to make the right choice.",
+                "I’m tired of pretending to be okay.",
+                "I feel like I’m dragging everyone down.",
+                "I don’t think I’m worth the effort.",
+                "I keep pretending I’m fine, but I’m not.",
+                "Something always feels wrong with me.",
+                "I’m scared people will get tired of me.",
+                "I wish I knew how to be better.",
+                "I feel lost all the time.",
+                "I’m never the person I want to be.",
+                "I don’t know why I can’t just be normal.",
+                "I feel broken in ways I can’t explain.",
+                " I wish I knew why I feel like this.",
+                "It’s like I’m stuck in my own head.",
+                "I’m scared there’s something wrong with me.",
+                "I don’t know how to keep going like this.",
+                "I feel like I ruin every moment I’m in.",
+                "Why is it so hard just to exist?",
+                "I’m tired of feeling like a mistake."
             ]
         },
 
