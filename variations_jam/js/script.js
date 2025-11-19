@@ -41,7 +41,7 @@ function preload(){
 
     //font preload
     novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf"); //red variation
-    firstTime = loadFont("assets/fonts/first_time/FirstTimeWriting.oft"); //green variation
+    firstTime = loadFont("assets/fonts/FirstTimeWriting/FirstTimeWriting.otf"); //green variation
 
     //background preload taken from Freepik
     //red variation
