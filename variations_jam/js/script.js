@@ -22,11 +22,20 @@ let intro = true;
 let novem = undefined;
 let firstTime = undefined;
 
-//background img
+//red img
 let redBg = undefined;
 let altarImg = undefined;
 let redPaveImg = undefined;
 let redStoneImg = undefined;
+
+//blue img
+let blueF = undefined;
+let redF = undefined;
+let lilacF = undefined;
+let yellowF = undefined;
+let grassLand = undefined;
+let pebbleF = undefined;
+let treeImg = undefined;
 
 //load speech data
 function preload(){
@@ -37,12 +46,21 @@ function preload(){
     novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf"); //red variation
     firstTime = loadFont("assets/fonts/FirstTimeWriting/FirstTimeWriting.otf"); //green variation
 
-    //background preload taken from Freepik
+    //background preload taken from Freepik and pinterest
     //red variation
     redBg = loadImage("assets/images/red_var_bg.png"); 
     altarImg = loadImage("assets/images/altar.png");
     redPaveImg = loadImage("assets/images/pavement.png");
     redStoneImg = loadImage("assets/images/stone.png");
+
+    //blue variation 
+    grassLand = loadImage("assets/images/grass_floor.jpg");
+    pebbleF = loadImage("assets/images/pebble.png");
+    blueF = loadImage("assets/images/blue_flower.png");
+    redF = loadImage("assets/images/red_flower.png");
+    lilacF = loadImage("assets/images/lilac.png");
+    yellowF = loadImage("assets/images/yellow_flower.png");
+    treeImg = loadImage("assets/images/tree.png");
 }
 
 /**
@@ -51,6 +69,7 @@ function preload(){
 function setup() {
     createCanvas(500, 500);
     redSetup();
+    blueSetup();
 }
 
 
