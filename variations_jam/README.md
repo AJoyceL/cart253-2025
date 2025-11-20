@@ -40,6 +40,7 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
 > - The red variation pavement and stone are from Pinterest.
 > - The fonts are from itch.io: https://ggbot.itch.io/novem-font / https://ggbot.itch.io/first-time-writing-font /
 > - The speech options are created by Chat GPT.
+> - Grid layout taken from https://youtu.be/UKxB2j4h7Ag?si=EbnC4iFkfhC2JVOF
 
 ## License
 

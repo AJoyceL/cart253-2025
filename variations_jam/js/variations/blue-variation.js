@@ -15,24 +15,31 @@ let blues = [];
 let lilacs = [];
 let pebbles = [];
 let trees = [];
-let flowerCount = 5;
+let flowerCount = 8;
+
+//grid size
+let gridSize = 55; //100x100 pixels per grid square
+let cols, rows; //columns and rows
 
 /**
  * This will be called just before the blue variation starts
  */
 function blueSetup() {
-    //handles flowers and pebble position
-    for (let i = 0; i < flowerCount; i++) {
-        yellows.push(createFlowers());
-        reds.push(createFlowers());
-        blues.push(createFlowers());
-        lilacs.push(createFlowers());
-        pebbles.push(createFlowers());
+    //calls for grid layout to calculate the closes value
+    cols = floor(width / gridSize);
+    rows = floor(height / gridSize);
 
-    }
-    //handles the trees position
-    for(let i = 0; i < 5; i++) {
-        trees.push(createTrees());
+    // generate and shuffle grid
+    let squares = randomGridPos(); 
+
+    // assign flowers, pebbles and trees their position
+    for (let i = 0; i < flowerCount; i++) {
+        yellows.push(createFlowers(squares[i]));
+        reds.push(createFlowers(squares[i + flowerCount]));
+        blues.push(createFlowers(squares[i + flowerCount * 2]));
+        lilacs.push(createFlowers(squares[i + flowerCount * 3]));
+        pebbles.push(createFlowers(squares[i + flowerCount * 4]));
+        trees.push(createFlowers(squares[i + 8 * 5]));
     }
 }
 
@@ -63,17 +70,31 @@ function blueMousePressed() {
 
 }
 
-function createFlowers() {
-    return {
-        x: random(0, width - 75),
-        y: random(0, height - 75),
-    };
+
+/**
+ * Grid layout
+*/
+function randomGridPos() {
+    let squares = [];
+    for(let i = 0; i < cols; i++){
+        for(let j = 0; j < rows; j++) {
+            squares.push({col: i, row: j});
+        }
+    }
+    shuffle(squares, true); //shuffles in place the arrays
+    return squares;
 }
 
-function createTrees() {
+/**
+ * Forest background and object
+*/
+function createFlowers(square) {
+    let maxX = min(gridSize - 75, width - square.col * gridSize - 75);
+    let maxY = min(gridSize - 75, height - square.row * gridSize - 75);
+
     return {
-        x: random(0, width - 100),
-        y: random(0, height - 100),
+        x: square.col * gridSize + random(0, maxX),
+        y: square.row * gridSize + random(0, maxY),  
     };
 }
 
