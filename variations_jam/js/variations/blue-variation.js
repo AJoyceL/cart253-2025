@@ -18,7 +18,7 @@ let trees = [];
 let flowerCount = 8;
 
 //grid size
-let gridSize = 55; //100x100 pixels per grid square
+let gridSize = 50; //50x50 pixels per grid square
 let cols, rows; //columns and rows
 
 /**
@@ -39,7 +39,7 @@ function blueSetup() {
         blues.push(createFlowers(squares[i + flowerCount * 2]));
         lilacs.push(createFlowers(squares[i + flowerCount * 3]));
         pebbles.push(createFlowers(squares[i + flowerCount * 4]));
-        trees.push(createFlowers(squares[i + 8 * 5]));
+        trees.push(createFlowers(squares[i + 18 * 5]));
     }
 }
 
@@ -89,8 +89,8 @@ function randomGridPos() {
  * Forest background and object
 */
 function createFlowers(square) {
-    let maxX = min(gridSize - 75, width - square.col * gridSize - 75);
-    let maxY = min(gridSize - 75, height - square.row * gridSize - 75);
+    let maxX = min(gridSize - 50, width - square.col * gridSize - 50);
+    let maxY = min(gridSize - 50, height - square.row * gridSize - 50);
 
     return {
         x: square.col * gridSize + random(0, maxX),
@@ -102,42 +102,42 @@ function drawFlowers() {
     //draws yellow flowers
     for (let yellow of yellows) {
         push();
-        image(yellowF, yellow.x, yellow.y, 75, 75);
+        image(yellowF, yellow.x, yellow.y, 50, 50);
         pop();
     }
     
     //draws red flowers
     for (let red of reds) {
         push();
-        image(redF, red.x, red.y, 75, 75);
+        image(redF, red.x, red.y, 50, 50);
         pop();
     }
 
     //draws blue flowers
     for (let blue of blues) {
         push();
-        image(blueF, blue.x, blue.y, 75, 75);
+        image(blueF, blue.x, blue.y, 50, 50);
         pop();
     }
 
     //draws lilacs
     for (let lilac of lilacs) {
         push();
-        image(lilacF, lilac.x, lilac.y, 75, 75);
+        image(lilacF, lilac.x, lilac.y, 50, 50);
         pop();
     }
 
     //draws pebbles
     for (let pebble of pebbles) {
         push();
-        image(pebbleF, pebble.x, pebble.y, 75, 75);
+        image(pebbleF, pebble.x, pebble.y, 50, 50);
         pop();
     }
     
     //draws trees
     for (let tree of trees) {
         push();
-        image(treeImg, tree.x, tree.y, 200, 200);
+        image(treeImg, tree.x, tree.y, 100, 100);
         pop();
     }
 }
