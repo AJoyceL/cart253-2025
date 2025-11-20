@@ -21,6 +21,14 @@ let flowerCount = 8;
 let gridSize = 50; //50x50 pixels per grid square
 let cols, rows; //columns and rows
 
+//player values
+let bPlayer = {
+    x: 25,
+    y: 450,
+    size: 30,
+    speed: 3,
+}
+
 /**
  * This will be called just before the blue variation starts
  */
@@ -52,6 +60,8 @@ function blueDraw() {
 
     //draw flowers
     drawFlowers();
+    moveBluePlayer();
+    drawBluePlayer();
 }
 
 /**
@@ -140,4 +150,40 @@ function drawFlowers() {
         image(treeImg, tree.x, tree.y, 100, 100);
         pop();
     }
+}
+
+
+/**
+ * Draws player
+*/
+function moveBluePlayer(){
+    //handles player moving horizontally
+    if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+        bPlayer.x -= bPlayer.speed;
+    }
+    if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+        bPlayer.x += bPlayer.speed;
+    }
+
+    //handles them move vertically
+    if(keyIsDown(UP_ARROW) || keyIsDown(87)) {
+        bPlayer.y -= bPlayer.speed;
+    }
+    if(keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+        bPlayer.y += bPlayer.speed;
+    }
+
+    //limit horizontal movement  within the canvas
+    bPlayer.x = constrain(bPlayer.x, bPlayer.size / 2, 475 - bPlayer.size / 2);
+    //limit vertical movement  within the canvas
+    bPlayer.y = constrain(bPlayer.y, bPlayer.size / 2, 475 - bPlayer.size / 2);
+}
+
+//draws theb blue player
+function drawBluePlayer(){
+    push();
+    noStroke();
+    fill("white");
+    rect(bPlayer.x, bPlayer.y, bPlayer.size);
+    pop();
 }

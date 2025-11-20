@@ -9,7 +9,7 @@
 */
 
 //Player values
-const player = {
+const rPlayer = {
     x: 25,
     y: 350,
     size: 50,
@@ -56,8 +56,8 @@ function redSetup() {
 function redDraw() {
     background('#fa94e0ff');
 
-    // Handles camera position == follows the player => reference p5
-    camX = lerp(camX, player.x - width/2, 0.1); // smoother with lerp
+    // Handles camera position == follows the rPlayer => reference p5
+    camX = lerp(camX, rPlayer.x - width/2, 0.1); // smoother with lerp
     camX = constrain(camX, 0, 1300 - width); // limit the camra within the world
      
     push();
@@ -72,7 +72,7 @@ function redDraw() {
     drawAltars(altarTwo);
     drawAltars(altarThree);
 
-    // player
+    // rPlayer
     moveRedPlayer();
     drawPlayer();
     redPlayerOverlap();  
@@ -112,7 +112,7 @@ function redKeyPressed(event) {
         state = "menu"; //esc button
         
         //reset game
-        player.x = 25; //player position
+        rPlayer.x = 25; //rPlayer position
         //cam position
         camX.x = 0;
         camX.y = 0;
@@ -160,7 +160,7 @@ function drawRedSpeechBox() {
 
 /**
  * Introduction/rules
- * let the player know how to play
+ * let the rPlayer know how to play
 */
 function redIntro() {
     push();
@@ -169,7 +169,7 @@ function redIntro() {
     textFont("Courier New");
     textWrap(WORD);
     textAlign(CENTER, CENTER);
-    text("move player with Left/Right arrow or A/D key", width/2 - 150, height/2 - 150, 300);
+    text("move rPlayer with Left/Right arrow or A/D key", width/2 - 150, height/2 - 150, 300);
     pop();
 }
 
@@ -178,24 +178,25 @@ function redIntro() {
  * Player functions
 */
 function moveRedPlayer() {
-    // move player on the X axis (left and right)
+    // move rPlayer on the X axis (left and right)
     if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
-        player.x -= 5;
+        rPlayer.x -= 5;
     }
 
     if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
-        player.x += 5;
+        rPlayer.x += 5;
     }
     
-    // Constrain the player to the canvas
-    player.x = constrain(player.x, player.size / 2, 1300 - player.size / 2);
+    // Constrain the rPlayer to the canvas
+    rPlayer.x = constrain(rPlayer.x, rPlayer.size / 2, 1300 - rPlayer.size / 2);
 }
 
+//draws the red player
 function drawPlayer() {
     push();
     fill("#1366e2ff")
     noStroke();
-    rect(player.x, player.y, player.size)
+    rect(rPlayer.x, rPlayer.y, rPlayer.size)
     pop();
 }
 
@@ -221,7 +222,7 @@ function drawAltars(altars) {
     pop();
 }
 
-// player and altar overlap
+// rPlayer and altar overlap
 // overlap const taken from conditionals/creature-loves-massage
 function redPlayerOverlap() {
     // calls for speech
@@ -230,10 +231,10 @@ function redPlayerOverlap() {
     //calls for the alatr arrays
     const altarsArray = [altarOne, altarTwo, altarThree];
 
-    //Horizontal overlap => text appears when the player overlaps with the altar
+    //Horizontal overlap => text appears when the rPlayer overlaps with the altar
     for (let a of altarsArray) {
-        const distance = dist(player.x, player.y, a.x, a.y);
-        const altarOverlap = (distance < player.size/2);
+        const distance = dist(rPlayer.x, rPlayer.y, a.x, a.y);
+        const altarOverlap = (distance < rPlayer.size/2);
 
         //triggers respective speech
         if(altarOverlap) {
