@@ -9,7 +9,7 @@
 
 "use strict";
 
-let state = "menu"; // menu
+let state = "blue-variation"; // menu
 
 //speech data
 let speech = undefined;
