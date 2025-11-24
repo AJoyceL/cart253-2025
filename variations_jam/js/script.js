@@ -37,9 +37,6 @@ let grassLand = undefined;
 let pebbleF = undefined;
 let treeImg = undefined;
 
-//player assets
-// let player = undefined;
-
 
 //load speech data
 function preload(){
@@ -49,9 +46,6 @@ function preload(){
     //font preload
     novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf"); //red variation
     firstTime = loadFont("assets/fonts/FirstTimeWriting/FirstTimeWriting.otf"); //green variation
-
-    //load player
-    // player = loadImage("assets/player");
 
     //background preload taken from Freepik and pinterest
     //red variation

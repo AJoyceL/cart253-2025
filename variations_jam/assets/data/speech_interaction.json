@@ -93,18 +93,26 @@
         },
 
         "blue_var": {
-            "prefix": [
-                "I'm not there!",
-                "I don't",
-                "I can't",
-                "Is this"
+            "flower_fairy": [
+                "The moonlight follows you, little one. It must see something special.",
+                "Stars whisper when you pass… do you hear them too?",
+                "Night is not to be feared; it is simply the world taking a gentle breath.",
+                "Your path glows softly—trust the shimmer beneath your feet.",
+                "Even in darkness, your spirit shines brighter than stardust."
             ],
-
-            "sufix":[
-                "red apples.",
-                "dreams of exploring the sky.",
-                "empowered superdogs.",
-                "newly made games."
+            "thorn_fairy": [
+                "Careful now—beauty and danger share more roots than you think.",
+                "The forest watches you closely… don’t give it a reason to tighten its grip.",
+                "Only the brave walk through briars and return unscarred.",
+                "Every choice you make rustles through the woods, whether you hear it or not.",
+                "Strength grows where pain once bloomed—remember that."
+            ],
+            "luna_fairy": [
+                "Oh! You’re here! I’ve been waiting for someone fun!",
+                "You sparkle wonderfully today—did you know?",
+                "Let’s go find something amazing! Adventure smells like flowers!",
+                "Your energy feels like confetti—are you always this bright?",
+                "I believe in you! Completely! Entirely! Absolutely!"
             ]
         }        
     }

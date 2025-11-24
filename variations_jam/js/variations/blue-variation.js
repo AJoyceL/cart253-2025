@@ -62,6 +62,33 @@ function blueDraw() {
     drawFlowers();
     moveBluePlayer();
     drawBluePlayer();
+    bPlayerOverlap();
+
+    //calls for speech
+    if(showText && blueSpeech) {
+        //draws the speech box
+        push();
+        fill(172, 180, 137, 200);
+        noStroke();
+        rect(50, 25, 400, 100);
+        pop();
+
+        //draws the speech
+        push();
+        fill("black");
+        textSize(18);
+        textWrap(WORD);
+        textAlign(CENTER, TOP);
+        text(blueSpeech, width/2 -150, height/2 - 200, 300);
+        pop();
+    }
+    if(collided) {
+        showText = true;
+        intro = false;
+        blueSpeech = flowerText;
+    }
+
+    console.log(showText);
 }
 
 /**
@@ -96,7 +123,7 @@ function randomGridPos() {
 }
 
 /**
- * Forest background and object
+ * Forest background and object functions
 */
 function createFlowers(square) {
     let maxX = min(gridSize - 50, width - square.col * gridSize - 50);
@@ -154,7 +181,7 @@ function drawFlowers() {
 
 
 /**
- * Draws player
+ * Player Functions
 */
 function moveBluePlayer(){
     //handles player moving horizontally
@@ -186,4 +213,51 @@ function drawBluePlayer(){
     fill("white");
     rect(bPlayer.x, bPlayer.y, bPlayer.size);
     pop();
+}
+
+//handles the overlap
+function bPlayerOverlap() {
+    //calls for speech
+    const interaction = speech.speech_interactions[0].blue_var;
+    const flowerFairy = interaction.flower_fairy; //flower fairy speech
+    const thornFairy = interaction.thorn_fairy; //thorn fairy speech
+    const lunaFairy = interaction.luna_fairy; //luna fairy speech
+
+    //calls for the flower arrays
+    const flowerArrays = [
+        ...yellows,
+        ...reds,
+        ...blues,
+        ...lilacs,
+        ...pebbles,
+        ...trees
+    ];
+
+    //object overlap
+    for(let f of flowerArrays) {
+        const distance = dist(bPlayer.x, bPlayer.y, f.x, f.y);
+        const flowerOverlap = (distance < bPlayer.size/2);
+
+        //handles overlap speech trigger
+        if(flowerOverlap) {
+            collided = true; //speech true
+
+            //randomly pick 1 of the 3 speech arrays
+            const textChoice =[flowerFairy, thornFairy, lunaFairy];
+            const chosenFairy = random(textChoice);
+
+            // pick a random line from that fairy
+            flowerText = random(chosenFairy);
+            break; 
+        }
+    }
+}
+
+
+
+/**
+ * Speech Functions
+*/
+function bSpeechBox(){
+
 }
