@@ -8,7 +8,7 @@
 /**
  * GLOBAL VALUES
 */
-//imgs values
+//imgs background objects values
 let yellows = [];
 let reds = [];
 let blues = [];
@@ -16,6 +16,9 @@ let lilacs = [];
 let pebbles = [];
 let trees = [];
 let flowerCount = 8;
+
+//fairies value
+let currentFairy = null;
 
 //grid size
 let gridSize = 50; //50x50 pixels per grid square
@@ -79,8 +82,15 @@ function blueDraw() {
         textSize(18);
         textWrap(WORD);
         textAlign(CENTER, TOP);
-        text(blueSpeech, width/2 -150, height/2 - 200, 300);
+        text(blueSpeech, width/2 - 150, height/2 - 200, 250);
         pop();
+
+        //draws the fairy
+        if(currentFairy){
+            push();
+            image(currentFairy, 350, 30, 100, 100);
+            pop();
+        }
     }
     if(collided) {
         showText = true;
@@ -250,6 +260,21 @@ function bPlayerOverlap() {
 
             // pick a random line from that fairy
             flowerText = random(chosenFairy);
+
+            //set the current fairy img depending on which speech is triggered
+            if(chosenFairy === flowerFairy) {
+                currentFairy = flowerF; //calls for theflower fairy
+            }
+            else if(chosenFairy === thornFairy) {
+                currentFairy = thornF; //calls for thorn fairy
+            }
+            else if(chosenFairy === lunaFairy) {
+                currentFairy = lunaF; //calls for luna fairy
+            }
+            else {
+                currentFairy = null;
+            }
+
             break; 
         }
         if(!flowerOverlap) { //to detect exit, unlock the trigger

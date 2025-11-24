@@ -36,6 +36,9 @@ let yellowF = undefined;
 let grassLand = undefined;
 let pebbleF = undefined;
 let treeImg = undefined;
+let flowerF = undefined;
+let thornF = undefined;
+let lunaF = undefined;
 
 
 //load speech data
@@ -62,6 +65,9 @@ function preload(){
     lilacF = loadImage("assets/images/lilac.png");
     yellowF = loadImage("assets/images/yellow_flower.png");
     treeImg = loadImage("assets/images/tree.png");
+    flowerF = loadImage("assets/images/flowerfairy.png");
+    thornF = loadImage("assets/images/thornfairy.png");
+    lunaF = loadImage("assets/images/lunafairy.png");
 }
 
 /**
