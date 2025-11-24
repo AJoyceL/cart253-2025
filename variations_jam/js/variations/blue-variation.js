@@ -131,7 +131,8 @@ function createFlowers(square) {
 
     return {
         x: square.col * gridSize + random(0, maxX),
-        y: square.row * gridSize + random(0, maxY),  
+        y: square.row * gridSize + random(0, maxY), 
+        inside: false, 
     };
 }
 
@@ -239,8 +240,9 @@ function bPlayerOverlap() {
         const flowerOverlap = (distance < bPlayer.size/2);
 
         //handles overlap speech trigger
-        if(flowerOverlap) {
+        if(flowerOverlap && !f.inside) {
             collided = true; //speech true
+            f.inside = true; // mark player entry, prevents overlap registry until exit
 
             //randomly pick 1 of the 3 speech arrays
             const textChoice =[flowerFairy, thornFairy, lunaFairy];
@@ -250,14 +252,8 @@ function bPlayerOverlap() {
             flowerText = random(chosenFairy);
             break; 
         }
+        if(!flowerOverlap) { //to detect exit, unlock the trigger
+            f.inside = false;
+        }
     }
-}
-
-
-
-/**
- * Speech Functions
-*/
-function bSpeechBox(){
-
 }
