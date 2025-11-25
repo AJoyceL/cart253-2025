@@ -17,8 +17,13 @@ let pebbles = [];
 let trees = [];
 let flowerCount = 8;
 
-//fairies value
+//fairies img value
 let currentFairy = null;
+
+//night value
+let nightTime = 0; //0 = day, 1 = night
+let nightSpeed = 0.0005; //speed of time
+let nightDirection = 1; // makes it darker or lighter
 
 //grid size
 let gridSize = 50; //50x50 pixels per grid square
@@ -67,6 +72,9 @@ function blueDraw() {
     drawBluePlayer();
     bPlayerOverlap();
 
+    //handles the night cycle
+    drawNight();
+
     //calls for speech
     if(showText && blueSpeech) {
         //draws the speech box
@@ -97,8 +105,6 @@ function blueDraw() {
         intro = false;
         blueSpeech = flowerText;
     }
-
-    console.log(showText);
 }
 
 /**
@@ -135,6 +141,34 @@ function randomGridPos() {
 /**
  * Forest background and object functions
 */
+function drawNight() {
+    nightTime += nightSpeed * nightDirection;
+    nightTime = constrain(nightTime, 0, 1);
+   
+    //handles night and day cycle
+    if(nightTime >= .9) {
+        nightDirection = -1;
+    }
+    if(nightTime <= 0) {
+        nightDirection = 1;
+    }
+
+    //colour overlay that gets stronger over time
+    let r = lerp(13, 0, nightTime);
+    let g = lerp(97, 0, nightTime);
+    let b = lerp(38, 128, nightTime);
+
+    //opacity
+    let fade = lerp(0, 200, nightTime);
+
+    //draws
+    push();
+    fill(r, g, b, fade);
+    noStroke();
+    rect(0, 0, width, height);
+    pop();
+}
+
 function createFlowers(square) {
     let maxX = min(gridSize - 50, width - square.col * gridSize - 50);
     let maxY = min(gridSize - 50, height - square.row * gridSize - 50);
@@ -254,9 +288,17 @@ function bPlayerOverlap() {
             collided = true; //speech true
             f.inside = true; // mark player entry, prevents overlap registry until exit
 
-            //randomly pick 1 of the 3 speech arrays
-            const textChoice =[flowerFairy, thornFairy, lunaFairy];
-            const chosenFairy = random(textChoice);
+            //night restriction to the luna fairy
+            let chosenFairy;
+
+            if(nightTime>= .6) {
+                chosenFairy = lunaFairy;
+            }
+            else {
+                //randomly pick 1 of the 3 speech arrays
+                const choices = [flowerFairy, thornFairy];
+                chosenFairy = random(choices);
+            }
 
             // pick a random line from that fairy
             flowerText = random(chosenFairy);
