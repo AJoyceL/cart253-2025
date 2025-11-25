@@ -113,9 +113,6 @@ function blueDraw() {
     }
     if(collided) {
         showText = true;
-        intro = false;
-        intro = false;
-        night = true;
         blueSpeech = flowerText;
     }
 }
@@ -296,17 +293,25 @@ function moveBluePlayer(){
     //handles player moving horizontally
     if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
         bPlayer.x -= bPlayer.speed;
+        night = true; //trigger night cycle
+        intro = false; //remove intro text
     }
     if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
         bPlayer.x += bPlayer.speed;
+        night = true; //trigger night cycle
+        intro = false; //remove intro text
     }
 
     //handles them move vertically
     if(keyIsDown(UP_ARROW) || keyIsDown(87)) {
         bPlayer.y -= bPlayer.speed;
+        night = true; //trigger night cycle
+        intro = false; //remove intro text
     }
     if(keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
         bPlayer.y += bPlayer.speed;
+        night = true; //trigger night cycle
+        intro = false; //remove intro text
     }
 
     //limit horizontal movement  within the canvas
