@@ -24,7 +24,7 @@ let currentFairy = null;
 let nightTime = 0; //0 = day, 1 = night
 let nightSpeed = 0.0005; //speed of time
 let nightDirection = 1; // makes it darker or lighter
-let nigth = false;
+let night = false;
 
 //grid size
 let gridSize = 50; //50x50 pixels per grid square
@@ -74,7 +74,7 @@ function blueDraw() {
     bPlayerOverlap();
 
     //handles the night cycle
-    if(night = true) {
+    if(night === true) {
         drawNight();
     }
 
@@ -83,6 +83,8 @@ function blueDraw() {
         bIntro();
         night = false;
     }
+
+    console.log(nightTime);
 
     //calls for speech
     if(showText && blueSpeech) {
@@ -124,6 +126,30 @@ function blueDraw() {
 function blueKeyPressed(event) {
     if (event.keyCode === 27) {
         state = "menu";
+
+        //reset night cycle
+        nightTime = 0; 
+        night = false;
+
+        //reset player position
+        bPlayer.x = 25; 
+        bPlayer.y = 450;
+
+        //reset speech
+        collided = false;
+        showText = false;
+        intro = true;
+        blueSpeech = "";
+        flowerText = "";
+        currentFairy = null;
+
+        //reset flower
+        yellows = [];
+        reds = [];
+        blues = [];
+        lilacs = [];
+        pebbles = [];
+        trees = [];
     }
 }
 
