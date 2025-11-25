@@ -169,7 +169,7 @@ function redIntro() {
     textFont("Courier New");
     textWrap(WORD);
     textAlign(CENTER, CENTER);
-    text("move rPlayer with Left/Right arrow or A/D key", width/2 - 150, height/2 - 150, 300);
+    text("move player with Left/Right arrow or A/D key", width/2 - 150, height/2 - 150, 300);
     pop();
 }
 

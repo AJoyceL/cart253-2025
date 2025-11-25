@@ -24,6 +24,7 @@ let currentFairy = null;
 let nightTime = 0; //0 = day, 1 = night
 let nightSpeed = 0.0005; //speed of time
 let nightDirection = 1; // makes it darker or lighter
+let nigth = false;
 
 //grid size
 let gridSize = 50; //50x50 pixels per grid square
@@ -73,7 +74,15 @@ function blueDraw() {
     bPlayerOverlap();
 
     //handles the night cycle
-    drawNight();
+    if(night = true) {
+        drawNight();
+    }
+
+    //calls for intro
+    if(intro) {
+        bIntro();
+        night = false;
+    }
 
     //calls for speech
     if(showText && blueSpeech) {
@@ -103,6 +112,8 @@ function blueDraw() {
     if(collided) {
         showText = true;
         intro = false;
+        intro = false;
+        night = true;
         blueSpeech = flowerText;
     }
 }
@@ -125,6 +136,30 @@ function blueMousePressed() {
 
 
 /**
+ * Intro
+*/
+function bIntro() {
+    //draws the speech box
+    push();
+    fill(172, 180, 137, 200);
+    noStroke();
+    rect(50, 25, 400, 100);
+    pop();
+
+    //draws intro text
+    push();
+    fill("black");
+    textSize(20);
+    textStyle(BOLD);
+    textFont("Courier New");
+    textWrap(WORD);
+    textAlign(CENTER, CENTER);
+    text("move player with Left/Right/Up/Down arrow or A/S/D/W key", width/2 - 150, height/2 - 175, 300);
+    pop();
+}
+
+
+/**
  * Grid layout
 */
 function randomGridPos() {
@@ -141,6 +176,7 @@ function randomGridPos() {
 /**
  * Forest background and object functions
 */
+//handles night and day cycle
 function drawNight() {
     nightTime += nightSpeed * nightDirection;
     nightTime = constrain(nightTime, 0, 1);
@@ -169,6 +205,7 @@ function drawNight() {
     pop();
 }
 
+//handles creating flowers
 function createFlowers(square) {
     let maxX = min(gridSize - 50, width - square.col * gridSize - 50);
     let maxY = min(gridSize - 50, height - square.row * gridSize - 50);
@@ -180,6 +217,7 @@ function createFlowers(square) {
     };
 }
 
+//draws the flowers
 function drawFlowers() {
     //draws yellow flowers
     for (let yellow of yellows) {
