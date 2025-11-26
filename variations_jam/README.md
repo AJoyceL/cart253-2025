@@ -1,8 +1,8 @@
-# Variation Jam
+# Talk To Me
 
 Joyce Angelina Lam
 
-[Talk To Me](https://ajoycel.github.io/cart253-2025/variations_jam)
+[View the game](https://ajoycel.github.io/cart253-2025/variations_jam)
 
 
 ## Description
@@ -15,7 +15,7 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
         - Move the player with left/right arrow and/or A & D key.
         - Overlap with alters to trigger speech. 
 
-    2.In Within My Mind, you(the player) are a very self-conscious person who often doubts themselves. You often doubt yourself, your ideas and/or your acts in your consciousness.
+    2. In Within My Mind, you(the player) are a very self-conscious person who often doubts themselves. You often doubt yourself, your ideas and/or your acts in your consciousness.
 
         Instruction: 
         - Press spacebar to trigger speech.
@@ -29,13 +29,21 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
   
 ## Screenshot(s)
 
-1. God's Messenger
+![menu](assets/images/menu.png)
 
+1. God's Messenger
+![God's Messenger 1](assets/images/cat_game1.png)
+![God's Messenger 2](assets/images/cat_game2.png)
 
 2. Within My Mind
-
+![Within My Mind 1](assets/images/mind_game1.png)
+![Within My Mind 2](assets/images/mind_game2.png)
 
 3. Forest Fae
+![Forest Fae 1](assets/images/fae_game1.png)
+![Forest Fae 2](assets/images/fae_game2.png)
+![Forest Fae 3](assets/images/fae_game3.png)
+![Forest Fae 4](assets/images/fae_game4.png)
 
 
 ## Attribution
@@ -44,8 +52,8 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
 - A lot of the code was taken and inspired by Pippin Barr.
 - The red variaiton background is from Freepik: https://www.freepik.com
 - The red variation pavement and stone are from Pinterest.
-- The fonts are from itch.io: https://ggbot.itch.io/novem-font / https://ggbot.itch.io/first-time-writing-font /
-- The speech options are created by Chat GPT.
+- The fonts are from itch.io: [Novem](https://ggbot.itch.io/novem-font) / [First time writing](https://ggbot.itch.io/first-time-writing-font) / [CHUNKY](https://batfeula.itch.io/chunky) / [scabber](https://ggbot.itch.io/scabber-font)
+- The speech variation are created by Chat GPT.
 - Grid layout taken from https://youtu.be/UKxB2j4h7Ag?si=EbnC4iFkfhC2JVOF
 
 ## License
