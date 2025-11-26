@@ -184,12 +184,12 @@ function moveRedPlayer() {
     // move rPlayer on the X axis (left and right)
     if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
         rPlayer.x -= 5;
-        rPlayer.img = oracleLeft; //
+        rPlayer.img = oracleLeft; // calls for the cat sprite
     }
 
     if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
         rPlayer.x += 5;
-        rPlayer.img = oracleRight;
+        rPlayer.img = oracleRight; // calls for the cat sprite
     }
     
     // Constrain the rPlayer to the canvas

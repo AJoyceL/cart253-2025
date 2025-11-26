@@ -2,12 +2,13 @@
 
 Joyce Angelina Lam
 
-Talk To Me (URL_FOR_THE_RUNNING_PROJECT)
+[Talk To Me](https://ajoycel.github.io/cart253-2025/variations_jam)
+
 
 ## Description
 Talk To Me is a dialogue-based game where you (the player) move and interact with blocks to trigger words from an unknown entity. There will be two speech variation to the game: a preffix and a suffix.
 
-> There are three modes/variations to this game: 
+- There are three modes/variations to this game: 
     1. In God's Messenger, you(the player) are a messenger, answering the call of your Goddess and delivering her prophecies to the people who worship her at the state temple.
 
         Instruction:
@@ -25,22 +26,27 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
         - Move the player with left/right/up/down arrows and/or A. S. D & W key.
         - Overlap with the objects to trigger speech.
 
-> Contribution
-   
-
+  
 ## Screenshot(s)
 
-> ![Image of a clown face](./assets/images/clown.png)
+1. God's Messenger
+
+
+2. Within My Mind
+
+
+3. Forest Fae
+
 
 ## Attribution
 
-> - This project uses [p5.js](https://p5js.org).
-> - A lot of the code was taken and inspired by Pippin Barr.
-> - The red variaiton background is from Freepik: https://www.freepik.com
-> - The red variation pavement and stone are from Pinterest.
-> - The fonts are from itch.io: https://ggbot.itch.io/novem-font / https://ggbot.itch.io/first-time-writing-font /
-> - The speech options are created by Chat GPT.
-> - Grid layout taken from https://youtu.be/UKxB2j4h7Ag?si=EbnC4iFkfhC2JVOF
+- This project uses [p5.js](https://p5js.org).
+- A lot of the code was taken and inspired by Pippin Barr.
+- The red variaiton background is from Freepik: https://www.freepik.com
+- The red variation pavement and stone are from Pinterest.
+- The fonts are from itch.io: https://ggbot.itch.io/novem-font / https://ggbot.itch.io/first-time-writing-font /
+- The speech options are created by Chat GPT.
+- Grid layout taken from https://youtu.be/UKxB2j4h7Ag?si=EbnC4iFkfhC2JVOF
 
 ## License
 
