@@ -19,8 +19,10 @@ let showText = false;
 let intro = true;
 
 //font
-let novem = undefined;
-let firstTime = undefined;
+let novem = undefined; //red var
+let firstTime = undefined; //green var
+let scabber = undefined; //blue var
+let chunky = undefined; //menu
 
 //red img
 let redBg = undefined;
@@ -56,6 +58,8 @@ function preload(){
     //font preload
     novem = loadFont("assets/fonts/Novem_Font_1_35/Novem.otf"); //red variation
     firstTime = loadFont("assets/fonts/FirstTimeWriting/FirstTimeWriting.otf"); //green variation
+    scabber = loadFont("assets/fonts/scabber/Scabber.woff"); //blue var
+    chunky = loadFont("assets/fonts/CHUNKY/CHUNKY-webfont.woff"); //menu
 
     //background preload taken from Freepik and pinterest
     //red variation

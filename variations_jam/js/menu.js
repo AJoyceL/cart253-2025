@@ -14,29 +14,28 @@ const menuText = `
  * Display the main menu
  */
 function menuDraw() {
-    background('#609ee6ff');
+    background('#6fc6eeff');
+    varBg();
 
     push();
-    fill('#22115fff');
-
-    textFont("");
-    textStyle(BOLD);
-    textSize(50);
+    fill('#62bbe4ff');
+    textFont(chunky);
+    textSize(40);
     textAlign(CENTER, CENTER);
     text("Talk To Me", width/2, height/2 -100);
 
-    textFont("Arial");
-    textSize(32);
-    textAlign(LEFT, CENTER);
-    text(menuText, width / 2 - 150, height / 2 + 50);
+    textSize(20);
+    textAlign(CENTER, CENTER);
+    textLeading(50);
+    text(menuText, width / 2, height / 2 + 50);
     pop();
 
     //to verify if the alignment
-    noFill();
-    stroke(255, 0, 0);
-    rect(width/2 - 150, height/2 -10, 300, 40);  // Red area
-    rect(width/2 - 150, height/2 + 30, 300, 40);  // Green area
-    rect(width/2 - 150, height/2 + 70, 300, 40); // Blue area
+    // noFill();
+    // stroke(255, 0, 0);
+    // rect(width/2 - 200, height/2 -20, 400, 40);  // Red area
+    // rect(width/2 - 200, height/2 + 30, 400, 40);  // Green area
+    // rect(width/2 - 200, height/2 + 80, 400, 40); // Blue area
 }
 
 /**
@@ -66,7 +65,7 @@ function menuKeyPressed(event) {
  */
 function menuMousePressed() {
     // variation one
-    if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 - 10 && mouseY < height/2 + 30) {
+    if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 - 20 && mouseY < height/2 + 30) {
         state = "red-variation";
         redSetup();
     };
@@ -78,9 +77,36 @@ function menuMousePressed() {
     };
 
     // variation three
-      if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 + 70 && mouseY < height/2 + 110) {
+      if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 + 80 && mouseY < height/2 + 110) {
         state = "blue-variation";
         blueSetup();
     };
   
+}
+
+function varBg() {
+    push();
+    fill('#f1ede4ff')
+    stroke("#1b1b1bff");
+    strokeWeight(5);
+    rect(25, 25, 450, 450, 10);
+    pop();
+
+    push();
+    // stroke("black");
+    // strokeWeight(10);
+    noStroke();
+    fill("#1b1b1bff");
+    rect(52, 252, 397, 20, 5);
+    rect(52, 302, 397, 20, 5);
+    rect(52, 352, 397, 20, 5);
+
+    fill('#e2dbcaff')
+    noStroke();
+    rect(50, 230, 400, 40, 5); //red var
+    rect(50, 280, 400, 40, 5); //green var
+    rect(50, 330, 400, 40, 5); // blue var
+
+
+    pop();
 }

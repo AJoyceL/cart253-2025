@@ -102,6 +102,7 @@ function blueDraw() {
         push();
         fill("black");
         textSize(18);
+        textFont(scabber);
         textWrap(WORD);
         textAlign(CENTER, TOP);
         text(blueSpeech, width/2 - 150, height/2 - 200, 250);
