@@ -5,7 +5,7 @@
  */
 
 const menuText = `
-(1) Bow At The Altar
+(1) God's Messenger
 (2) Within My Mind
 (3) Forest Fae
 `

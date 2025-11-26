@@ -8,7 +8,7 @@ Talk To Me (URL_FOR_THE_RUNNING_PROJECT)
 Talk To Me is a dialogue-based game where you (the player) move and interact with blocks to trigger words from an unknown entity. There will be two speech variation to the game: a preffix and a suffix.
 
 > There are three modes/variations to this game: 
-    1. In Bow At The Altar, you're(the player) an oracle, worshipping an unknown God at two different temples. You seek guidance through the altars the people have build for THEM. You hope that whatever THEIR words are, lead your city state forward.
+    1. In God's Messenger, you(the player) are a messenger, answering the call of your Goddess and delivering her prophecies to the people who worship her at the state temple.
 
         Instruction:
         - Move the player with left/right arrow and/or A & D key.
@@ -19,11 +19,11 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
         Instruction: 
         - Press spacebar to trigger speech.
 
-    3. In Forest Fae, you(the player) are on an quest, looking under rocks, over threes and through flower bushes for little faes. Rumors say that they are mischevious little creatures that like playing Hide&Seek with visitors.
-
+    3. In Forest Fae, you(the player) are a lost sheep, encountering mischevious little creatures while trotting through their forest.
+    
         Instruction: 
         - Move the player with left/right/up/down arrows and/or A. S. D & W key.
-        - Overlap with the trees to trigger speech.
+        - Overlap with the objects to trigger speech.
 
 > Contribution
    
