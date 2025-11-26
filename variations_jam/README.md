@@ -32,14 +32,17 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
 ![menu](assets/images/menu.png)
 
 1. God's Messenger
+
 ![God's Messenger 1](assets/images/cat_game1.png)
 ![God's Messenger 2](assets/images/cat_game2.png)
 
 2. Within My Mind
+
 ![Within My Mind 1](assets/images/mind_game1.png)
 ![Within My Mind 2](assets/images/mind_game2.png)
 
 3. Forest Fae
+
 ![Forest Fae 1](assets/images/fae_game1.png)
 ![Forest Fae 2](assets/images/fae_game2.png)
 ![Forest Fae 3](assets/images/fae_game3.png)
