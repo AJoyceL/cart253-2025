@@ -60,7 +60,7 @@ function blueSetup() {
         blues.push(createFlowers(squares[i + flowerCount * 2]));
         lilacs.push(createFlowers(squares[i + flowerCount * 3]));
         pebbles.push(createFlowers(squares[i + flowerCount * 4]));
-        trees.push(createFlowers(squares[i + 10 * 5]));
+        trees.push(createFlowers(squares[i + 18 * 5]));
     }
 }
 
