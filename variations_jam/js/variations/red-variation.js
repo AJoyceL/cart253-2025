@@ -16,6 +16,7 @@ const rPlayer = {
 
     velocity: 0,
     speed: 3,
+    img: null,
 }
 
 //Altar values
@@ -39,6 +40,8 @@ let redSpeech = '';
  * This will be called just before the red variation starts
  */
 function redSetup() {
+    //calls for oracle default img
+    rPlayer.img = oracleRight;
     //Calls both altar scrolls
     altarOne = createAltars(1);
     altarTwo = createAltars(2);
@@ -154,7 +157,7 @@ function drawRedSpeechBox() {
     fill(247, 152, 183, 150);
     stroke(0, 0, 0, 150);
     strokeWeight(3);
-    rect(75, 25, 350, 150);
+    rect(75, 25, 350, 175);
     pop();
 }
 
@@ -181,10 +184,12 @@ function moveRedPlayer() {
     // move rPlayer on the X axis (left and right)
     if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
         rPlayer.x -= 5;
+        rPlayer.img = oracleLeft; //
     }
 
     if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
         rPlayer.x += 5;
+        rPlayer.img = oracleRight;
     }
     
     // Constrain the rPlayer to the canvas
@@ -196,7 +201,7 @@ function drawPlayer() {
     push();
     fill("#1366e2ff")
     noStroke();
-    rect(rPlayer.x, rPlayer.y, rPlayer.size)
+    image(rPlayer.img, rPlayer.x, rPlayer.y, rPlayer.size, rPlayer.size)
     pop();
 }
 

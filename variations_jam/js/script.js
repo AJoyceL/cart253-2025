@@ -27,6 +27,8 @@ let redBg = undefined;
 let altarImg = undefined;
 let redPaveImg = undefined;
 let redStoneImg = undefined;
+let oracleLeft = undefined;
+let oracleRight = undefined;
 
 //blue bg img
 let blueF = undefined;
@@ -61,6 +63,8 @@ function preload(){
     altarImg = loadImage("assets/images/altar.png");
     redPaveImg = loadImage("assets/images/pavement.png");
     redStoneImg = loadImage("assets/images/stone.png");
+    oracleLeft = loadImage("assets/player/oracle_left.png");
+    oracleRight = loadImage("assets/player/oracle_right.png");
 
     //blue bg variation 
     grassLand = loadImage("assets/images/grass_floor.jpg");
