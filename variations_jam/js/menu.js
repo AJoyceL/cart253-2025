@@ -29,13 +29,6 @@ function menuDraw() {
     textLeading(50);
     text(menuText, width / 2, height / 2 + 50);
     pop();
-
-    //to verify if the alignment
-    // noFill();
-    // stroke(255, 0, 0);
-    // rect(width/2 - 200, height/2 -20, 400, 40);  // Red area
-    // rect(width/2 - 200, height/2 + 30, 400, 40);  // Green area
-    // rect(width/2 - 200, height/2 + 80, 400, 40); // Blue area
 }
 
 /**
@@ -85,6 +78,7 @@ function menuMousePressed() {
 }
 
 function varBg() {
+    //main square
     push();
     fill('#f1ede4ff')
     stroke("#1b1b1bff");
@@ -93,20 +87,18 @@ function varBg() {
     pop();
 
     push();
-    // stroke("black");
-    // strokeWeight(10);
+    //btn underline
     noStroke();
     fill("#1b1b1bff");
-    rect(52, 252, 397, 20, 5);
-    rect(52, 302, 397, 20, 5);
-    rect(52, 352, 397, 20, 5);
+    rect(52, 252, 397, 20, 5); //red var
+    rect(52, 302, 397, 20, 5); //green var
+    rect(52, 352, 397, 20, 5); //blue var
 
+    //btn fill
     fill('#e2dbcaff')
     noStroke();
     rect(50, 230, 400, 40, 5); //red var
     rect(50, 280, 400, 40, 5); //green var
     rect(50, 330, 400, 40, 5); // blue var
-
-
     pop();
 }

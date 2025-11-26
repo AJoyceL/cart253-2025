@@ -163,7 +163,7 @@ function drawRedSpeechBox() {
 
 /**
  * Introduction/rules
- * let the rPlayer know how to play
+ * let the Player know how to play
 */
 function redIntro() {
     push();
@@ -227,7 +227,7 @@ function drawAltars(altars) {
     pop();
 }
 
-// rPlayer and altar overlap
+// Player and altar overlap
 // overlap const taken from conditionals/creature-loves-massage
 function redPlayerOverlap() {
     // calls for speech

@@ -293,6 +293,7 @@ function drawFlowers() {
 /**
  * Player Functions
 */
+//handles player movement and img related to key
 function moveBluePlayer(){
     //handles player moving horizontally
     if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
@@ -328,7 +329,7 @@ function moveBluePlayer(){
     bPlayer.y = constrain(bPlayer.y, bPlayer.size / 2, width - bPlayer.size / 2);
 }
 
-//draws theb blue player
+//draws the blue player
 function drawBluePlayer(){
     push();
     noStroke();

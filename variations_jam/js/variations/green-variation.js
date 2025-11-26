@@ -89,6 +89,23 @@ function greenMousePressed() {
 }
 
 
+/**
+ * Intro
+*/
+function greenIntro() {
+    intro= true;
+    push();
+    fill("white");   
+    textSize(30);
+    textWrap(WORD);
+    textAlign(CENTER, CENTER);
+    textFont("Courier New");
+    text("press space", width/2 - 150, height/2 + 150, 300);
+    pop();
+}
+
+
+
 /** 
  * Background functions
 */
@@ -100,19 +117,6 @@ function drawGreenSpeechBox() {
     stroke(255, 255, 255, 200);
     strokeWeight(1);
     rect(50, 325, 400, 150);
-    pop();
-}
-
-//instruction
-function greenIntro() {
-    intro= true;
-    push();
-    fill("white");   
-    textSize(30);
-    textWrap(WORD);
-    textAlign(CENTER, CENTER);
-    textFont("Courier New");
-    text("press space", width/2 - 150, height/2 + 150, 300);
     pop();
 }
 
@@ -129,11 +133,13 @@ function createPanic() {
     return panic;
 }
 
+//handles the panic movement/animation
 function movePanic(panic) {
     panic.x += random(-panic.shaking, panic.shaking);
     panic.y += random(-panic.shaking, panic.shaking);
 }
 
+//handles drawing the ellipses
 function drawPanic(panic) {
     push();
     stroke("white");
