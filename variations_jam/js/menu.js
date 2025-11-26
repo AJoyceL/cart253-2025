@@ -19,7 +19,7 @@ function menuDraw() {
     push();
     fill('#22115fff');
 
-    textFont("Verdana");
+    textFont("");
     textStyle(BOLD);
     textSize(50);
     textAlign(CENTER, CENTER);
@@ -32,11 +32,11 @@ function menuDraw() {
     pop();
 
     //to verify if the alignment
-    // noFill();
-    // stroke(255, 0, 0);
-    // rect(width/2 - 150, height/2 -10, 300, 40);  // Red area
-    // rect(width/2 - 150, height/2 + 30, 300, 40);  // Green area
-    // rect(width/2 - 150, height/2 + 70, 300, 40); // Blue area
+    noFill();
+    stroke(255, 0, 0);
+    rect(width/2 - 150, height/2 -10, 300, 40);  // Red area
+    rect(width/2 - 150, height/2 + 30, 300, 40);  // Green area
+    rect(width/2 - 150, height/2 + 70, 300, 40); // Blue area
 }
 
 /**
