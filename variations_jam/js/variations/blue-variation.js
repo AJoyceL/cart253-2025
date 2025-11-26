@@ -33,8 +33,8 @@ let cols, rows; //columns and rows
 //player values
 let bPlayer = {
     x: 25,
-    y: 450,
-    size: 100,
+    y: 475,
+    size: 50,
     speed: 3,
     img: null,
 }
@@ -60,7 +60,7 @@ function blueSetup() {
         blues.push(createFlowers(squares[i + flowerCount * 2]));
         lilacs.push(createFlowers(squares[i + flowerCount * 3]));
         pebbles.push(createFlowers(squares[i + flowerCount * 4]));
-        trees.push(createFlowers(squares[i + 18 * 5]));
+        trees.push(createFlowers(squares[i + 10 * 5]));
     }
 }
 
@@ -322,9 +322,9 @@ function moveBluePlayer(){
     }
 
     //limit horizontal movement  within the canvas
-    bPlayer.x = constrain(bPlayer.x, bPlayer.size / 2, 475 - bPlayer.size / 2);
+    bPlayer.x = constrain(bPlayer.x, bPlayer.size / 2, width - bPlayer.size / 2);
     //limit vertical movement  within the canvas
-    bPlayer.y = constrain(bPlayer.y, bPlayer.size / 2, 475 - bPlayer.size / 2);
+    bPlayer.y = constrain(bPlayer.y, bPlayer.size / 2, width - bPlayer.size / 2);
 }
 
 //draws theb blue player
@@ -332,6 +332,7 @@ function drawBluePlayer(){
     push();
     noStroke();
     noFill();
+    imageMode(CENTER);
     image(bPlayer.img, bPlayer.x, bPlayer.y, bPlayer.size, bPlayer.size);
     pop();
 }
