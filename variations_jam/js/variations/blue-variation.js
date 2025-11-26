@@ -34,14 +34,18 @@ let cols, rows; //columns and rows
 let bPlayer = {
     x: 25,
     y: 450,
-    size: 30,
+    size: 100,
     speed: 3,
+    img: null,
 }
+
+
 
 /**
  * This will be called just before the blue variation starts
  */
 function blueSetup() {
+    bPlayer.img = sheepDown; //calls for the player default img
     //calls for grid layout to calculate the closes value
     cols = floor(width / gridSize);
     rows = floor(height / gridSize);
@@ -82,9 +86,8 @@ function blueDraw() {
     if(intro) {
         bIntro();
         night = false;
+        bPlayer.img - sheepDown;
     }
-
-    console.log(nightTime);
 
     //calls for speech
     if(showText && blueSpeech) {
@@ -293,11 +296,13 @@ function moveBluePlayer(){
     //handles player moving horizontally
     if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
         bPlayer.x -= bPlayer.speed;
+        bPlayer.img = sheepLeft; //calls for player img change
         night = true; //trigger night cycle
         intro = false; //remove intro text
     }
     if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
         bPlayer.x += bPlayer.speed;
+        bPlayer.img = sheepRight; //calls for player img change
         night = true; //trigger night cycle
         intro = false; //remove intro text
     }
@@ -305,11 +310,13 @@ function moveBluePlayer(){
     //handles them move vertically
     if(keyIsDown(UP_ARROW) || keyIsDown(87)) {
         bPlayer.y -= bPlayer.speed;
+        bPlayer.img = sheepUp; //calls for player img change
         night = true; //trigger night cycle
         intro = false; //remove intro text
     }
     if(keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
         bPlayer.y += bPlayer.speed;
+        bPlayer.img = sheepDown; //calls for player img change
         night = true; //trigger night cycle
         intro = false; //remove intro text
     }
@@ -324,8 +331,8 @@ function moveBluePlayer(){
 function drawBluePlayer(){
     push();
     noStroke();
-    fill("white");
-    rect(bPlayer.x, bPlayer.y, bPlayer.size);
+    noFill();
+    image(bPlayer.img, bPlayer.x, bPlayer.y, bPlayer.size, bPlayer.size);
     pop();
 }
 

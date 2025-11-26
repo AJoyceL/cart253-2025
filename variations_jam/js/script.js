@@ -28,7 +28,7 @@ let altarImg = undefined;
 let redPaveImg = undefined;
 let redStoneImg = undefined;
 
-//blue img
+//blue bg img
 let blueF = undefined;
 let redF = undefined;
 let lilacF = undefined;
@@ -39,6 +39,11 @@ let treeImg = undefined;
 let flowerF = undefined;
 let thornF = undefined;
 let lunaF = undefined;
+//blue player img
+let sheepUp = undefined;
+let sheepDown = undefined;
+let sheepRight = undefined;
+let sheepLeft = undefined;
 
 
 //load speech data
@@ -57,7 +62,7 @@ function preload(){
     redPaveImg = loadImage("assets/images/pavement.png");
     redStoneImg = loadImage("assets/images/stone.png");
 
-    //blue variation 
+    //blue bg variation 
     grassLand = loadImage("assets/images/grass_floor.jpg");
     pebbleF = loadImage("assets/images/pebble.png");
     blueF = loadImage("assets/images/blue_flower.png");
@@ -68,6 +73,11 @@ function preload(){
     flowerF = loadImage("assets/images/flowerfairy.png");
     thornF = loadImage("assets/images/thornfairy.png");
     lunaF = loadImage("assets/images/lunafairy.png");
+    //blue sheep/player img
+    sheepDown = loadImage("assets/player/sheep_down.png");
+    sheepUp = loadImage("assets/player/sheep_up.png");
+    sheepLeft = loadImage("assets/player/sheep_left.png");
+    sheepRight = loadImage("assets/player/sheep_right.png");
 }
 
 /**
