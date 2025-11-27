@@ -2,9 +2,11 @@
 
 Joyce Angelina Lam
 
+[View my project online](https://ajoycel.github.io/cart253-2025/art-jam/)
+
 
 ## Description
-- This project is a stylised self-portrait, whose pupil motion is called by mouseX and mouseY.
+This project is a stylised self-portrait, whose pupil motion is called by mouseX and mouseY.
 
 
 ## Contribution(s)
@@ -12,7 +14,9 @@ Joyce Angelina Lam
 - The use of map() to limit pupil mition range.
 
 
-##Screenshot(s)
+## Screenshot(s)
+![screenshot1](assets/images/screenshot1.png)
+![screenshot2](assets/images/screenshot2.png)
 
 
 ## Attribution
