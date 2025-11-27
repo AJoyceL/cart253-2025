@@ -1,16 +1,21 @@
-Project name: Art Jam
-Author: Joyce Angelina Lam
+## Art Jam: Self-Portrait
 
-p5 reference:
-// While I haven't technically used vertex() before this project myself, I watched Philippe use it in a prior challenge(Introduction challenge) and tought of using it to draw my self-portrait. 
-Here's the link to vertex() : https://p5js.org/reference/p5/vertex/
-
-USES: 
-I used vertex() in drawFace() and drawHair() 
+Joyce Angelina Lam
 
 
-// Used map() as per recommended when I asked for help with limiting the motion range of the pupil/
-here's the link to map() : https://p5js.org/reference/p5/map/
+## Description
+- This project is a stylised self-portrait, whose pupil motion is called by mouseX and mouseY.
 
-USES:
-I used map() in drawPupil()
+
+## Contribution(s)
+- The use of vertex() to draw the portrait.
+- The use of map() to limit pupil mition range.
+
+
+##Screenshot(s)
+
+
+## Attribution
+- This project uses [p5.js]( https://p5js.org/reference/p5/vertex/)
+- A lot of this code is taken and inspired by Pippin Barr
+
