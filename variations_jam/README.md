@@ -6,22 +6,19 @@ Joyce Angelina Lam
 
 
 ## Description
-Talk To Me is a dialogue-based game where you (the player) move and interact with blocks to trigger words from an unknown entity. There will be two speech variation to the game: a preffix and a suffix.
+Talk To Me is a dialogue-based game where you (the player) move and interact with onjects to trigger speech. There will be different speech variations to each game.
 
-- There are three modes/variations to this game: 
+- There are three variations to this game: 
     1. In God's Messenger, you(the player) are a messenger, answering the call of your Goddess and delivering her prophecies to the people who worship her at the state temple.
-
         Instruction:
         - Move the player with left/right arrow and/or A & D key.
         - Overlap with alters to trigger speech. 
 
     2. In Within My Mind, you(the player) are a very self-conscious person who often doubts themselves. You often doubt yourself, your ideas and/or your acts in your consciousness.
-
         Instruction: 
         - Press spacebar to trigger speech.
 
     3. In Forest Fae, you(the player) are a lost sheep, encountering mischevious little creatures while trotting through their forest.
-    
         Instruction: 
         - Move the player with left/right/up/down arrows and/or A. S. D & W key.
         - Overlap with the objects to trigger speech.
