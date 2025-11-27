@@ -51,7 +51,7 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
 - This project uses [p5.js](https://p5js.org).
 - A lot of the code was taken and inspired by Pippin Barr.
 - The red variaiton background is from Freepik: https://www.freepik.com
-- The red variation pavement and stone are from Pinterest.
+- The rest of the visual aspects are from Pinterest.
 - The fonts are from itch.io: [Novem](https://ggbot.itch.io/novem-font) / [First time writing](https://ggbot.itch.io/first-time-writing-font) / [CHUNKY](https://batfeula.itch.io/chunky) / [scabber](https://ggbot.itch.io/scabber-font)
 - The speech variation are created by Chat GPT.
 - Grid layout taken from https://youtu.be/UKxB2j4h7Ag?si=EbnC4iFkfhC2JVOF
