@@ -11,7 +11,7 @@ Talk To Me is a dialogue-based game where you (the player) move and interact wit
 - There are three variations to this game: 
     1. In God's Messenger, you(the player) are a messenger, answering the call of your Goddess and delivering her prophecies to the people who worship her at the state temple.
         Instruction:
-        - Move the player with left/right arrow and/or A & D key.
+        - Move the player with left/right arrow and/or A/D key.
         - Overlap with scrolls to call the messeges. 
 
     2. In Within My Mind, you(the player) are a very self-conscious person who often doubts themselves. You often doubt yourself, your ideas and/or your acts in your consciousness.
